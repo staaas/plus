@@ -1,7 +1,10 @@
 # -*- coding:utf-8 -*-
+from functools import wraps
+
 from django.shortcuts import render_to_response
 from django.template import RequestContext
-from functools import wraps
+from django.utils import translation
+
 
 def render_to(template):
     """
@@ -13,7 +16,12 @@ def render_to(template):
             response = func(request, *args, **kwargs)
 
             if isinstance(response, dict):
-                return render_to_response(template, response, context_instance=RequestContext(request))
+                lang = response.pop('Content-Language', None)
+                resp = render_to_response(template, response, context_instance=RequestContext(request))
+                if not lang is None:
+                    resp['Content-Language'] = lang
+                    translation.deactivate()
+                return resp
             else:
                 return response
         return wrapper

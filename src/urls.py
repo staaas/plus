@@ -9,6 +9,7 @@ urlpatterns = patterns('',
     # url(r'^src/', include('src.foo.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^comments/', include('django.contrib.comments.urls')),
     url(r'^soc/', include('social_auth.urls')),
     url(r'^(?P<slug>[\w\d]+)/$',
         'plus.views.show_event',

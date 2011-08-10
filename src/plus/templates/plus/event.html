@@ -1,20 +1,21 @@
 {% extends "base.html" %}
+{% load comments %}
 
 {% block title %}{{ event.title }}{% endblock %}
 
 {% block content %}
-<h2>{{ event.title }}</h2>
-{{ event.starts_at }}<br />
-{% if event.url %}{{ event.url }}<br />{% endif %}
-<div style="border: solid 1px #CCCCCC;">{{ event.description|linebreaksbr }}</div>
+<h1>{{ event.title }}</h1>
+<div id="details">{{ event.starts_at }}
+{% if event.url %}<a class="a-right" href="{{ event.url }}">{{ event.url }}</a>{% endif %}</div>
+<div id="description">{{ event.description|linebreaksbr }}</div>
 
 {% if future_event %}
   {% if curr_attendance %}
     Вы збіраецесь ісці<br />
-    <a href="./minus" class="minus">- / я не пайду</a>
+    <a href="./minus" class="minus">я не пайду</a>
   {% else %}
     {% if user.is_authenticated %}
-      <a href="./plus" class="plus">+ / я пайду</a>
+      <a href="./plus" class="plus">я пайду</a>
     {% else %}
       login
     {% endif %}
@@ -27,6 +28,15 @@
 	<li>{{ usr.username }}</li>
 	{% endfor %}</ul>
 {% endif %}
+<hr />
+{% get_comment_list for event as comment_list %}
+{% for comment in comment_list %}
+    {{ comment }}<br />
+{% endfor %}
+
+<div id="comment-form-base-root2" class="comment-form">
+{% render_comment_form for event %}
+</div>
 
 <hr />
 <div>

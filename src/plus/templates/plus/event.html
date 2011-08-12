@@ -1,5 +1,5 @@
 {% extends "base.html" %}
-{% load comments %}
+{% load comments i18n plus_tags %}
 
 {% block title %}{{ event.title }}{% endblock %}
 
@@ -9,9 +9,12 @@
 {% if event.url %}<a class="a-right" href="{{ event.url }}">{{ event.url }}</a>{% endif %}</div>
 <div id="description">{{ event.description|linebreaksbr }}</div>
 
+{% if user.is_authenticated %}
+    {% trans "You are logged in as" %} {{ user }}.
+{% endif %}
 {% if future_event %}
   {% if curr_attendance %}
-    Вы збіраецесь ісці<br />
+    <br />
     <a href="./minus" class="minus">я не пайду</a>
   {% else %}
     {% if user.is_authenticated %}
@@ -22,16 +25,27 @@
   {% endif %}
 {% endif %}
 
-{% if goers %}
-      <h3>Таксама пойдуць:</h3>
-      <ul>{% for usr in goers %}
+{% if goers or curr_attendance %}
+      <h3>{% trans "They are going to the event:" %}</h3>
+      <ul>
+	{% if curr_attendance %}
+	  {{ user.username }} <b>({% trans "you" %})</b>
+	{% endif %}
+	{% for usr in goers %}
 	<li>{{ usr.username }}</li>
-	{% endfor %}</ul>
+	{% endfor %}
+      </ul>
 {% endif %}
 <hr />
 {% get_comment_list for event as comment_list %}
-{% for comment in comment_list %}
-    {{ comment }}<br />
+{% for comment in comment_list|annotate_users %}
+    {% if comment.user.soc_provider %}
+       <a href="{{ comment.user.soc_link }}">[{{ comment.user.soc_provider }}] {{ comment.user.username }}</a>
+    {% else %}
+       <i>{{ comment.user.username }}</i>
+    {% endif %}
+    <span class="comment-date">{{ comment.submit_date|date:"j E Y г. G:i" }}</span>
+    <div class="comment-text">{{ comment.comment|linebreaksbr }}</div>
 {% endfor %}
 
 <div id="comment-form-base-root2" class="comment-form">

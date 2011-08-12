@@ -104,3 +104,19 @@ a.a-right:hover {
     border-color: #FF0000;
     text-decoration: none;
 }
+
+/*********** COMMENTS **********/
+.comment-date {
+    color: #AAAAAA;
+    font-size: small;
+}
+.comment-date:hover {
+    color: #333333;
+    font-size: small;
+}
+.comment-text {
+    margin-bottom: 15px;
+    padding: 5px;
+    border-radius: 3px;
+    background-color: #EFEFEF;
+}

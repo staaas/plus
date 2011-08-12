@@ -4,11 +4,12 @@ from django.contrib.auth.models import User
 
 UPLOAD_DIR = 'eventimg'
 
-LANG_CHOICES = [(0, 'Belarussian'),
-                (1, 'Russian'),]
+SUPPORTED_LANGUAGES = [(0, 'be', 'Belarussian'),
+                       (1, 'ru', 'Russian'),]
 
-LANG_CODES = {0: 'be',
-              1: 'ru'}
+LANG_CHOICES = [(c, l) for c, s, l in SUPPORTED_LANGUAGES]
+
+LANG_CODES = {c: s for c, s, l in SUPPORTED_LANGUAGES}
 
 SLUG_ALPHABET = 'abcdefghijklmnopqrstuvwxyz'\
     '0123456789'

@@ -62,6 +62,12 @@ a:hover {
     border-bottom: 1px solid #99999A;
 }
 
+#posterdisplay {
+    margin-top: 5px;
+    display: inline;
+    float: right;
+}
+
 a.a-right, a.a-right:visited {
     float: right;
     text-decoration: none;

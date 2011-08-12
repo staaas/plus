@@ -7,7 +7,10 @@
 <h1>{{ event.title }}</h1>
 <div id="details">{{ event.starts_at }}
 {% if event.url %}<a class="a-right" href="{{ event.url }}">{{ event.url }}</a>{% endif %}</div>
-<div id="description">{{ event.description|linebreaksbr }}</div>
+<div id="description">
+  {% if event.posterdisplay.url %}<div id="posterdisplay"><img src="{{ event.posterdisplay.url }}" alt="Poster" /></div>{% endif %}
+  {{ event.description|linebreaksbr }}
+</div>
 
 {% if user.is_authenticated %}
     {% trans "You are logged in as" %} {{ user }}.

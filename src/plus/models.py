@@ -1,8 +1,11 @@
 import random
+
 from django.db import models
 from django.contrib.auth.models import User
+from imagekit.models import ImageModel
 
-UPLOAD_DIR = 'eventimg'
+
+UPLOAD_DIR = 'posters'
 
 SUPPORTED_LANGUAGES = [(0, 'be', 'Belarussian'),
                        (1, 'ru', 'Russian'),]
@@ -23,7 +26,7 @@ def random_slug():
             return candidate
     raise Exception('Failed to generate slug in % trials' % SLUG_TRY_TIMES)    
 
-class Event(models.Model):
+class Event(ImageModel):
     id = models.AutoField(primary_key = True)
 
     slug = models.SlugField(unique=True, max_length=40, default=random_slug)
@@ -40,6 +43,12 @@ class Event(models.Model):
 
     def __unicode__(self):
         return self.title
+
+    class IKOptions:
+        # This inner class is where we define the ImageKit options for the model
+        spec_module = 'plus.eventlogospecs'
+        cache_dir = 'display'
+        image_field = 'logo'
 
 class EventAttendance(models.Model):
     event = models.ForeignKey(Event)

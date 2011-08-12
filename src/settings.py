@@ -135,6 +135,7 @@ INSTALLED_APPS = (
     'social_auth',
     'south',
     'debug_toolbar',
+    'imagekit',
     'plus',
 )
 

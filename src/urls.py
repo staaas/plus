@@ -1,9 +1,21 @@
 from django.conf.urls.defaults import patterns, include, url
-
+from django.conf import settings
 from django.contrib import admin
+
+
 admin.autodiscover()
 
-urlpatterns = patterns('',
+if settings.DEBUG:
+    urlpatterns = patterns('', (r'^site_media/media/(?P<path>.*)$',
+                                'django.views.static.serve',
+                                {'document_root': settings.MEDIA_ROOT}),)
+    urlpatterns += patterns('', (r'^site_media/static/(?P<path>.*)$',
+                                 'django.views.static.serve',
+                                 {'document_root': settings.STATIC_ROOT}),)
+else:
+    urlpatterns = []
+
+urlpatterns += patterns('',
     # Examples:
     # url(r'^$', 'src.views.home', name='home'),
     # url(r'^src/', include('src.foo.urls')),

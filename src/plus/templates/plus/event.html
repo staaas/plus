@@ -18,9 +18,9 @@
     <a href="./minus" class="minus">я не пайду</a>
   {% else %}
     {% if user.is_authenticated %}
-      <a href="./plus" class="plus">я пайду</a>
+      <a href="./plus" class="plus">{% trans "I'm going to go" %}</a>
     {% else %}
-      login
+      <a href="#" class="plus" data-reveal-id="auth-plus">{% trans "I'm going to go" %}</a>
     {% endif %}
   {% endif %}
 {% endif %}
@@ -68,6 +68,19 @@
       <input type="submit" value="Login" />
     </div>
   </form>
+
+  <div id="auth-plus" class="reveal-modal">
+    <h1>Modal Title</h1>
+    <form action="{% url socialauth_begin "openid" %}" method="post">{% csrf_token %}
+      <div>
+	<label for="openid_identifier">OpenID provider</label>
+	<input id="openid_identifier" type="text" value="" name="openid_identifier" />
+	<input type="hidden" name="next" value="{% url event_plus event.slug %}" />
+	<input type="submit" value="Login" />
+      </div>
+    </form>
+     <a class="close-reveal-modal">&#215;</a>
+  </div>
 </div>
 
 {% endblock %}

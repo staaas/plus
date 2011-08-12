@@ -11,8 +11,15 @@
     <script src="{{ STATIC_URL }}js/jquery.reveal.js" type="text/javascript"></script>
     {% block extrahead %}{% endblock %}
   </head>
-    <div id="page">
-      {% block content %}{% endblock %}
+    <div id="header-out">
+      <div id="header-in">
+	{% block header %}{% endblock %}
+      </div>
+    <div>
+    <div id="page-out">
+      <div id="page-in">
+	{% block content %}{% endblock %}
+      </div>
     </div>
   </body>
 </html>

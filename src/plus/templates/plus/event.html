@@ -3,87 +3,95 @@
 
 {% block title %}{{ event.title }}{% endblock %}
 
-{% block content %}
+{% block header %}
 <h1>{{ event.title }}</h1>
-<div id="details">{{ event.starts_at }}
+<div id="details">{% trans "Starts:" %} <strong>{{ event.starts_at|date:"j E Y г. G:i" }}</strong>
 {% if event.url %}<a class="a-right" href="{{ event.url }}">{{ event.url }}</a>{% endif %}</div>
+{% endblock %}
+
+{% block content %}
 <div id="description">
   {% if event.posterdisplay.url %}<div id="posterdisplay"><img src="{{ event.posterdisplay.url }}" alt="Poster" /></div>{% endif %}
   {{ event.description|linebreaksbr }}
 </div>
 
-{% if user.is_authenticated %}
-    {% trans "You are logged in as" %} {{ user }}.
-{% endif %}
-{% if future_event %}
-  {% if curr_attendance %}
-    <br />
-    <a href="./minus" class="minus">я не пайду</a>
-  {% else %}
-    {% if user.is_authenticated %}
-      <a href="./plus" class="plus">{% trans "I'm going to go" %}</a>
+<div id="attendance-button-container">
+  {% if future_event %}
+    {% if curr_attendance %}
+      <a href="{% url event_minus event.slug %}" class="minus">{% trans "I changed my mind to go" %}</a>
     {% else %}
-      <a href="#" class="plus" data-reveal-id="auth-plus">{% trans "I'm going to go" %}</a>
+      {% if user.is_authenticated %}
+        <a href="{% url event_plus event.slug %}" class="plus">{% trans "I'm going to go" %}</a>
+      {% else %}
+        <a href="#" class="plus" data-reveal-id="auth-plus">{% trans "I'm going to go" %}</a>
+      {% endif %}
     {% endif %}
   {% endif %}
+</div>
+
+{% if user.is_authenticated %}
+    {% trans "You are logged in as" %} {{ user }}. <a href="{% url event_logout event.slug %}">{% trans "Logout" %}</a>
 {% endif %}
 
 {% if goers or curr_attendance %}
-      <h3>{% trans "They are going to the event:" %}</h3>
-      <ul>
-	{% if curr_attendance %}
-	  {{ user.username }} <b>({% trans "you" %})</b>
-	{% endif %}
-	{% for usr in goers %}
-	<li>{{ usr.username }}</li>
-	{% endfor %}
-      </ul>
-{% endif %}
-<hr />
-{% get_comment_list for event as comment_list %}
-{% for comment in comment_list|annotate_users %}
-    {% if comment.user.soc_provider %}
-       <a href="{{ comment.user.soc_link }}">[{{ comment.user.soc_provider }}] {{ comment.user.username }}</a>
-    {% else %}
-       <i>{{ comment.user.username }}</i>
+  <h3>{% trans "They are going to the event:" %}</h3>
+  <ul id="goers">
+    {% if curr_attendance %}
+      {% display_user user %} <b>({% trans "you" %})</b>
     {% endif %}
-    <span class="comment-date">{{ comment.submit_date|date:"j E Y г. G:i" }}</span>
-    <div class="comment-text">{{ comment.comment|linebreaksbr }}</div>
-{% endfor %}
+    {% for usr in goers %}
+      <li>{% display_user usr %}</li>
+    {% endfor %}
+  </ul>
+  <div style="clear:both"></div>
+{% endif %}
 
-<div id="comment-form-base-root2" class="comment-form">
-{% render_comment_form for event %}
+<div id="comments">
+  {% get_comment_list for event as comment_list %}
+  {% if comment_list %}
+    <h3>{% trans "Comments" %}:</h3>
+    {% for comment in comment_list|annotate_users %}
+      <span class="comment-user">{% display_user comment.user %}</span>
+      <span class="comment-date">{{ comment.submit_date|date:"j E Y г. G:i" }}</span>
+      <div class="comment-text">{{ comment.comment|linebreaksbr }}</div>
+    {% endfor %}
+  {% endif %}
+
+  <div id="comment-form-base-root2" class="comment-form">
+  {% render_comment_form for event %}
+  </div>
 </div>
 
-<hr />
-<div>
+<div id="auth-plus" class="reveal-modal">
+  <h1>{% trans "Please login" %}</h1>
   <ul>
     <li><a rel="nofollow" href="{% url socialauth_begin "twitter" %}">Twitter</a></li>
     <li><a rel="nofollow" href="{% url socialauth_begin "facebook" %}">Facebook</a></li>
     <li><a rel="nofollow" href="{% url socialauth_begin "google-oauth" %}">Google OAuth</a></li>
     <li><a rel="nofollow" href="#">Vkontakte</a></li>
   </ul>
-
   <form action="{% url socialauth_begin "openid" %}" method="post">{% csrf_token %}
     <div>
       <label for="openid_identifier">OpenID provider</label>
       <input id="openid_identifier" type="text" value="" name="openid_identifier" />
+      <input type="hidden" name="next" value="{% url event_plus event.slug %}" />
       <input type="submit" value="Login" />
     </div>
   </form>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
 
-  <div id="auth-plus" class="reveal-modal">
-    <h1>Modal Title</h1>
-    <form action="{% url socialauth_begin "openid" %}" method="post">{% csrf_token %}
-      <div>
-	<label for="openid_identifier">OpenID provider</label>
-	<input id="openid_identifier" type="text" value="" name="openid_identifier" />
-	<input type="hidden" name="next" value="{% url event_plus event.slug %}" />
-	<input type="submit" value="Login" />
-      </div>
-    </form>
-     <a class="close-reveal-modal">&#215;</a>
-  </div>
+<div id="auth-openid" class="reveal-modal">
+  <h1>{% trans "Login via OpenID" %}</h1>
+  <form action="{% url socialauth_begin "openid" %}" method="post">{% csrf_token %}
+    <div>
+      <label for="openid_identifier">OpenID provider</label>
+      <input id="openid_identifier" type="text" value="" name="openid_identifier" />
+      <input type="hidden" name="next" value="{% url show_event event.slug %}#comment" />
+      <input type="submit" value="Login" />
+    </div>
+  </form>
+  <a class="close-reveal-modal">&#215;</a>
 </div>
 
 {% endblock %}

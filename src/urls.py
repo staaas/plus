@@ -32,4 +32,7 @@ urlpatterns += patterns('',
     url(r'^(?P<slug>[\w\d]+)/minus/',
         'plus.views.event_minus',
         name='event_minus'),
+    url(r'^(?P<slug>[\w\d]+)/logout/',
+        'plus.views.event_logout',
+        name='event_logout'),
 )

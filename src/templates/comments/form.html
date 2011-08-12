@@ -20,7 +20,7 @@
   </div>
   <div style="clear:both"></div>
 {% else %}
-<div class="please-login">
-Увайдзіце праз <a href="#">Вкантакце</a>, <a href="#">Facebook</a>, <a href="#">Twitter</a>, <a href="#">Google</a> ці <a href="#">Open ID</a>, каб пакідаць каментары.
-</div>
+<span class="please-login">
+{% trans 'Please login via <a href="#">Vkontakte</a>, <a href="#">Facebook</a>, <a href="#">Twitter</a>, <a href="#">Google</a> ці <a href="#" data-reveal-id="auth-openid">Open ID</a> in order to leave comments' %}.
+</span>
 {% endif %}

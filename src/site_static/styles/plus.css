@@ -21,7 +21,6 @@ body {
     height: 100%;
     font-family: 'Forum', cursive;
     background: #FEFEFF;
-    color: #222223;
 }
 ol, ul {
     list-style: none;
@@ -44,22 +43,46 @@ a:hover {
     text-decoration: underline;
 }
 
-
-/* page */
-#page {
-	padding: 0 40px 0 40px;
-	margin: auto;
-	width: 960px;
-	height: 100%;
+/* header */
+#header-out {
+    width: 100%;
+    color: #ffffff;
+    background-color: #067ff1;
 }
-
-#page h1 {
+#header-in {
+    padding: 10px 40px 5px 40px;
+    width: 960px;
+    margin: auto;
+}
+#header-in h1 {
     font-size: 1.9em;
 }
+#header-in a, #header-in a:visited {
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: underline;
+}
 
-#description {
-    border-top: 1px solid #99999A;
-    border-bottom: 1px solid #99999A;
+#header-in a:hover {
+    color: #ffff00;
+    font-weight: bold;
+    text-decoration: underline;
+}
+/* page */
+#page-out {
+    height: 100%;
+    color: #222223;
+    background-color: #ffffff;
+}
+#page-in {
+    padding: 10px 40px 0 40px;
+    margin: auto;
+    width: 960px;
+
+}
+
+#page-in h3 {
+    font-size: 1.3em;
 }
 
 #posterdisplay {
@@ -76,10 +99,22 @@ a.a-right:hover {
     text-decoration: underline;
 }
 
+#goers li {
+    display: inline-block;
+    padding: 0 3px 0 3px;
+    float: left;
+}
+
+/* PLUS MINUS */
+#attendance-button-container {
+    padding: 5px;
+    text-align: center;
+}
+
 .plus, .minus {
     display: inline-block;
     padding: 10px;
-    margin: 5px;
+    margin: auto;
     font-size: 1.9em;
     border-style: solid;
     border-width: 1px;
@@ -112,17 +147,27 @@ a.a-right:hover {
 }
 
 /*********** COMMENTS **********/
+#comments {
+    margin-top: 40px;
+}
+.comment-user {
+    font-weight: bold;
+}
 .comment-date {
-    color: #AAAAAA;
+    color: #666666;
     font-size: small;
 }
 .comment-date:hover {
-    color: #333333;
+    color: #111111;
     font-size: small;
 }
 .comment-text {
     margin-bottom: 15px;
     padding: 5px;
     border-radius: 3px;
-    background-color: #EFEFEF;
+    background-color: #E6E6E6;
+}
+.please-login {
+    padding: 5px;
+    background-color: #ffffaa;
 }

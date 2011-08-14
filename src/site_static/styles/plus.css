@@ -75,13 +75,12 @@ a:hover {
     background-color: #ffffff;
 }
 #page-in {
-    padding: 10px 40px 0 40px;
+    padding: 10px 40px 10px 40px;
     margin: auto;
     width: 960px;
-
 }
 
-#page-in h3 {
+h3 {
     font-size: 1.3em;
 }
 
@@ -106,12 +105,31 @@ a.a-right:hover {
 }
 
 /* PLUS MINUS */
+#attendance-out {
+    color: #222223;
+    background-color: #ff5300;
+}
+#attendance-in {
+    padding: 10px 40px 10px 40px;
+    margin: auto;
+    width: 960px;
+}
+#attendance-in a {
+    color: #ffffff;
+}
+#attendance-in a:hover {
+    color: #ffff00;
+}
+#loggedin-as {
+    text-align: center;
+}
+
 #attendance-button-container {
     padding: 5px;
     text-align: center;
 }
 
-.plus, .minus {
+a.plus, a.minus {
     display: inline-block;
     padding: 10px;
     margin: auto;
@@ -122,24 +140,24 @@ a.a-right:hover {
     text-decoration: none;
 }
 
-.plus, .plus:visited {
+a.plus, a.plus:visited {
     color: #005700;
     background-color: #43BF30;
     border-color: #005700;
 }
-.plus:hover {
+a.plus:hover {
     color: #002700;
     background-color: #13AF00;
     border-color: #002700;
     text-decoration: none;
 }
 
-.minus, .minus:visited {
+a.minus, a.minus:visited {
     color: #FF0000;
     background-color: #FFAAAA;
     border-color: #FF0000;
 }
-.minus:hover {
+a.minus:hover {
     color: #FF0000;
     background-color: #FF8888;
     border-color: #FF0000;
@@ -147,9 +165,16 @@ a.a-right:hover {
 }
 
 /*********** COMMENTS **********/
-#comments {
-    margin-top: 40px;
+#comments-out {
+    color: #222223;
+    background-color: #ffc300;
 }
+#comments-in {
+    padding: 10px 40px 10px 40px;
+    margin: auto;
+    width: 960px;
+}
+
 .comment-user {
     font-weight: bold;
 }
@@ -168,6 +193,13 @@ a.a-right:hover {
     background-color: #E6E6E6;
 }
 .please-login {
+    width: 100%;
     padding: 5px;
-    background-color: #ffffaa;
+    background-color: #ffaaaa;
+}
+
+/* comment form */
+.comment-form-textarea textarea {
+    width: 100%;
+    height: 135px;
 }

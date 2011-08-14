@@ -28,11 +28,26 @@
     {% endif %}
   {% endif %}
 </div>
-
 {% if user.is_authenticated %}
-    {% trans "You are logged in as" %} {{ user }}. <a href="{% url event_logout event.slug %}">{% trans "Logout" %}</a>
+  <div id="loggedin-as">{% trans "You are logged in as" %} {{ user }}. <a href="{% url event_logout event.slug %}">{% trans "Logout" %}</a></div>
 {% endif %}
 
+<div id="auth-openid" class="reveal-modal">
+  <h1>{% trans "Login via OpenID" %}</h1>
+  <form action="{% url socialauth_begin "openid" %}" method="post">{% csrf_token %}
+    <div>
+      <label for="openid_identifier">OpenID provider</label>
+      <input id="openid_identifier" type="text" value="" name="openid_identifier" />
+      <input type="hidden" name="next" value="{% url show_event event.slug %}#comment" />
+      <input type="submit" value="Login" />
+    </div>
+  </form>
+  <a class="close-reveal-modal">&#215;</a>
+</div>
+
+{% endblock %}
+
+{% block attendance %}
 {% if goers or curr_attendance %}
   <h3>{% trans "They are going to the event:" %}</h3>
   <ul id="goers">
@@ -44,23 +59,9 @@
     {% endfor %}
   </ul>
   <div style="clear:both"></div>
+{% else %}
+  <h3>{% trans "Nobody has registered for the event yet :(" %}</h3>
 {% endif %}
-
-<div id="comments">
-  {% get_comment_list for event as comment_list %}
-  {% if comment_list %}
-    <h3>{% trans "Comments" %}:</h3>
-    {% for comment in comment_list|annotate_users %}
-      <span class="comment-user">{% display_user comment.user %}</span>
-      <span class="comment-date">{{ comment.submit_date|date:"j E Y г. G:i" }}</span>
-      <div class="comment-text">{{ comment.comment|linebreaksbr }}</div>
-    {% endfor %}
-  {% endif %}
-
-  <div id="comment-form-base-root2" class="comment-form">
-  {% render_comment_form for event %}
-  </div>
-</div>
 
 <div id="auth-plus" class="reveal-modal">
   <h1>{% trans "Please login" %}</h1>
@@ -80,18 +81,22 @@
   </form>
   <a class="close-reveal-modal">&#215;</a>
 </div>
+{% endblock %}
 
-<div id="auth-openid" class="reveal-modal">
-  <h1>{% trans "Login via OpenID" %}</h1>
-  <form action="{% url socialauth_begin "openid" %}" method="post">{% csrf_token %}
-    <div>
-      <label for="openid_identifier">OpenID provider</label>
-      <input id="openid_identifier" type="text" value="" name="openid_identifier" />
-      <input type="hidden" name="next" value="{% url show_event event.slug %}#comment" />
-      <input type="submit" value="Login" />
-    </div>
-  </form>
-  <a class="close-reveal-modal">&#215;</a>
+{% block comments %}
+<div id="comments">
+  {% get_comment_list for event as comment_list %}
+  {% if comment_list %}
+    <h3>{% trans "Comments" %}:</h3>
+    {% for comment in comment_list|annotate_users %}
+      <span class="comment-user">{% display_user comment.user %}</span>
+      <span class="comment-date">{{ comment.submit_date|date:"j E Y г. G:i" }}</span>
+      <div class="comment-text">{{ comment.comment|linebreaksbr }}</div>
+    {% endfor %}
+  {% endif %}
+
+  <div id="comment-form-base-root2" class="comment-form">
+  {% render_comment_form for event %}
+  </div>
 </div>
-
 {% endblock %}

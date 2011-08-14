@@ -19,7 +19,7 @@ msgstr ""
 
 #: templates/comments/form.html:2
 msgid "Leave comment"
-msgstr "Пакінуць камент"
+msgstr "Пакінуць каментар"
 
 #: templates/comments/form.html:18
 msgid "Submit"

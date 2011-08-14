@@ -1,0 +1,62 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2011-08-14 11:49+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+
+#: templates/plus/event.html:8
+msgid "Starts:"
+msgstr "Пачатак:"
+
+#: templates/plus/event.html:21
+msgid "I changed my mind to go"
+msgstr "Я перадумаў ісці"
+
+#: templates/plus/event.html:24 templates/plus/event.html.py:26
+msgid "I'm going to go"
+msgstr "Я збіраюсь пайсці"
+
+#: templates/plus/event.html:32
+msgid "You are logged in as"
+msgstr "Вы ўвайшлі як"
+
+#: templates/plus/event.html:32
+msgid "Logout"
+msgstr "Выйсце"
+
+#: templates/plus/event.html:36
+msgid "Login via OpenID"
+msgstr "Увайсці праз OpenID"
+
+#: templates/plus/event.html:52
+msgid "They are going to the event:"
+msgstr "Яны ідуць на падзею:"
+
+#: templates/plus/event.html:55
+msgid "you"
+msgstr "вы"
+
+#: templates/plus/event.html:63
+msgid "Nobody has registered for the event yet :("
+msgstr "Пакуль ніхто не зарэгістраваўся на падзею :("
+
+#: templates/plus/event.html:67
+msgid "Please login"
+msgstr "Увайдзіце, калі ласка"
+
+#: templates/plus/event.html:90
+msgid "Comments"
+msgstr "Каментары"

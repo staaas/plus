@@ -47,7 +47,7 @@ USE_I18N = True
 # calendars according to the current locale
 USE_L10N = True
 
-LOCALE_PATHS = (os.path.join(PROJECT_ROOT, 'locale'),)
+LOCALE_PATHS = (os.path.join(PROJECT_ROOT, 'localecustom'),)
 FORMAT_MODULE_PATH = 'formats'
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.

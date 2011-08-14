@@ -86,6 +86,7 @@ h3 {
 
 #posterdisplay {
     margin-top: 5px;
+    padding: 0 0 10px 10px;
     display: inline;
     float: right;
 }

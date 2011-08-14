@@ -45,24 +45,6 @@
   <a class="close-reveal-modal">&#215;</a>
 </div>
 
-{% endblock %}
-
-{% block attendance %}
-{% if goers or curr_attendance %}
-  <h3>{% trans "They are going to the event:" %}</h3>
-  <ul id="goers">
-    {% if curr_attendance %}
-      {% display_user user %} <b>({% trans "you" %})</b>
-    {% endif %}
-    {% for usr in goers %}
-      <li>{% display_user usr %}</li>
-    {% endfor %}
-  </ul>
-  <div style="clear:both"></div>
-{% else %}
-  <h3>{% trans "Nobody has registered for the event yet :(" %}</h3>
-{% endif %}
-
 <div id="auth-plus" class="reveal-modal">
   <h1>{% trans "Please login" %}</h1>
   <ul>
@@ -81,6 +63,23 @@
   </form>
   <a class="close-reveal-modal">&#215;</a>
 </div>
+{% endblock %}
+
+{% block attendance %}
+{% if goers or curr_attendance %}
+  <h3>{% trans "They are going to the event:" %}</h3>
+  <ul id="goers">
+    {% if curr_attendance %}
+      {% display_user user %} <b>({% trans "you" %})</b>
+    {% endif %}
+    {% for usr in goers %}
+      <li>{% display_user usr %}</li>
+    {% endfor %}
+  </ul>
+  <div style="clear:both"></div>
+{% else %}
+  <h3>{% trans "Nobody has registered for the event yet :(" %}</h3>
+{% endif %}
 {% endblock %}
 
 {% block comments %}

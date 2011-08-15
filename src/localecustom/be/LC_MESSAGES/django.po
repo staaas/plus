@@ -514,7 +514,7 @@ msgstr ""
 
 #: forms/fields.py:66
 msgid "This field is required."
-msgstr "Обязательное поле."
+msgstr "Абавязковае поле."
 
 #: forms/fields.py:221
 msgid "Enter a whole number."

@@ -1,4 +1,5 @@
 import datetime
+import random
 
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, redirect
@@ -19,9 +20,9 @@ def show_event(request, slug):
     attendances = list(EventAttendance.objects.filter(
             event=event).select_related('user'))
 
-    goers = sorted((a.user for a in attendances if \
-                        user.id != a.user.id),
-                   key=lambda usr: usr.username)
+    goers = [a.user for a in attendances if \
+                        user.id != a.user.id]
+    random.shuffle(goers)
     goers = socialize_users(goers)
 
     return {'Content-Language': translation.get_language(),
@@ -32,7 +33,8 @@ def show_event(request, slug):
 
 
 def event_plus(request, slug):
-    event = get_object_or_404(Event, slug=slug)
+    event = get_object_or_404(Event, slug=slug,
+                              starts_at__gt=datetime.datetime.now())
     user = request.user
 
     if user.is_authenticated():
@@ -45,7 +47,8 @@ def event_plus(request, slug):
 
 
 def event_minus(request, slug):
-    event = get_object_or_404(Event, slug=slug)
+    event = get_object_or_404(Event, slug=slug,
+                              starts_at__gt=datetime.datetime.now())
     user = request.user
 
     if user.is_authenticated():

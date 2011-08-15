@@ -99,10 +99,43 @@ a.a-right:hover {
     text-decoration: underline;
 }
 
-#goers li {
+.goer-hidden {
+    display:none;
+}
+
+a#goers-more {
     display: inline-block;
-    padding: 0 3px 0 3px;
+    height: 51px;
+    width: 95px;
+    padding: 31px 0 0 1px;
+    margin: 0 6px 6px 0;
     float: left;
+    font-size: large;
+    text-align: left;
+ }
+
+.goer {
+    display: inline-block;
+    width: 70px;
+    height: 65px;
+    padding: 11px 1px 6px 1px;
+    margin: 0 6px 6px 0;
+    float: left;
+    background: #ffc300;
+}
+
+.goer-img {
+    display: block;
+    margin: auto;
+    border: 0;
+}
+
+.goer-text {
+    width: 100%;
+    font-size: small;
+    text-align: center;
+    white-space:nowrap;
+    text-overflow: ellipsis;
 }
 
 /* PLUS MINUS */
@@ -116,10 +149,11 @@ a.a-right:hover {
     width: 960px;
 }
 #attendance-in a {
-    color: #ffffff;
+    color: #222223;
+    text-decoration: none;
 }
 #attendance-in a:hover {
-    color: #ffff00;
+    color: #cf2300;
 }
 #loggedin-as {
     text-align: center;

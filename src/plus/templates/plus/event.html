@@ -3,6 +3,19 @@
 
 {% block title %}{{ event.title }}{% endblock %}
 
+{% block extrahead %}
+<script type="text/javascript">
+ $(document).ready(function() {
+   $('.goer-text').textOverflow('...');
+   $("#goers-more").click(function(event) {
+     event.preventDefault();
+     $("#goers-more").parent().fadeOut('fast');
+     $(".goer-hidden").fadeIn('fast');
+   });
+ });
+</script>
+{% endblock %}
+
 {% block header %}
 <h1>{{ event.title }}</h1>
 <div id="details">{% trans "Starts:" %} <strong>{{ event.starts_at|date:"j E Y г. G:i" }}</strong>
@@ -15,19 +28,21 @@
   {{ event.description|linebreaksbr }}
 </div>
 
-<div id="attendance-button-container">
-  {% if future_event %}
-    {% if curr_attendance %}
-      <a href="{% url event_minus event.slug %}" class="minus">{% trans "I changed my mind to go" %}</a>
-    {% else %}
-      {% if user.is_authenticated %}
-        <a href="{% url event_plus event.slug %}" class="plus">{% trans "I'm going to go" %}</a>
+{% if future_event %}
+  <div id="attendance-button-container">
+    {% if future_event %}
+      {% if curr_attendance %}
+        <a href="{% url event_minus event.slug %}" class="minus">{% trans "I changed my mind to go" %}</a>
       {% else %}
-        <a href="#" class="plus" data-reveal-id="auth-plus">{% trans "I'm going to go" %}</a>
+        {% if user.is_authenticated %}
+          <a href="{% url event_plus event.slug %}" class="plus">{% trans "I'm going to go" %}</a>
+        {% else %}
+          <a href="#" class="plus" data-reveal-id="auth-plus">{% trans "I'm going to go" %}</a>
+        {% endif %}
       {% endif %}
     {% endif %}
-  {% endif %}
-</div>
+  </div>
+{% endif %}
 {% if user.is_authenticated %}
   <div id="loggedin-as">{% trans "You are logged in as" %} {{ user }}. <a href="{% url event_logout event.slug %}">{% trans "Logout" %}</a></div>
 {% endif %}
@@ -67,14 +82,39 @@
 
 {% block attendance %}
 {% if goers or curr_attendance %}
-  <h3>{% trans "They are going to the event:" %}</h3>
+  <h3>{% blocktrans count counter=goers|length|add:curr_attendance %}
+    {{ counter }} person is going to the event:
+    {% plural %}
+    {{ counter }} persons are going to the event:
+    {% endblocktrans %}</h3>
   <ul id="goers">
     {% if curr_attendance %}
-      {% display_user user %} <b>({% trans "you" %})</b>
+      <li>
+	<a href="{{ user.soc_link }}" class="goer">
+	  {% if user.soc_avatar %}
+            <img class="goer-img" src="{{ user.soc_avatar }}" alt="{{ user.soc_username }}" />
+	  {% else %}
+            <img class="goer-img" src="http://graph.facebook.com/100001906253071/picture" width="50px" height="50px" />
+	  {% endif %}
+	  <div class="goer-text"><b>{% trans "you" %}</b> ({{ user.username }} 12345678)</div>
+	</a>
+      </li>
     {% endif %}
     {% for usr in goers %}
-      <li>{% display_user usr %}</li>
+      <li {% if forloop.counter > 10 %}class="goer-hidden"{% endif %}>
+	<a href="{{ goer.soc_link }}" class="goer">
+	  {% if usr.soc_avatar %}
+            <img class="goer-img" src="{{ usr.soc_avatar }}" alt="{{ usr.soc_username }}" />
+	  {% else %}
+            <img class="goer-img" src="http://graph.facebook.com/100001906253071/picture" width="50px" height="50px" />
+	  {% endif %}
+	  <div class="goer-text">{{ usr.username }}</div>
+	</a>
+      </li>
     {% endfor %}
+    {% if goers|length > 10 %}
+	<li><a href="#" id="goers-more">{% trans 'Show more' %}</a></li>
+    {% endif %}
   </ul>
   <div style="clear:both"></div>
 {% else %}

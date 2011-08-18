@@ -167,7 +167,12 @@ AUTHENTICATION_BACKENDS = (
     'social_auth.backends.facebook.FacebookBackend',
     'social_auth.backends.google.GoogleOAuth2Backend',
     'social_auth.backends.OpenIDBackend',
+#    'social_auth_extra_services.vkontakte.VKontakteBackend',
     'django.contrib.auth.backends.ModelBackend',
+)
+
+SOCIAL_AUTH_IMPORT_BACKENDS = (
+    'social_auth_extra_services',
 )
 
 LOGIN_URL          = '/login/'

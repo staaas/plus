@@ -19,7 +19,7 @@ html {
 body {
     line-height: 1.3;
     height: 100%;
-    font-family: 'Forum', cursive;
+    font-family: 'Ubuntu', sans-serif;
     background: #FEFEFF;
 }
 ol, ul {
@@ -47,7 +47,7 @@ a:hover {
 #header-out {
     width: 100%;
     color: #ffffff;
-    background-color: #067ff1;
+    background-color: #ff5300;
 }
 #header-in {
     padding: 10px 40px 5px 40px;
@@ -56,6 +56,7 @@ a:hover {
 }
 #header-in h1 {
     font-size: 1.9em;
+    font-family: 'Lobster', cursive;
 }
 #header-in a, #header-in a:visited {
     color: #ffffff;

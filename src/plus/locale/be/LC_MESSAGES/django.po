@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-15 08:42+0300\n"
+"POT-Creation-Date: 2011-08-19 01:33+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,30 +28,30 @@ msgid "Starts:"
 msgstr "Пачатак:"
 
 #: templates/plus/event.html:35
-msgid "I changed my mind to go"
-msgstr "Я перадумаў ісці"
+msgid "Press if you've changed your mind to go"
+msgstr "Націснеце, калі вы перадумалі ісці"
 
 #: templates/plus/event.html:38 templates/plus/event.html.py:40
-msgid "I'm going to go"
-msgstr "Я збіраюсь пайсці"
+msgid "Press if you are going to go"
+msgstr "Націснеце, калі вы збіраецесь пайсці"
 
 #: templates/plus/event.html:47
 msgid "You are logged in as"
 msgstr "Вы ўвайшлі як"
 
-#: templates/plus/event.html:47
+#: templates/plus/event.html:49
 msgid "Logout"
 msgstr "Выйсце"
 
-#: templates/plus/event.html:51
+#: templates/plus/event.html:53
 msgid "Login via OpenID"
 msgstr "Увайсці праз OpenID"
 
-#: templates/plus/event.html:64
+#: templates/plus/event.html:66
 msgid "Please login"
 msgstr "Увайдзіце, калі ласка"
 
-#: templates/plus/event.html:85
+#: templates/plus/event.html:89
 #, python-format
 msgid ""
 "\n"
@@ -61,23 +61,49 @@ msgid_plural ""
 "\n"
 "    %(counter)s persons are going to the event:\n"
 "    "
-msgstr[0] "\n    %(counter)s чалавек пойдзе на падзею:    "
-msgstr[1] "\n    %(counter)s чалавека пойдуць на падзею:    "
-msgstr[2] "\n    %(counter)s чалавек пойдуць на падзею:    "
+msgstr[0] ""
+"\n"
+"    %(counter)s чалавек пойдзе на падзею:    "
+msgstr[1] ""
+"\n"
+"    %(counter)s чалавека пойдуць на падзею:    "
+msgstr[2] ""
+"\n"
+"    %(counter)s чалавек пойдуць на падзею:    "
 
-#: templates/plus/event.html:99
+#: templates/plus/event.html:95
+#, python-format
+msgid ""
+"\n"
+"    %(counter)s person attended the event:\n"
+"    "
+msgid_plural ""
+"\n"
+"    %(counter)s persons attended the event:\n"
+"    "
+msgstr[0] ""
+"\n"
+"    %(counter)s чалавек хадзіў падзею:    "
+msgstr[1] ""
+"\n"
+"    %(counter)s чалавека хадзіла на падзею:    "
+msgstr[2] ""
+"\n"
+"    %(counter)s чалавек хадзіў на падзею:    "
+
+#: templates/plus/event.html:110
 msgid "you"
 msgstr "вы"
 
-#: templates/plus/event.html:116
-msgid "Show more"
-msgstr ""
+#: templates/plus/event.html:127
+msgid "Show all"
+msgstr "Паказаць усіх"
 
-#: templates/plus/event.html:121
+#: templates/plus/event.html:132
 msgid "Nobody has registered for the event yet :("
 msgstr "Пакуль ніхто не зарэгістраваўся на падзею :("
 
-#: templates/plus/event.html:129
+#: templates/plus/event.html:140
 msgid "Comments"
 msgstr "Каментары"
 

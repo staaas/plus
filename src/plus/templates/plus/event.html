@@ -24,7 +24,7 @@
 
 {% block content %}
 <div id="description">
-  {% if event.posterdisplay.url %}<div id="posterdisplay"><img src="{{ event.posterdisplay.url }}" alt="Poster" /></div>{% endif %}
+  {% if event.logo %}<div id="posterdisplay"><img src="{{ event.posterdisplay.url }}" alt="Poster" /></div>{% endif %}
   {{ event.description|linebreaksbr }}
 </div>
 
@@ -32,12 +32,12 @@
   <div id="attendance-button-container">
     {% if future_event %}
       {% if curr_attendance %}
-        <a href="{% url event_minus event.slug %}" class="minus">{% trans "I changed my mind to go" %}</a>
+        <a href="{% url event_minus event.slug %}" class="minus">{% trans "Press if you've changed your mind to go" %}</a>
       {% else %}
         {% if user.is_authenticated %}
-          <a href="{% url event_plus event.slug %}" class="plus">{% trans "I'm going to go" %}</a>
+          <a href="{% url event_plus event.slug %}" class="plus">{% trans "Press if you are going to go" %}</a>
         {% else %}
-          <a href="#" class="plus" data-reveal-id="auth-plus">{% trans "I'm going to go" %}</a>
+          <a href="#" class="plus" data-reveal-id="auth-plus">{% trans "Press if you are going to go" %}</a>
         {% endif %}
       {% endif %}
     {% endif %}
@@ -85,11 +85,19 @@
 
 {% block attendance %}
 {% if goers or curr_attendance %}
-  <h3>{% blocktrans count counter=goers|length|add:curr_attendance %}
+  <h3>{% if future_event %}
+    {% blocktrans count counter=goers|length|add:curr_attendance %}
     {{ counter }} person is going to the event:
     {% plural %}
     {{ counter }} persons are going to the event:
     {% endblocktrans %}</h3>
+  {% else %}
+    {% blocktrans count counter=goers|length|add:curr_attendance %}
+    {{ counter }} person attended the event:
+    {% plural %}
+    {{ counter }} persons attended the event:
+    {% endblocktrans %}</h3>
+  {% endif %}
   <ul id="goers">
     {% if curr_attendance %}
       <li>
@@ -116,7 +124,7 @@
       </li>
     {% endfor %}
     {% if goers|length > 10 %}
-	<li><a href="#" id="goers-more">{% trans 'Show more' %}</a></li>
+	<li><a href="#" id="goers-more">{% trans 'Show all' %}</a></li>
     {% endif %}
   </ul>
   <div style="clear:both"></div>

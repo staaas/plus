@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-15 08:42+0300\n"
+"POT-Creation-Date: 2011-08-19 01:29+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -28,30 +28,30 @@ msgid "Starts:"
 msgstr "Начало:"
 
 #: templates/plus/event.html:35
-msgid "I changed my mind to go"
-msgstr "Я передумал идти"
+msgid "Press if you've changed your mind to go"
+msgstr "Нажмите, если вы передумали идти"
 
 #: templates/plus/event.html:38 templates/plus/event.html.py:40
-msgid "I'm going to go"
-msgstr "Я собираюсь пойти"
+msgid "Press if you are going to go"
+msgstr "Нажмите, если вы собираетесь пойти"
 
 #: templates/plus/event.html:47
 msgid "You are logged in as"
 msgstr "Вы вошли как"
 
-#: templates/plus/event.html:47
+#: templates/plus/event.html:49
 msgid "Logout"
 msgstr "Выход"
 
-#: templates/plus/event.html:51
+#: templates/plus/event.html:53
 msgid "Login via OpenID"
 msgstr "Войти через OpenID"
 
-#: templates/plus/event.html:64
+#: templates/plus/event.html:66
 msgid "Please login"
 msgstr "Пожалуйста войдите"
 
-#: templates/plus/event.html:85
+#: templates/plus/event.html:89
 #, python-format
 msgid ""
 "\n"
@@ -61,22 +61,49 @@ msgid_plural ""
 "\n"
 "    %(counter)s persons are going to the event:\n"
 "    "
-msgstr[0] "\n    %(counter)s человек пойдет на событие:    "
-msgstr[1] "\n    %(counter)s человека пойдут на событие:    "
-msgstr[2] "\n    %(counter)s человек пойдут на событие:    "
+msgstr[0] ""
+"\n"
+"    %(counter)s человек пойдет на событие:    "
+msgstr[1] ""
+"\n"
+"    %(counter)s человека пойдут на событие:    "
+msgstr[2] ""
+"\n"
+"    %(counter)s человек пойдут на событие:    "
 
-#: templates/plus/event.html:99
+#: templates/plus/event.html:95
+#, python-format
+msgid ""
+"\n"
+"    %(counter)s person attended the event:\n"
+"    "
+msgid_plural ""
+"\n"
+"    %(counter)s persons attended the event:\n"
+"    "
+msgstr[0] ""
+"\n"
+"    %(counter)s человек посетил событие:    "
+msgstr[1] ""
+"\n"
+"    %(counter)s человека посетили событие:    "
+msgstr[2] ""
+"\n"
+"    %(counter)s человек посетил событие:    "
+
+#: templates/plus/event.html:110
 msgid "you"
 msgstr "вы"
 
-#: templates/plus/event.html:116
-msgid "Show more"
-msgstr "Показать еще"
+#: templates/plus/event.html:127
+msgid "Show all"
+msgstr "Показать всех"
 
-#: templates/plus/event.html:121
+#: templates/plus/event.html:132
 msgid "Nobody has registered for the event yet :("
 msgstr "Пока никто не зарегистрировался на событие :("
 
-#: templates/plus/event.html:129
+#: templates/plus/event.html:140
 msgid "Comments"
 msgstr "Комментарии"
+

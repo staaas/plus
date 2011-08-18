@@ -44,7 +44,9 @@
   </div>
 {% endif %}
 {% if user.is_authenticated %}
-  <div id="loggedin-as">{% trans "You are logged in as" %} {{ user }}. <a href="{% url event_logout event.slug %}">{% trans "Logout" %}</a></div>
+  <div id="loggedin-as">{% trans "You are logged in as" %}
+    {% if user.soc_link %}<a href="{{ user.soc_link }}">{{ user.username }}</a>{% else %}{{ user.username }}{% endif %}.
+    <a href="{% url event_logout event.slug %}">{% trans "Logout" %}</a></div>
 {% endif %}
 
 <div id="auth-openid" class="reveal-modal">
@@ -61,19 +63,19 @@
 </div>
 
 <div id="auth-plus" class="reveal-modal">
-  <h1>{% trans "Please login" %}</h1>
+  <h1>{% trans "Please login" %}</h1>{% url event_plus event.slug as curr_plus%}
   <ul>
-    <li><a rel="nofollow" href="{% url socialauth_begin "twitter" %}">Twitter</a></li>
-    <li><a rel="nofollow" href="{% url socialauth_begin "facebook" %}">Facebook</a></li>
-    <li><a rel="nofollow" href="{% url socialauth_begin "vkontakte" %}">Vkontakte</a></li>
-    <li><a rel="nofollow" href="{% url socialauth_begin "google-oauth" %}">Google OAuth</a></li>
+    <li><a rel="nofollow" href="{% url socialauth_begin "twitter" %}?next={{ curr_plus }}">Twitter</a></li>
+    <li><a rel="nofollow" href="{% url socialauth_begin "facebook" %}?next={{ curr_plus }}">Facebook</a></li>
+    <li><a rel="nofollow" href="{% url socialauth_begin "vkontakte" %}?next={{ curr_plus }}">Vkontakte</a></li>
+    <li><a rel="nofollow" href="{% url socialauth_begin "google-oauth" %}?next={{ curr_plus }}">Google OAuth</a></li>
     <li><a rel="nofollow" href="#">Vkontakte</a></li>
   </ul>
   <form action="{% url socialauth_begin "openid" %}" method="post">{% csrf_token %}
     <div>
       <label for="openid_identifier">OpenID provider</label>
       <input id="openid_identifier" type="text" value="" name="openid_identifier" />
-      <input type="hidden" name="next" value="{% url event_plus event.slug %}" />
+      <input type="hidden" name="next" value="{{ curr_plus }}" />
       <input type="submit" value="Login" />
     </div>
   </form>
@@ -91,26 +93,26 @@
   <ul id="goers">
     {% if curr_attendance %}
       <li>
-	<a href="{{ user.soc_link }}" class="goer">
+	<{% if user.soc_link %}a{% else %}span{% endif %} href="{{ user.soc_link }}" class="goer">
 	  {% if user.soc_avatar %}
-            <img class="goer-img" src="{{ user.soc_avatar }}" alt="{{ user.soc_username }}" />
+            <img class="goer-img" src="{{ user.soc_avatar }}" alt="{{ user.soc_username }}" width="50px" height="50px" />
 	  {% else %}
             <img class="goer-img" src="http://graph.facebook.com/100001906253071/picture" width="50px" height="50px" />
 	  {% endif %}
 	  <div class="goer-text"><b>{% trans "you" %}</b></div>
-	</a>
+	</{% if user.soc_link %}a{% else %}span{% endif %}>
       </li>
     {% endif %}
     {% for usr in goers %}
       <li {% if forloop.counter > 10 %}class="goer-hidden"{% endif %}>
-	<a href="{{ goer.soc_link }}" class="goer">
+	<{% if usr.soc_link %}a{% else %}span{% endif %} href="{{ usr.soc_link }}" class="goer">
 	  {% if usr.soc_avatar %}
             <img class="goer-img" src="{{ usr.soc_avatar }}" alt="{{ usr.soc_username }}" />
 	  {% else %}
             <img class="goer-img" src="http://graph.facebook.com/100001906253071/picture" width="50px" height="50px" />
 	  {% endif %}
 	  <div class="goer-text">{{ usr.username }}</div>
-	</a>
+	</{% if usr.soc_link %}a{% else %}span{% endif %}>
       </li>
     {% endfor %}
     {% if goers|length > 10 %}

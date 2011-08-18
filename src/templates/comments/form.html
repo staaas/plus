@@ -21,6 +21,11 @@
   <div style="clear:both"></div>
 {% else %}
 <div class="please-login">
-{% trans 'Please login via <a href="#">Vkontakte</a>, <a href="#">Facebook</a>, <a href="#">Twitter</a>, <a href="#">Google</a> or <a href="#" data-reveal-id="auth-openid">Open ID</a> in order to leave comments' %}.
+{% url socialauth_begin "twitter" as twit_url %}
+{% url socialauth_begin "facebook" as fb_url %}
+{% url socialauth_begin "vkontakte" as vk_url %}
+{% blocktrans with full_path=request.get_full_path%}
+Please login via <a href="{{ vk_url }}?next={{ full_path }}">Vkontakte</a>, <a href="{{ fb_url }}?next={{ full_path }}">Facebook</a>, <a href="{{ twit_url }}?next={{ full_path }}">Twitter</a> or <a href="#" data-reveal-id="auth-openid">Open ID</a> in order to leave comments
+{% endblocktrans %}
 </div>
 {% endif %}

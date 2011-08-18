@@ -96,7 +96,7 @@ msgid "you"
 msgstr "вы"
 
 #: templates/plus/event.html:127
-msgid "Show all"
+msgid "Show everyone"
 msgstr "Показать всех"
 
 #: templates/plus/event.html:132

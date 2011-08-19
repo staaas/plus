@@ -174,7 +174,7 @@ AUTHENTICATION_BACKENDS = (
 SOCIAL_AUTH_IMPORT_BACKENDS = (
     'social_auth_extra_services',
 )
-SOCIAL_AUTH_COMPLETE_URL_NAME = 'home'
+SOCIAL_AUTH_COMPLETE_URL_NAME = 'soc_home'
 
 LOGIN_URL          = '/login/'
 LOGIN_REDIRECT_URL = '/'

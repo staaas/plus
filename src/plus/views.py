@@ -10,6 +10,10 @@ from models import Event, EventAttendance, LANG_CODES
 from commonutils.decorators import render_to
 from commonutils.social import socialize_user, socialize_users
 
+@render_to('plus/home.html')
+def home(request, soc_provider=None):
+    return {}
+
 @render_to('plus/event.html')
 def show_event(request, slug):
     event = get_object_or_404(Event, slug=slug)

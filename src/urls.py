@@ -1,7 +1,6 @@
 from django.conf.urls.defaults import patterns, include, url
 from django.conf import settings
 from django.contrib import admin
-from django.views.generic.simple import direct_to_template
 
 admin.autodiscover()
 
@@ -23,7 +22,7 @@ urlpatterns += patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^comments/', include('django.contrib.comments.urls')),
     url(r'^soc/', include('social_auth.urls')),
-    url(r'^$', direct_to_template, {'template': 'plus/home.html'}, name='home'),
+    url(r'^$', 'plus.views.home', name='home'),
     url(r'^(?P<slug>[\w\d]+)/$',
         'plus.views.show_event',
         name='show_event'),

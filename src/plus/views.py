@@ -11,7 +11,7 @@ from commonutils.decorators import render_to
 from commonutils.social import socialize_user, socialize_users
 
 @render_to('plus/home.html')
-def home(request, soc_provider=None):
+def home(request):
     return {}
 
 @render_to('plus/event.html')

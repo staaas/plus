@@ -1,6 +1,9 @@
 from django.conf.urls.defaults import patterns, include, url
 from django.conf import settings
 from django.contrib import admin
+from django.views.decorators.csrf import csrf_exempt
+from social_auth.views import complete
+
 
 admin.autodiscover()
 
@@ -22,8 +25,8 @@ urlpatterns += patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^comments/', include('django.contrib.comments.urls')),
     url(r'^soc/', include('social_auth.urls')),
+    url(r'^soc/complete/(?P[^/]+)/$', csrf_exempt(complete), name='complete'),
     url(r'^$', 'plus.views.home', name='home'),
-    url(r'^home/(?P<soc_provider>[\w\d]+)/$', 'plus.views.home', name='soc_home'),
     url(r'^(?P<slug>[\w\d]+)/$',
         'plus.views.show_event',
         name='show_event'),

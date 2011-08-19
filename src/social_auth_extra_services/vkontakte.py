@@ -39,7 +39,7 @@ class VKontakteBackend(SocialAuthBackend):
 
     def get_user_details(self, response):
         """Return user details from VKontakte request"""
-        nickname = unquote(response.GET['nickname'])
+        nickname = '%s %s' % (unquote(response.GET['first_name']), unquote(response.GET['last_name']))
         values = { USERNAME: response.GET['id'] if len(nickname) == 0 else nickname, 'email': '', 'fullname': '',
                   'first_name': unquote(response.GET['first_name']), 'last_name': unquote(response.GET['last_name'])}
         return values

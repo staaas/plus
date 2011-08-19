@@ -14,6 +14,26 @@
    });
  });
 </script>
+<script src="http://vkontakte.ru/js/api/openapi.js" type="text/javascript"></script>
+<script type="text/javascript">
+var vkAppId = {{ VK_APP_ID|default:"null" }};
+
+if (vkAppId)
+   VK.init({ apiId: vkAppId });
+
+function authVK() {
+    VK.Auth.login(function(response) {
+        var params = "";
+        if (response.session) {
+            params = "first_name=" + encodeURI(response.session.user.first_name) + "&last_name=" + encodeURI(response.session.user.last_name);
+            params += "&nickname=" + encodeURI(response.session.user.nickname) + "&id=" + encodeURI(response.session.user.id);
+        }
+        window.location = "{{ VK_COMPLETE_URL }}?next={% url event_plus event.slug %}&" + params;
+    });
+    return false;
+}
+</script>
+
 {% endblock %}
 
 {% block header %}
@@ -53,30 +73,30 @@
   <h1>{% trans "Login via OpenID" %}</h1>
   <form action="{% url socialauth_begin "openid" %}" method="post">{% csrf_token %}
     <div>
-      <label for="openid_identifier">OpenID provider</label>
+      <img src="{{ STATIC_URL }}img/openid.png" width="20px" />
       <input id="openid_identifier" type="text" value="" name="openid_identifier" />
       <input type="hidden" name="next" value="{% url show_event event.slug %}#comment" />
-      <input type="submit" value="Login" />
+      <input type="submit" value="{% trans "Login" %}" />
     </div>
   </form>
   <a class="close-reveal-modal">&#215;</a>
 </div>
 
 <div id="auth-plus" class="reveal-modal">
-  <h1>{% trans "Please login" %}</h1>{% url event_plus event.slug as curr_plus%}
+  <h1>{% trans "Please login with:" %}</h1>{% url event_plus event.slug as curr_plus%}
   <ul>
-    <li><a rel="nofollow" href="{% url socialauth_begin "twitter" %}?next={{ curr_plus }}">Twitter</a></li>
-    <li><a rel="nofollow" href="{% url socialauth_begin "facebook" %}?next={{ curr_plus }}">Facebook</a></li>
-    <li><a rel="nofollow" href="{% url socialauth_begin "vkontakte" %}?next={{ curr_plus }}">Vkontakte</a></li>
-    <li><a rel="nofollow" href="{% url socialauth_begin "google-oauth" %}?next={{ curr_plus }}">Google OAuth</a></li>
-    <li><a rel="nofollow" href="#">Vkontakte</a></li>
+    <li style="display: inline-block;"><img src="{{ STATIC_URL }}img/vkontakte.png" width="100px" /><br /><a rel="nofollow" href="#" onclick="authVK();">Vkontakte</a></li>
+    <li style="display: inline-block;"><img src="{{ STATIC_URL }}img/twitter.png" width="100px" /><br /><a rel="nofollow" href="{% url socialauth_begin "twitter" %}?next={{ curr_plus }}">Twitter</a></li>
+    <li style="display: inline-block;"><img src="{{ STATIC_URL }}img/facebook.png" width="100px" /><br /><a rel="nofollow" href="{% url socialauth_begin "facebook" %}?next={{ curr_plus }}">Facebook</a></li>
   </ul>
+  <br />
+  <h1>{% trans "...or use OpenID" %}</h1>
   <form action="{% url socialauth_begin "openid" %}" method="post">{% csrf_token %}
     <div>
-      <label for="openid_identifier">OpenID provider</label>
+      <img src="{{ STATIC_URL }}img/openid.png" width="20px" />
       <input id="openid_identifier" type="text" value="" name="openid_identifier" />
       <input type="hidden" name="next" value="{{ curr_plus }}" />
-      <input type="submit" value="Login" />
+      <input type="submit" value="Login with OpenID" />
     </div>
   </form>
   <a class="close-reveal-modal">&#215;</a>

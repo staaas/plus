@@ -177,6 +177,16 @@ SOCIAL_AUTH_IMPORT_BACKENDS = (
 SOCIAL_AUTH_COMPLETE_URL_NAME = 'complete'
 SOCIAL_AUTH_ERROR_KEY = 'SOCIAL_AUTH_ERROR_KEY'
 
+TWITTER_CONSUMER_KEY = ''  # please define in settings_local
+TWITTER_CONSUMER_SECRET= ''  # please define in settings_local
+
+FACEBOOK_APP_ID = ''  # please define in settings_local
+FACEBOOK_API_SECRET = ''  # please define in settings_local
+
+VKONTAKTE_APP_ID = ''  # please define in settings_local
+VKONTAKTE_APP_SECRET = ''  # please define in settings_local
+VKONTAKTE_APP_AUTH = 1
+
 LOGIN_URL          = '/'
 LOGIN_REDIRECT_URL = '/'
 LOGIN_ERROR_URL	   = '/auth-error/'

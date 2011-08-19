@@ -15,6 +15,12 @@ from commonutils.social import socialize_user, socialize_users
 def home(request):
     return {}
 
+def get_social_view_params():
+    return {'VK_APP_ID': settings.VKONTAKTE_APP_ID,
+            'VK_COMPLETE_URL': reverse(
+            settings.SOCIAL_AUTH_COMPLETE_URL_NAME,
+            args=['vkontakte'])}
+
 @render_to('plus/event.html')
 def show_event(request, slug):
     event = get_object_or_404(Event, slug=slug)
@@ -30,11 +36,13 @@ def show_event(request, slug):
     random.shuffle(goers)
     goers = socialize_users(goers)
 
-    return {'Content-Language': translation.get_language(),
-            'event': event,
-            'curr_attendance': any(user.id == a.user.id for a in attendances),
-            'future_event': event.starts_at > datetime.datetime.now(),
-            'goers': goers}
+    ret = {'Content-Language': translation.get_language(),
+           'event': event,
+           'curr_attendance': any(user.id == a.user.id for a in attendances),
+           'future_event': event.starts_at > datetime.datetime.now(),
+           'goers': goers}
+    ret.update(get_social_view_params())
+    return ret
 
 
 def event_plus(request, slug):
@@ -66,11 +74,10 @@ def event_logout(request, slug):
     auth_logout(request)
     return redirect(reverse('show_event', args=[slug]))
 
-from social_auth import __version__ as version
-
 @render_to('autherror.html')
 def auth_error(request):
     """Auth error view"""
+    from social_auth import __version__ as version
     error_msg = request.session.pop(settings.SOCIAL_AUTH_ERROR_KEY, None)
     return {'version': version,
             'error_msg': error_msg}

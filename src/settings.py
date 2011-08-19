@@ -175,10 +175,11 @@ SOCIAL_AUTH_IMPORT_BACKENDS = (
     'social_auth_extra_services',
 )
 SOCIAL_AUTH_COMPLETE_URL_NAME = 'complete'
+SOCIAL_AUTH_ERROR_KEY = 'SOCIAL_AUTH_ERROR_KEY'
 
-LOGIN_URL          = '/login/'
+LOGIN_URL          = '/'
 LOGIN_REDIRECT_URL = '/'
-LOGIN_ERROR_URL    = '/login-error/'
+LOGIN_ERROR_URL	   = '/auth-error/'
 
 # for django debug toolbar
 INTERNAL_IPS = ('127.0.0.1',)

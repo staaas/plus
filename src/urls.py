@@ -24,9 +24,12 @@ urlpatterns += patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^comments/', include('django.contrib.comments.urls')),
-    url(r'^soc/', include('social_auth.urls')),
+
     url(r'^soc/complete/(?P<backend>[\w\d]+)/$', csrf_exempt(complete), name='complete'),
+    url(r'^soc/', include('social_auth.urls')),
+    url(r'^auth-error/$', 'plus.views.auth_error', name='error'),
     url(r'^$', 'plus.views.home', name='home'),
+
     url(r'^(?P<slug>[\w\d]+)/$',
         'plus.views.show_event',
         name='show_event'),

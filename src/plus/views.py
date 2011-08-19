@@ -1,6 +1,7 @@
 import datetime
 import random
 
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, redirect
 from django.utils import translation
@@ -64,3 +65,12 @@ def event_logout(request, slug):
     """Logs user out"""
     auth_logout(request)
     return redirect(reverse('show_event', args=[slug]))
+
+from social_auth import __version__ as version
+
+@render_to('autherror.html')
+def auth_error(request):
+    """Auth error view"""
+    error_msg = request.session.pop(settings.SOCIAL_AUTH_ERROR_KEY, None)
+    return {'version': version,
+            'error_msg': error_msg}

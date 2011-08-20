@@ -48,7 +48,69 @@
     {% if user.soc_link %}<a href="{{ user.soc_link }}">{{ user.soc_username }}</a>{% else %}{{ user.soc_username }}{% endif %}.
     <a href="{% url event_logout event.slug %}">{% trans "Logout" %}</a></div>
 {% endif %}
+{% endblock %}
 
+{% block attendance %}
+{% if goers or curr_attendance %}
+  <h3>{% if future_event %}
+    {% blocktrans count counter=goers|length|add:curr_attendance %}
+    {{ counter }} person is going to the event:
+    {% plural %}
+    {{ counter }} persons are going to the event:
+    {% endblocktrans %}
+  {% else %}
+    {% blocktrans count counter=goers|length|add:curr_attendance %}
+    {{ counter }} person attended the event:
+    {% plural %}
+    {{ counter }} persons attended the event:
+    {% endblocktrans %}
+  {% endif %}</h3>
+  <ul id="goers">
+    {% if curr_attendance %}
+      <li>
+	<{% if user.soc_link %}a{% else %}span{% endif %} href="{{ user.soc_link }}" class="goer">
+            <img class="goer-img" src="{{ user.soc_avatar }}" alt="{{ user.soc_username }}" width="50px" height="50px" {% if user.soc_provider == 'vkontakte'}id="vkimg-{{ user.vk_id }}"{% endif %} />
+	  <div class="goer-text"><b>{% trans "you" %}</b></div>
+	</{% if user.soc_link %}a{% else %}span{% endif %}>
+      </li>
+    {% endif %}
+    {% for usr in goers %}
+      <li {% if forloop.counter > 10 %}class="goer-hidden"{% endif %}>
+	<{% if usr.soc_link %}a{% else %}span{% endif %} href="{{ usr.soc_link }}" class="goer">
+          <img class="goer-img" src="{{ usr.soc_avatar }}" alt="{{ usr.soc_username }}"  width="50px" height="50px" {% if user.soc_provider == 'vkontakte'}id="vkimg-{{ user.vk_id }}"{% endif %} />
+	  <div class="goer-text">{{ usr.soc_username }}</div>
+	</{% if usr.soc_link %}a{% else %}span{% endif %}>
+      </li>
+    {% endfor %}
+    {% if goers|length > 10 %}
+	<li><a href="#" id="goers-more">{% trans 'Show everyone' %}</a></li>
+    {% endif %}
+  </ul>
+  <div style="clear:both"></div>
+{% else %}
+  <h3>{% trans "Nobody has registered for the event yet :(" %}</h3>
+{% endif %}
+{% endblock %}
+
+{% block comments %}
+<div id="comments">
+  {% get_comment_list for event as comment_list %}
+  {% if comment_list %}
+    <h3>{% trans "Comments" %}:</h3>
+    {% for comment in comment_list|annotate_users %}
+      <span class="comment-user">{% display_user comment.user %}</span>
+      <span class="comment-date">{{ comment.submit_date|date:"j E Y г. G:i" }}</span>
+      <div class="comment-text">{{ comment.comment|linebreaksbr }}</div>
+    {% endfor %}
+  {% endif %}
+
+  <div id="comment-form-base-root2" class="comment-form">
+  {% render_comment_form for event %}
+  </div>
+</div>
+{% endblock %}
+
+{% block bottom %}
 <div id="auth-openid" class="reveal-modal">
   <h1>{% trans "Login via OpenID" %}</h1>
   <form action="{% url socialauth_begin "openid" %}" method="post">{% csrf_token %}
@@ -81,64 +143,24 @@
   </form>
   <a class="close-reveal-modal">&#215;</a>
 </div>
-{% endblock %}
 
-{% block attendance %}
-{% if goers or curr_attendance %}
-  <h3>{% if future_event %}
-    {% blocktrans count counter=goers|length|add:curr_attendance %}
-    {{ counter }} person is going to the event:
-    {% plural %}
-    {{ counter }} persons are going to the event:
-    {% endblocktrans %}</h3>
-  {% else %}
-    {% blocktrans count counter=goers|length|add:curr_attendance %}
-    {{ counter }} person attended the event:
-    {% plural %}
-    {{ counter }} persons attended the event:
-    {% endblocktrans %}</h3>
-  {% endif %}
-  <ul id="goers">
-    {% if curr_attendance %}
-      <li>
-	<{% if user.soc_link %}a{% else %}span{% endif %} href="{{ user.soc_link }}" class="goer">
-            <img class="goer-img" src="{{ user.soc_avatar }}" alt="{{ user.soc_soc_username }}" width="50px" height="50px" />
-	  <div class="goer-text"><b>{% trans "you" %}</b></div>
-	</{% if user.soc_link %}a{% else %}span{% endif %}>
-      </li>
-    {% endif %}
-    {% for usr in goers %}
-      <li {% if forloop.counter > 10 %}class="goer-hidden"{% endif %}>
-	<{% if usr.soc_link %}a{% else %}span{% endif %} href="{{ usr.soc_link }}" class="goer">
-          <img class="goer-img" src="{{ usr.soc_avatar }}" alt="{{ usr.soc_soc_username }}"  width="50px" height="50px" />
-	  <div class="goer-text">{{ usr.soc_username }}</div>
-	</{% if usr.soc_link %}a{% else %}span{% endif %}>
-      </li>
-    {% endfor %}
-    {% if goers|length > 10 %}
-	<li><a href="#" id="goers-more">{% trans 'Show everyone' %}</a></li>
-    {% endif %}
+<div id="auth-stay" class="reveal-modal">
+  <h1>{% trans "Please login with:" %}</h1>{% url show_event event.slug as curr_show%}
+  <ul>
+    <li style="display: inline-block;"><img src="{{ STATIC_URL }}img/vkontakte.png" width="100px" /><br /><a rel="nofollow" href="{% url socialauth_begin "vkontakte-oauth2" %}?next={{ curr_show }}">Vkontakte</a></li>
+    <li style="display: inline-block;"><img src="{{ STATIC_URL }}img/twitter.png" width="100px" /><br /><a rel="nofollow" href="{% url socialauth_begin "twitter" %}?next={{ curr_show }}">Twitter</a></li>
+    <li style="display: inline-block;"><img src="{{ STATIC_URL }}img/facebook.png" width="100px" /><br /><a rel="nofollow" href="{% url socialauth_begin "facebook" %}?next={{ curr_show }}">Facebook</a></li>
   </ul>
-  <div style="clear:both"></div>
-{% else %}
-  <h3>{% trans "Nobody has registered for the event yet :(" %}</h3>
-{% endif %}
-{% endblock %}
-
-{% block comments %}
-<div id="comments">
-  {% get_comment_list for event as comment_list %}
-  {% if comment_list %}
-    <h3>{% trans "Comments" %}:</h3>
-    {% for comment in comment_list|annotate_users %}
-      <span class="comment-user">{% display_user comment.user %}</span>
-      <span class="comment-date">{{ comment.submit_date|date:"j E Y г. G:i" }}</span>
-      <div class="comment-text">{{ comment.comment|linebreaksbr }}</div>
-    {% endfor %}
-  {% endif %}
-
-  <div id="comment-form-base-root2" class="comment-form">
-  {% render_comment_form for event %}
-  </div>
+  <br />
+  <h1>{% trans "...or use OpenID" %}</h1>
+  <form action="{% url socialauth_begin "openid" %}" method="post">{% csrf_token %}
+    <div>
+      <img src="{{ STATIC_URL }}img/openid.png" width="20px" />
+      <input id="openid_identifier" type="text" value="" name="openid_identifier" />
+      <input type="hidden" name="next" value="{{ curr_show }}" />
+      <input type="submit" value="Login with OpenID" />
+    </div>
+  </form>
+  <a class="close-reveal-modal">&#215;</a>
 </div>
 {% endblock %}

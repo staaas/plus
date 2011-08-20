@@ -176,6 +176,7 @@ SOCIAL_AUTH_IMPORT_BACKENDS = (
 )
 SOCIAL_AUTH_ERROR_KEY = 'SOCIAL_AUTH_ERROR_KEY'
 DEFAULT_SOCIAL_AVATAR =  STATIC_URL + 'img/default_avatar.png'
+LOADING_SOCIAL_AVATAR =  STATIC_URL + 'img/default_avatar_loading.gif'
 
 TWITTER_CONSUMER_KEY = ''  # please define in settings_local
 TWITTER_CONSUMER_SECRET= ''  # please define in settings_local

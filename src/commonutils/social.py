@@ -2,6 +2,7 @@ from django.conf import settings
 from social_auth.models import UserSocialAuth
 
 DEFAULT_AVATAR = getattr(settings, 'DEFAULT_SOCIAL_AVATAR', '')
+LOADIG_AVATAR = getattr(settings, 'LOADING_SOCIAL_AVATAR', '')
 
 def socialize_users(users_list):
     '''
@@ -44,6 +45,8 @@ def socialize_users(users_list):
             soc_username = ('%s %s' % (usr.first_name, usr.last_name)).strip() or usr.username
             soc_link = 'https://vkontakte.ru/id%s' % soc.uid
             soc_provider = 'vkontakte'
+            soc_avatar = LOADING_AVATAR
+            usr.vk_id = soc.uid
         elif soc.provider == 'openid':
             soc_username = ('%s %s' % (usr.first_name, usr.last_name)).strip() or usr.username
             soc_link = soc.uid

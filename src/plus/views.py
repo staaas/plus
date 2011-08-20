@@ -1,7 +1,6 @@
 import datetime
 import random
 
-from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, redirect
 from django.utils import translation
@@ -14,12 +13,6 @@ from commonutils.social import socialize_user, socialize_users
 @render_to('plus/home.html')
 def home(request):
     return {}
-
-def get_social_view_params():
-    return {'VK_APP_ID': settings.VKONTAKTE_APP_ID,
-            'VK_COMPLETE_URL': reverse(
-            settings.SOCIAL_AUTH_COMPLETE_URL_NAME,
-            args=['vkontakte'])}
 
 @render_to('plus/event.html')
 def show_event(request, slug):
@@ -36,13 +29,11 @@ def show_event(request, slug):
     random.shuffle(goers)
     goers = socialize_users(goers)
 
-    ret = {'Content-Language': translation.get_language(),
-           'event': event,
-           'curr_attendance': any(user.id == a.user.id for a in attendances),
-           'future_event': event.starts_at > datetime.datetime.now(),
-           'goers': goers}
-    ret.update(get_social_view_params())
-    return ret
+    return {'Content-Language': translation.get_language(),
+            'event': event,
+            'curr_attendance': any(user.id == a.user.id for a in attendances),
+            'future_event': event.starts_at > datetime.datetime.now(),
+            'goers': goers}
 
 
 def event_plus(request, slug):

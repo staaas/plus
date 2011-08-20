@@ -174,7 +174,6 @@ AUTHENTICATION_BACKENDS = (
 SOCIAL_AUTH_IMPORT_BACKENDS = (
     'social_auth_extra_services',
 )
-SOCIAL_AUTH_COMPLETE_URL_NAME = 'complete'
 SOCIAL_AUTH_ERROR_KEY = 'SOCIAL_AUTH_ERROR_KEY'
 
 TWITTER_CONSUMER_KEY = ''  # please define in settings_local

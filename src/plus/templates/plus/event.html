@@ -102,11 +102,7 @@
     {% if curr_attendance %}
       <li>
 	<{% if user.soc_link %}a{% else %}span{% endif %} href="{{ user.soc_link }}" class="goer">
-	  {% if user.soc_avatar %}
             <img class="goer-img" src="{{ user.soc_avatar }}" alt="{{ user.soc_soc_username }}" width="50px" height="50px" />
-	  {% else %}
-            <img class="goer-img" src="{{ STATIC_URL }}img/default_avatar.png" width="50px" height="50px" />
-	  {% endif %}
 	  <div class="goer-text"><b>{% trans "you" %}</b></div>
 	</{% if user.soc_link %}a{% else %}span{% endif %}>
       </li>
@@ -114,11 +110,7 @@
     {% for usr in goers %}
       <li {% if forloop.counter > 10 %}class="goer-hidden"{% endif %}>
 	<{% if usr.soc_link %}a{% else %}span{% endif %} href="{{ usr.soc_link }}" class="goer">
-	  {% if usr.soc_avatar %}
-            <img class="goer-img" src="{{ usr.soc_avatar }}" alt="{{ usr.soc_soc_username }}" />
-	  {% else %}
-            <img class="goer-img" src="{{ STATIC_URL }}img/default_avatar.png" width="50px" height="50px" />
-	  {% endif %}
+          <img class="goer-img" src="{{ usr.soc_avatar }}" alt="{{ usr.soc_soc_username }}"  width="50px" height="50px" />
 	  <div class="goer-text">{{ usr.soc_username }}</div>
 	</{% if usr.soc_link %}a{% else %}span{% endif %}>
       </li>

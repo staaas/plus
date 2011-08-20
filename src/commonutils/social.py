@@ -2,7 +2,7 @@ from django.conf import settings
 from social_auth.models import UserSocialAuth
 
 DEFAULT_AVATAR = getattr(settings, 'DEFAULT_SOCIAL_AVATAR', '')
-LOADIG_AVATAR = getattr(settings, 'LOADING_SOCIAL_AVATAR', '')
+LOADING_AVATAR = getattr(settings, 'LOADING_SOCIAL_AVATAR', '')
 
 def socialize_users(users_list):
     '''

@@ -23,7 +23,8 @@ def socialize_users(users_list):
             usr.soc_provider = ''
         elif soc.provider == 'twitter':
             usr.soc_username = soc.extra_data.get('screen_name') or usr.username
-            usr.soc_link = 'http://twitter.com/%s' % usr.soc_username
+            usr.soc_link = 'http://twitter.com/%s' % soc.extra_data.get('screen_name') if \
+                soc.extra_data.get('screen_name') else ''
             usr.soc_avatar = 'http://img.tweetimag.es/i/%s' % usr.soc_username
             usr.soc_provider = soc.provider
         elif soc.provider == 'facebook':

@@ -164,7 +164,7 @@ LOGGING = {
 
 AUTHENTICATION_BACKENDS = (
     'social_auth.backends.facebook.FacebookBackend',
-    'social_auth.backends.facebook.TwitterBackend',
+    'social_auth.backends.twitter.TwitterBackend',
     'social_auth.backends.google.GoogleOAuth2Backend',
     'social_auth.backends.OpenIDBackend',
     'social_auth_extra_services.vkontakte.VKontakteOAuth2Backend',

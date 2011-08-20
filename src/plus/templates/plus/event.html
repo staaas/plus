@@ -65,7 +65,7 @@
 <div id="auth-plus" class="reveal-modal">
   <h1>{% trans "Please login with:" %}</h1>{% url event_plus event.slug as curr_plus%}
   <ul>
-    <li style="display: inline-block;"><img src="{{ STATIC_URL }}img/vkontakte.png" width="100px" /><br /><a rel="nofollow" href="#" onclick="{% url socialauth_begin  "vkontakte-oauth2" %}">Vkontakte</a></li>
+    <li style="display: inline-block;"><img src="{{ STATIC_URL }}img/vkontakte.png" width="100px" /><br /><a rel="nofollow" href="{% url socialauth_begin  "vkontakte-oauth2" %}">Vkontakte</a></li>
     <li style="display: inline-block;"><img src="{{ STATIC_URL }}img/twitter.png" width="100px" /><br /><a rel="nofollow" href="{% url socialauth_begin "twitter" %}?next={{ curr_plus }}">Twitter</a></li>
     <li style="display: inline-block;"><img src="{{ STATIC_URL }}img/facebook.png" width="100px" /><br /><a rel="nofollow" href="{% url socialauth_begin "facebook" %}?next={{ curr_plus }}">Facebook</a></li>
   </ul>

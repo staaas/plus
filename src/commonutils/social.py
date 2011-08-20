@@ -17,18 +17,22 @@ def socialize_users(users_list):
     for usr in users_list:
         soc = soc_dict.get(usr.id)
         if soc is None:
+            usr.soc_username = usr.username
             usr.soc_link = ''
             usr.soc_avatar = ''
             usr.soc_provider = ''
         elif soc.provider == 'twitter':
-            usr.soc_link = 'http://twitter.com/%s' % usr.username
-            usr.soc_avatar = 'http://img.tweetimag.es/i/%s' % usr.username
+            usr.soc_username = soc.extra['screen_name']
+            usr.soc_link = 'http://twitter.com/%s' % usr.soc_username
+            usr.soc_avatar = 'http://img.tweetimag.es/i/%s' % usr.soc_username
             usr.soc_provider = soc.provider
         elif soc.provider == 'facebook':
+            usr.soc_username = usr.username
             usr.soc_link = 'https://www.facebook.com/profile.php?id=%s' % soc.uid
             usr.soc_avatar = 'http://graph.facebook.com/%s/picture' % soc.uid
             usr.soc_provider = soc.provider
         elif soc.provider == 'openid':
+            usr.soc_username = usr.username
             usr.soc_link = soc.uid
             usr.soc_avatar = ''
             usr.soc_provider = soc.provider

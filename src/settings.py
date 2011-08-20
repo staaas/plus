@@ -180,7 +180,7 @@ DEFAULT_SOCIAL_AVATAR =  STATIC_URL + 'img/default_avatar.png'
 TWITTER_CONSUMER_KEY = ''  # please define in settings_local
 TWITTER_CONSUMER_SECRET= ''  # please define in settings_local
 TWITTER_EXTRA_DATA = [('screen_name', 'screen_name'),
-                      ('avatar_url', 'profile_image_url')]
+                      ('profile_image_url', 'avatar_url')]
 
 FACEBOOK_APP_ID = ''  # please define in settings_local
 FACEBOOK_API_SECRET = ''  # please define in settings_local
@@ -188,7 +188,7 @@ FACEBOOK_API_SECRET = ''  # please define in settings_local
 VKONTAKTE_APP_ID = ''  # please define in settings_local
 VKONTAKTE_APP_SECRET = ''  # please define in settings_local
 VKONTAKTE_APP_AUTH = 1
-VKONTAKTE_OAUTH2_EXTRA_DATA = [('avatar_url', 'user_photo')]
+VKONTAKTE_OAUTH2_EXTRA_DATA = [('user_photo', 'avatar_url')]
 
 LOGIN_URL          = '/'
 LOGIN_REDIRECT_URL = '/'

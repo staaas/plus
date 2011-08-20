@@ -22,17 +22,22 @@ def socialize_users(users_list):
             usr.soc_avatar = ''
             usr.soc_provider = ''
         elif soc.provider == 'twitter':
-            usr.soc_username = usr.username#soc.extra['screen_name']
+            usr.soc_username = soc.extra_data.get('screen_name') or usr.username
             usr.soc_link = 'http://twitter.com/%s' % usr.soc_username
             usr.soc_avatar = 'http://img.tweetimag.es/i/%s' % usr.soc_username
             usr.soc_provider = soc.provider
         elif soc.provider == 'facebook':
-            usr.soc_username = usr.username
+            usr.soc_username = ('%s %s' % (usr.first_name, usr.last_name)).strip() or usr.username
             usr.soc_link = 'https://www.facebook.com/profile.php?id=%s' % soc.uid
             usr.soc_avatar = 'http://graph.facebook.com/%s/picture' % soc.uid
             usr.soc_provider = soc.provider
+        elif soc.provider == 'vkontakte-oauth2':
+            usr.soc_username = ('%s %s' % (usr.first_name, usr.last_name)).strip() or usr.username
+            usr.soc_link = 'https://vkontakte.ru/id%s' % soc.uid
+            usr.soc_avatar = ''
+            usr.soc_provider = 'vkontakte'
         elif soc.provider == 'openid':
-            usr.soc_username = usr.username
+            usr.soc_username = ('%s %s' % (usr.first_name, usr.last_name)).strip() or usr.username
             usr.soc_link = soc.uid
             usr.soc_avatar = ''
             usr.soc_provider = soc.provider

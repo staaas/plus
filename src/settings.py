@@ -164,10 +164,10 @@ LOGGING = {
 
 AUTHENTICATION_BACKENDS = (
     'social_auth.backends.facebook.FacebookBackend',
+    'social_auth.backends.facebook.TwitterBackend',
     'social_auth.backends.google.GoogleOAuth2Backend',
     'social_auth.backends.OpenIDBackend',
     'social_auth_extra_services.vkontakte.VKontakteOAuth2Backend',
-    'social_auth_extra_services.twitter.TwitterBackend',
     'django.contrib.auth.backends.ModelBackend',
 )
 
@@ -178,6 +178,7 @@ SOCIAL_AUTH_ERROR_KEY = 'SOCIAL_AUTH_ERROR_KEY'
 
 TWITTER_CONSUMER_KEY = ''  # please define in settings_local
 TWITTER_CONSUMER_SECRET= ''  # please define in settings_local
+TWITTER_EXTRA_DATA = [('screen_name', 'screen_name')]
 
 FACEBOOK_APP_ID = ''  # please define in settings_local
 FACEBOOK_API_SECRET = ''  # please define in settings_local

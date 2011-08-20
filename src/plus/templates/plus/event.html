@@ -45,7 +45,7 @@
 {% endif %}
 {% if user.is_authenticated %}
   <div id="loggedin-as">{% trans "You are logged in as" %}
-    {% if user.soc_link %}<a href="{{ user.soc_link }}">{{ user.username }}</a>{% else %}{{ user.username }}{% endif %}.
+    {% if user.soc_link %}<a href="{{ user.soc_link }}">{{ user.soc_username }}</a>{% else %}{{ user.soc_username }}{% endif %}.
     <a href="{% url event_logout event.slug %}">{% trans "Logout" %}</a></div>
 {% endif %}
 
@@ -103,7 +103,7 @@
       <li>
 	<{% if user.soc_link %}a{% else %}span{% endif %} href="{{ user.soc_link }}" class="goer">
 	  {% if user.soc_avatar %}
-            <img class="goer-img" src="{{ user.soc_avatar }}" alt="{{ user.soc_username }}" width="50px" height="50px" />
+            <img class="goer-img" src="{{ user.soc_avatar }}" alt="{{ user.soc_soc_username }}" width="50px" height="50px" />
 	  {% else %}
             <img class="goer-img" src="{{ STATIC_URL }}img/default_avatar.png" width="50px" height="50px" />
 	  {% endif %}
@@ -115,11 +115,11 @@
       <li {% if forloop.counter > 10 %}class="goer-hidden"{% endif %}>
 	<{% if usr.soc_link %}a{% else %}span{% endif %} href="{{ usr.soc_link }}" class="goer">
 	  {% if usr.soc_avatar %}
-            <img class="goer-img" src="{{ usr.soc_avatar }}" alt="{{ usr.soc_username }}" />
+            <img class="goer-img" src="{{ usr.soc_avatar }}" alt="{{ usr.soc_soc_username }}" />
 	  {% else %}
             <img class="goer-img" src="{{ STATIC_URL }}img/default_avatar.png" width="50px" height="50px" />
 	  {% endif %}
-	  <div class="goer-text">{{ usr.username }}</div>
+	  <div class="goer-text">{{ usr.soc_username }}</div>
 	</{% if usr.soc_link %}a{% else %}span{% endif %}>
       </li>
     {% endfor %}

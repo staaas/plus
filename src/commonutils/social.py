@@ -22,7 +22,7 @@ def socialize_users(users_list):
             usr.soc_avatar = ''
             usr.soc_provider = ''
         elif soc.provider == 'twitter':
-            usr.soc_username = soc.extra['screen_name']
+            usr.soc_username = usr.username#soc.extra['screen_name']
             usr.soc_link = 'http://twitter.com/%s' % usr.soc_username
             usr.soc_avatar = 'http://img.tweetimag.es/i/%s' % usr.soc_username
             usr.soc_provider = soc.provider

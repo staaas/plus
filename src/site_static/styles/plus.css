@@ -129,6 +129,8 @@ a#goers-more {
     display: block;
     margin: auto;
     border: 0;
+    max-width: 50px;
+    max-height: 50px;
 }
 
 .goer-text {

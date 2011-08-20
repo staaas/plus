@@ -1,5 +1,7 @@
+from django.conf import settings
 from social_auth.models import UserSocialAuth
 
+DEFAULT_AVATAR = getattr(settings, 'DEFAULT_SOCIAL_AVATAR', '')
 
 def socialize_users(users_list):
     '''
@@ -16,37 +18,41 @@ def socialize_users(users_list):
 
     for usr in users_list:
         soc = soc_dict.get(usr.id)
+
+        # default values
+        soc_username = usr.username
+        soc_link = ''
+        soc_avatar = DEFAULT_AVATAR
+        soc_provider = ''
+
         if soc is None:
-            usr.soc_username = usr.username
-            usr.soc_link = ''
-            usr.soc_avatar = ''
-            usr.soc_provider = ''
+            pass
         elif soc.provider == 'twitter':
-            usr.soc_username = soc.extra_data.get('screen_name') or usr.username
-            usr.soc_link = 'http://twitter.com/%s' % soc.extra_data.get('screen_name') if \
-                soc.extra_data.get('screen_name') else ''
-            usr.soc_avatar = 'http://img.tweetimag.es/i/%s' % usr.soc_username
-            usr.soc_provider = soc.provider
+            screen_name = soc.extra_data.get('screen_name')
+            soc_username = screen_name or usr.username
+            soc_link = 'http://twitter.com/%s' % screen_name if \
+                screen_name else ''
+            soc_avatar = 'http://img.tweetimag.es/i/%s' % screen_name if \
+                screen_name else DEFAULT_AVATAR
+            soc_provider = soc.provider
         elif soc.provider == 'facebook':
-            usr.soc_username = ('%s %s' % (usr.first_name, usr.last_name)).strip() or usr.username
-            usr.soc_link = 'https://www.facebook.com/profile.php?id=%s' % soc.uid
-            usr.soc_avatar = 'http://graph.facebook.com/%s/picture' % soc.uid
-            usr.soc_provider = soc.provider
+            soc_username = ('%s %s' % (usr.first_name, usr.last_name)).strip() or usr.username
+            soc_link = 'https://www.facebook.com/profile.php?id=%s' % soc.uid
+            soc_avatar = 'http://graph.facebook.com/%s/picture' % soc.uid
+            soc_provider = soc.provider
         elif soc.provider == 'vkontakte-oauth2':
-            usr.soc_username = ('%s %s' % (usr.first_name, usr.last_name)).strip() or usr.username
-            usr.soc_link = 'https://vkontakte.ru/id%s' % soc.uid
-            usr.soc_avatar = ''
-            usr.soc_provider = 'vkontakte'
+            soc_username = ('%s %s' % (usr.first_name, usr.last_name)).strip() or usr.username
+            soc_link = 'https://vkontakte.ru/id%s' % soc.uid
+            soc_provider = 'vkontakte'
         elif soc.provider == 'openid':
-            usr.soc_username = ('%s %s' % (usr.first_name, usr.last_name)).strip() or usr.username
-            usr.soc_link = soc.uid
-            usr.soc_avatar = ''
-            usr.soc_provider = soc.provider
-        else:
-            usr.soc_link = ''
-            usr.soc_avatar = ''
-            usr.soc_provider = ''
-            
+            soc_username = ('%s %s' % (usr.first_name, usr.last_name)).strip() or usr.username
+            soc_link = soc.uid
+            soc_provider = soc.provider
+
+        usr.soc_username = soc_username
+        usr.soc_link = soc_link
+        usr.soc_avatar = soc_avatar
+        usr.soc_provider = soc_provider
 
     return users_list
 

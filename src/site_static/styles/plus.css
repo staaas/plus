@@ -241,3 +241,7 @@ a.minus:hover {
     width: 100%;
     height: 135px;
 }
+
+.reveal-modal {
+    color: #222223;
+}

@@ -1,10 +1,12 @@
 import datetime
 import random
 
+from django.conf import settings
 from django.core.urlresolvers import reverse
 from django.shortcuts import get_object_or_404, redirect
 from django.utils import translation
 from django.contrib.auth import logout as auth_logout
+from social_auth.views import auth as social_auth_begin
 
 from models import Event, EventAttendance, LANG_CODES
 from commonutils.decorators import render_to
@@ -13,6 +15,11 @@ from commonutils.social import socialize_user, socialize_users
 @render_to('plus/home.html')
 def home(request):
     return {}
+
+def plus_socialauth_begin(request, backend):
+    '''we want to logout before logging in as another user.'''
+    auth_logout(request)
+    return social_auth_begin(request, backend)
 
 @render_to('plus/event.html')
 def show_event(request, slug):

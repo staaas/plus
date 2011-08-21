@@ -24,9 +24,9 @@
         <input class="comment-submit-button" type="submit" value="{% trans "Submit" %}" name="post">
       {% else %}
 	<div class="please-login">
-{% url socialauth_begin "twitter" as twit_url %}
-{% url socialauth_begin "facebook" as fb_url %}
-{% url socialauth_begin "vkontakte-oauth2" as vk_url %}
+{% url plus_socialauth_begin "twitter" as twit_url %}
+{% url plus_socialauth_begin "facebook" as fb_url %}
+{% url plus_socialauth_begin "vkontakte-oauth2" as vk_url %}
 {% blocktrans with full_path=request.get_full_path%}
 Please login via <a href="{{ vk_url }}?next={{ full_path }}">Vkontakte</a>, <a href="{{ fb_url }}?next={{ full_path }}">Facebook</a>, <a href="{{ twit_url }}?next={{ full_path }}">Twitter</a> or <a href="#" data-reveal-id="auth-openid">Open ID</a> in order to leave comments
 {% endblocktrans %}

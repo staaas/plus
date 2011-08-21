@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-19 01:29+0300\n"
+"POT-Creation-Date: 2011-08-21 13:31+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -21,7 +21,7 @@ msgstr ""
 
 #: admin.py:18
 msgid "Link"
-msgstr ""
+msgstr "Ссылка"
 
 #: templates/plus/event.html:21
 msgid "Starts:"
@@ -43,15 +43,7 @@ msgstr "Вы вошли как"
 msgid "Logout"
 msgstr "Выход"
 
-#: templates/plus/event.html:53
-msgid "Login via OpenID"
-msgstr "Войти через OpenID"
-
-#: templates/plus/event.html:66
-msgid "Please login"
-msgstr "Пожалуйста войдите"
-
-#: templates/plus/event.html:89
+#: templates/plus/event.html:56
 #, python-format
 msgid ""
 "\n"
@@ -71,7 +63,7 @@ msgstr[2] ""
 "\n"
 "    %(counter)s человек пойдут на событие:    "
 
-#: templates/plus/event.html:95
+#: templates/plus/event.html:62
 #, python-format
 msgid ""
 "\n"
@@ -91,19 +83,34 @@ msgstr[2] ""
 "\n"
 "    %(counter)s человек посетил событие:    "
 
-#: templates/plus/event.html:110
+#: templates/plus/event.html:73
 msgid "you"
 msgstr "вы"
 
-#: templates/plus/event.html:127
+#: templates/plus/event.html:86
 msgid "Show everyone"
 msgstr "Показать всех"
 
-#: templates/plus/event.html:132
+#: templates/plus/event.html:91
 msgid "Nobody has registered for the event yet :("
 msgstr "Пока никто не зарегистрировался на событие :("
 
-#: templates/plus/event.html:140
+#: templates/plus/event.html:99
 msgid "Comments"
 msgstr "Комментарии"
 
+#: templates/plus/event.html:115
+msgid "Login via OpenID"
+msgstr "Вход через OpenID"
+
+#: templates/plus/event.html:121
+msgid "Login"
+msgstr "Войти"
+
+#: templates/plus/event.html:128 templates/plus/event.html.py:148
+msgid "Please login with:"
+msgstr "Пожалуйста, войдите через:"
+
+#: templates/plus/event.html:135 templates/plus/event.html.py:155
+msgid "...or use OpenID"
+msgstr "...или используйте OpenID"

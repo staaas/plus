@@ -112,13 +112,11 @@
 
 {% block bottom %}
 <div id="auth-openid" class="reveal-modal">
-  <h1>{% trans "Login via OpenID" %}</h1>
+  <h1>{% trans "Login via OpenID" %}:</h1>
   <form action="{% url plus_socialauth_begin "openid" %}" method="post">{% csrf_token %}
-    <div>
-      <img src="{{ STATIC_URL }}img/openid.png" width="20px" />
-      <input id="openid_identifier" type="text" value="" name="openid_identifier" />
+    <div class="soc-auth-buttons">
+      <div class="openid_identifier"><input type="text" value="" name="openid_identifier" /><input type="submit" value="{% trans "Login" %}" /></div>
       <input type="hidden" name="next" value="{% url show_event event.slug %}#comment" />
-      <input type="submit" value="{% trans "Login" %}" />
     </div>
   </form>
   <a class="close-reveal-modal">&#215;</a>
@@ -126,39 +124,17 @@
 
 <div id="auth-plus" class="reveal-modal">
   <h1>{% trans "Please login with:" %}</h1>{% url event_plus event.slug as curr_plus%}
-  <ul>
-    <li style="display: inline-block;"><img src="{{ STATIC_URL }}img/vkontakte.png" width="100px" /><br /><a rel="nofollow" href="{% url plus_socialauth_begin "vkontakte-oauth2" %}?next={{ curr_plus }}">Vkontakte</a></li>
-    <li style="display: inline-block;"><img src="{{ STATIC_URL }}img/twitter.png" width="100px" /><br /><a rel="nofollow" href="{% url plus_socialauth_begin "twitter" %}?next={{ curr_plus }}">Twitter</a></li>
-    <li style="display: inline-block;"><img src="{{ STATIC_URL }}img/facebook.png" width="100px" /><br /><a rel="nofollow" href="{% url plus_socialauth_begin "facebook" %}?next={{ curr_plus }}">Facebook</a></li>
+  <ul class="soc-auth-buttons">
+    <li class="soc-auth-button"><a rel="nofollow" href="{% url plus_socialauth_begin "vkontakte-oauth2" %}?next={{ curr_plus }}"><img src="{{ STATIC_URL }}img/vkontakte_100.png" width="100px" /><span>Vkontakte</span></a></li>
+    <li class="soc-auth-button"><a rel="nofollow" href="{% url plus_socialauth_begin "twitter" %}?next={{ curr_plus }}"><img src="{{ STATIC_URL }}img/twitter_100.png" width="100px" /><span>Twitter</span></a></li>
+    <li class="soc-auth-button"><a rel="nofollow" href="{% url plus_socialauth_begin "facebook" %}?next={{ curr_plus }}"><img src="{{ STATIC_URL }}img/facebook_100.png" width="100px" /><span>Facebook</span></a></li>
   </ul>
   <br />
   <h1>{% trans "...or use OpenID" %}</h1>
   <form action="{% url plus_socialauth_begin "openid" %}" method="post">{% csrf_token %}
-    <div>
-      <img src="{{ STATIC_URL }}img/openid.png" width="20px" />
-      <input id="openid_identifier" type="text" value="" name="openid_identifier" />
+    <div class="soc-auth-buttons">
+      <div class="openid_identifier"><input type="text" value="" name="openid_identifier" /><input type="submit" value="{% trans "Login" %}" /></div>
       <input type="hidden" name="next" value="{{ curr_plus }}" />
-      <input type="submit" value="Login with OpenID" />
-    </div>
-  </form>
-  <a class="close-reveal-modal">&#215;</a>
-</div>
-
-<div id="auth-stay" class="reveal-modal">
-  <h1>{% trans "Please login with:" %}</h1>{% url show_event event.slug as curr_show%}
-  <ul>
-    <li style="display: inline-block;"><img src="{{ STATIC_URL }}img/vkontakte.png" width="100px" /><br /><a rel="nofollow" href="{% url plus_socialauth_begin "vkontakte-oauth2" %}?next={{ curr_show }}">Vkontakte</a></li>
-    <li style="display: inline-block;"><img src="{{ STATIC_URL }}img/twitter.png" width="100px" /><br /><a rel="nofollow" href="{% url plus_socialauth_begin "twitter" %}?next={{ curr_show }}">Twitter</a></li>
-    <li style="display: inline-block;"><img src="{{ STATIC_URL }}img/facebook.png" width="100px" /><br /><a rel="nofollow" href="{% url plus_socialauth_begin "facebook" %}?next={{ curr_show }}">Facebook</a></li>
-  </ul>
-  <br />
-  <h1>{% trans "...or use OpenID" %}</h1>
-  <form action="{% url plus_socialauth_begin "openid" %}" method="post">{% csrf_token %}
-    <div>
-      <img src="{{ STATIC_URL }}img/openid.png" width="20px" />
-      <input id="openid_identifier" type="text" value="" name="openid_identifier" />
-      <input type="hidden" name="next" value="{{ curr_show }}" />
-      <input type="submit" value="Login with OpenID" />
     </div>
   </form>
   <a class="close-reveal-modal">&#215;</a>

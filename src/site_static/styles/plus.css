@@ -242,6 +242,36 @@ a.minus:hover {
     height: 135px;
 }
 
+/* reveal forms */
 .reveal-modal {
     color: #222223;
+}
+.soc-auth-buttons {
+    width: 370px;
+    display: block;
+    margin: auto;
+    padding: 10px 0 0 0;
+}
+.soc-auth-button {
+    display: inline-block;
+    width: 100px;
+    padding: 0 10px 0 10px;
+    margin: 0;
+    text-align: center;
+}
+.soc-auth-button a {
+    text-decoration: none;;
+}
+.soc-auth-button span {
+    margin-top: -25px;
+}
+.soc-auth-button a img {
+    border: 0;
+}
+.openid_identifier {
+    background: url('../img/openid_20.png') no-repeat;
+    padding: 0 0 0 23px;
+}
+.openid_identifier input[type=text] {
+    width: 260px;
 }

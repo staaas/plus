@@ -2,6 +2,7 @@ import random
 
 from django.db import models
 from django.contrib.auth.models import User
+from django.utils.translation import ugettext_lazy as _
 from imagekit.models import ImageModel
 
 
@@ -43,6 +44,10 @@ class Event(ImageModel):
 
     def __unicode__(self):
         return self.title
+    class Meta:
+        permissions = (
+            ("can_moderate_all", _(u"Can add, edit or delete any event")),
+        )
 
     class IKOptions:
         # This inner class is where we define the ImageKit options for the model

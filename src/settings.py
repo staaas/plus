@@ -132,12 +132,15 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.markup',
     'django.contrib.comments',
+    'commonutils.ncomments',
     'social_auth',
     'south',
     'debug_toolbar',
     'imagekit',
     'plus',
 )
+
+COMMENTS_APP = 'commonutils.ncomments'
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to

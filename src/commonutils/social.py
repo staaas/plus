@@ -28,7 +28,10 @@ def socialize_users(users_list):
         if soc is None:
             pass
         elif soc.provider == 'twitter':
-            screen_name = soc.extra_data.get('screen_name')
+            try:
+                screen_name = soc.extra_data.get('screen_name')
+            except (TypeError, ValueError, AttributeError):
+                screen_name = None
             soc_username = screen_name or usr.username
             soc_link = 'http://twitter.com/%s' % screen_name if \
                 screen_name else ''
@@ -45,8 +48,8 @@ def socialize_users(users_list):
             soc_link = 'https://vkontakte.ru/id%s' % soc.uid
             soc_provider = 'vkontakte'
             try:
-                soc_avatar = soc.extra_data.get{'response', {}}.get('user_photo') or DEFAULT_AVATAR
-            except TypeError, ValueError:
+                soc_avatar = soc.extra_data.get('response', {}).get('user_photo') or DEFAULT_AVATAR
+            except (TypeError, ValueError, AttributeError):
                 soc_avatar = DEFAULT_AVATAR
             usr.vk_id = soc.uid
         elif soc.provider == 'openid':

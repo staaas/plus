@@ -47,7 +47,7 @@ a:hover {
 #header-out {
     width: 100%;
     color: #ffffff;
-    background-color: #0c5aa6;
+    background-color: #004c5b;
 }
 #header-in {
     padding: 10px 40px 5px 40px;
@@ -122,7 +122,7 @@ a#goers-more {
     padding: 11px 1px 6px 1px;
     margin: 0 6px 6px 0;
     float: left;
-    background: #ffc300;
+    background: #e4d742;
 }
 
 .goer-img {
@@ -145,7 +145,7 @@ a#goers-more {
 /* PLUS MINUS */
 #attendance-out {
     color: #222223;
-    background-color: #ff5300;
+    background-color: #37a55f;
 }
 #attendance-in {
     padding: 10px 40px 10px 40px;
@@ -181,32 +181,32 @@ a.plus, a.minus {
 
 a.plus, a.plus:visited {
     color: #005700;
-    background-color: #43BF30;
+    background-color: #7fbe33;
     border-color: #005700;
 }
 a.plus:hover {
-    color: #002700;
-    background-color: #13AF00;
-    border-color: #002700;
+    color: #005000;
+    background-color: #58be33;
+    border-color: #005000;
     text-decoration: none;
 }
 
 a.minus, a.minus:visited {
-    color: #FF0000;
-    background-color: #FFAAAA;
-    border-color: #FF0000;
+    color: #a70900;
+    background-color: #fd8600;
+    border-color: #a70900;
 }
 a.minus:hover {
-    color: #FF0000;
-    background-color: #FF8888;
-    border-color: #FF0000;
+    color: #6e0600;
+    background-color: #fd6500;
+    border-color: #6e0600;
     text-decoration: none;
 }
 
 /*********** COMMENTS **********/
 #comments-out {
     color: #222223;
-    background-color: #ffc300;
+    background-color: #e4d742;
 }
 #comments-in {
     padding: 10px 40px 10px 40px;

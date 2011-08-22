@@ -139,6 +139,7 @@ a#goers-more {
     text-align: center;
     white-space:nowrap;
     text-overflow: ellipsis;
+    overflow: hidden;
 }
 
 /* PLUS MINUS */

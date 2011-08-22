@@ -32,12 +32,12 @@
   <div id="attendance-button-container">
     {% if future_event %}
       {% if curr_attendance %}
-        <a href="{% url event_minus event.slug %}" class="minus">{% trans "Press if you've changed your mind to go" %}</a>
+        <a href="{% url event_minus event.slug %}" class="minus" rel="nofollow">{% trans "Press if you've changed your mind to go" %}</a>
       {% else %}
         {% if user.is_authenticated %}
-          <a href="{% url event_plus event.slug %}" class="plus">{% trans "Press if you are going to go" %}</a>
+          <a href="{% url event_plus event.slug %}" class="plus" rel="nofollow">{% trans "Press if you are going to go" %}</a>
         {% else %}
-          <a href="#" class="plus" data-reveal-id="auth-plus">{% trans "Press if you are going to go" %}</a>
+          <a href="#" class="plus" data-reveal-id="auth-plus" rel="nofollow">{% trans "Press if you are going to go" %}</a>
         {% endif %}
       {% endif %}
     {% endif %}
@@ -46,7 +46,7 @@
 {% if user.is_authenticated %}
   <div id="loggedin-as">{% trans "You are logged in as" %}
     {% if user.soc_link %}<a href="{{ user.soc_link }}">{{ user.soc_username }}</a>{% else %}{{ user.soc_username }}{% endif %}.
-    <a href="{% url event_logout event.slug %}">{% trans "Logout" %}</a></div>
+    <a href="{% url event_logout event.slug %}" rel="nofollow">{% trans "Logout" %}</a></div>
 {% endif %}
 {% endblock %}
 

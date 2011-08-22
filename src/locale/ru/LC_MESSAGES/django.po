@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-19 02:14+0300\n"
+"POT-Creation-Date: 2011-08-23 00:17+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,6 +19,97 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
 
+#: commonutils/ncomments/__init__.py:6
+msgid "Email address"
+msgstr ""
+
+#: plus/admin.py:50
+msgid "Link"
+msgstr ""
+
+#: plus/models.py:49
+msgid "Can add, edit or delete any event"
+msgstr ""
+
+#: plus/templates/plus/event.html:21
+msgid "Starts:"
+msgstr ""
+
+#: plus/templates/plus/event.html:35
+msgid "Press if you've changed your mind to go"
+msgstr ""
+
+#: plus/templates/plus/event.html:38 plus/templates/plus/event.html.py:40
+msgid "Press if you are going to go"
+msgstr ""
+
+#: plus/templates/plus/event.html:47
+msgid "You are logged in as"
+msgstr ""
+
+#: plus/templates/plus/event.html:49
+msgid "Logout"
+msgstr ""
+
+#: plus/templates/plus/event.html:56
+#, python-format
+msgid ""
+"\n"
+"    %(counter)s person is going to the event:\n"
+"    "
+msgid_plural ""
+"\n"
+"    %(counter)s persons are going to the event:\n"
+"    "
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: plus/templates/plus/event.html:62
+#, python-format
+msgid ""
+"\n"
+"    %(counter)s person attended the event:\n"
+"    "
+msgid_plural ""
+"\n"
+"    %(counter)s persons attended the event:\n"
+"    "
+msgstr[0] ""
+msgstr[1] ""
+msgstr[2] ""
+
+#: plus/templates/plus/event.html:73
+msgid "you"
+msgstr ""
+
+#: plus/templates/plus/event.html:86
+msgid "Show everyone"
+msgstr ""
+
+#: plus/templates/plus/event.html:91
+msgid "Nobody has registered for the event yet :("
+msgstr ""
+
+#: plus/templates/plus/event.html:99
+msgid "Comments"
+msgstr ""
+
+#: plus/templates/plus/event.html:115
+msgid "Login via OpenID"
+msgstr ""
+
+#: plus/templates/plus/event.html:118 plus/templates/plus/event.html.py:136
+msgid "Login"
+msgstr ""
+
+#: plus/templates/plus/event.html:126
+msgid "Please login with:"
+msgstr ""
+
+#: plus/templates/plus/event.html:133
+msgid "...or use OpenID"
+msgstr ""
 
 #: templates/comments/form.html:2
 msgid "Leave comment"
@@ -32,17 +123,18 @@ msgstr "Отправить"
 #, python-format
 msgid ""
 "\n"
-"Please login via <a href=\"%(vk_url)s?next=%(full_path)s"
-"\">Vkontakte</a>, <a href=\"%(fb_url)s?next=%(full_path)s"
-"\">Facebook</a>, <a href=\"%(twit_url)s?next=%(full_path)s"
+"Please login via <a href=\"%(vk_url)s?next=%(full_path)s\" rel=\"nofollow"
+"\">Vkontakte</a>, <a href=\"%(fb_url)s?next=%(full_path)s\" rel=\"nofollow"
+"\">Facebook</a>, <a href=\"%(twit_url)s?next=%(full_path)s\" rel=\"nofollow"
 "\">Twitter</a> or <a href=\"#\" data-reveal-id=\"auth-openid\">Open ID</a> "
 "in order to leave comments\n"
 msgstr ""
 "\n"
-"Пожалуйста, войдите через <a href=\"%(vk_url)s?next=%(full_path)s\">Vkontakte</a>, <a "
-"href=\"%(fb_url)s?next=%(full_path)s\">Facebook</a>, <a href=\"%(twit_url)s?next=%(full_path)s"
-"\">Twitter</a> или <a href=\"#\" data-reveal-id=\"auth-openid\">Open ID</a>, "
-"чтобы иметь возможность оставлять комментарии\n"
+"Пожалуйста, войдите через <a href=\"%(vk_url)s?next=%(full_path)s\" rel="
+"\"nofollow\">Vkontakte</a>, <a href=\"%(fb_url)s?next=%(full_path)s\" rel="
+"\"nofollow\">Facebook</a>, <a href=\"%(twit_url)s?next=%(full_path)s\" rel="
+"\"nofollow\">Twitter</a> или <a href=\"#\" data-reveal-id=\"auth-openid"
+"\">Open ID</a>, чтобы иметь возможность оставлять комментарии\n"
 
 #: templates/comments/preview.html:4 templates/comments/preview.html.py:5
 msgid "PREVIEW"

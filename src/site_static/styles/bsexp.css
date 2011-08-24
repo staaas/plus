@@ -39,6 +39,7 @@ body {
 
 #gobuttonarea {
     text-align: center;
+    margin: 10px;
 }
 
 #goers {
@@ -46,6 +47,7 @@ body {
     -moz-box-shadow: 0 0 6px #888888;
     -webkit-box-shadow: 0 0 6px #888888;
     box-shadow: 0 0 6px #888888;
+    margin-top: 10px;
 }
 #goers .inner {
     padding: 0 0 8px 0;
@@ -142,6 +144,7 @@ body {
 .soc-auth-buttons li a {
     text-decoratoion: none;
 }
+
 /* topbar */
 .topbar ul li span {
     display: block;

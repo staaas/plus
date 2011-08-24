@@ -1,0 +1,25 @@
+{% load i18n comments plus_tags %}
+<div id="comments">
+  <div class="container">
+    {% if comment_list %}
+      <h2>{% trans "Comments" %}:</h2>
+      {% for comment in comment_list|annotate_users %}
+        <div class="comment">
+	  <div class="comment-avatar">
+	    <img class="goer-avatar" src="{{ comment.user.soc_avatar }}" alt="{{ comment.user.soc_username }}" width="50px" height="50px" />
+	  </div>
+	  <div class="comment-content">
+            <a class="comment-user">{{ comment.user.soc_username }}</a> <span class="attendance-status">(идет)</a>
+	    <div class="comment-text">
+	      <p>{{ comment.comment|linebreaksbr }}</p>
+	      <small>{{ comment.submit_date|date:"j E Y г. G:i" }}</small>
+	    </div>
+	  </div>
+	</div>
+     {% endfor %}
+    {% endif %}
+    <div id="comment-form-base-root2" class="comment-form">
+      {% render_comment_form for event %}
+    </div>
+  </div>
+</div>

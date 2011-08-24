@@ -1,5 +1,5 @@
 {% extends "bootstrap.html" %}
-{% load comments i18n plus_tags %}
+{% load comments i18n %}
 
 {% block title %}{{ event.title }}{% endblock %}
 
@@ -7,6 +7,18 @@
 <script type="text/javascript">
  $(document).ready(function() {
     $('.goer-avatar').tipsy({gravity: 's', opacity: 0.9});
+
+  // Dropdown example for topbar nav
+  // ===============================
+
+  $("body").bind("click", function (e) {
+    $('a.menu').parent("li").removeClass("open");
+  });
+
+  $("a.menu").click(function (e) {
+    var $li = $(this).parent("li").toggleClass('open');
+    return false;
+  });
  });
 </script>
 {% endblock %}
@@ -16,11 +28,27 @@
 <div class="topbar">
   <div class="fill">
     <div class="container fixed">
-      <h3><a href="#">Project name</a></h3>
+      <h3><a href="#">+</a></h3>
       <ul>
-        <li class="active"><a href="#">Home</a></li>
-        <li><a href="#about">About</a></li>
-        <li><a href="#contact">Contact</a></li>
+        <li><span>Чалавек ідуць: <strong>10</strong></span></li>
+        <li><span>Засталося месцаў: <strong>15</strong></span></li>
+      </ul>
+      <ul class="nav secondary-nav">
+        <li class="menu">
+          <a class="menu" href="#">
+	    {% if user.is_authenticated %}
+	      <img src="{{ user.soc_link }}" />{{ user.soc_username }}
+	    {% else %}
+	      Login
+	    {% endif %}
+	  </a>
+          <ul class="menu-dropdown">
+            <li><a href="#">Secondary link</a></li>
+            <li><a href="#">Something else here</a></li>
+            <li class="divider"></li>
+            <li><a href="#">Another link</a></li>
+          </ul>
+        </li>
       </ul>
     </div>
   </div>
@@ -57,7 +85,7 @@
         {% url event_plus event.slug as gobutton_url %}
       {% endif %}
     {% endif %}
-    <a id="gobutton" href="{{ gobutton_url|default:'#' }}" class="btn large {% if curr_attendance %}danger{% else %}primary{% endif %}" {% if curr_attendance %}data-reveal-id="auth-plus"{% endif %} rel="nofollow">
+    <a id="gobutton" href="{{ gobutton_url|default:'#' }}" class="btn large {% if curr_attendance %}danger{% else %}primary{% endif %}" {% if not curr_attendance %}data-reveal-id="auth-plus"{% endif %} rel="nofollow">
       {% if curr_attendance %}
           {% trans "Press if you've changed your mind to go" %}
       {% else %}
@@ -108,31 +136,7 @@
   </div>
 </div>
 
-<div id="comments">
-  <div class="container">
-    {% get_comment_list for event as comment_list %}
-    {% if comment_list %}
-      <h2>{% trans "Comments" %}:</h2>
-      {% for comment in comment_list|annotate_users %}
-        <div class="comment">
-	  <div class="comment-avatar">
-	    <img class="goer-avatar" src="{{ comment.user.soc_avatar }}" alt="{{ comment.user.soc_username }}" width="50px" height="50px" />
-	  </div>
-	  <div class="comment-content">
-            <a class="comment-user">{{ comment.user.soc_username }}</a> <span class="attendance-status">(идет)</a>
-	    <div class="comment-text">
-	      <p>{{ comment.comment|linebreaksbr }}</p>
-	      <small>{{ comment.submit_date|date:"j E Y г. G:i" }}</small>
-	    </div>
-	  </div>
-	</div>
-     {% endfor %}
-    {% endif %}
-  </div>
-  <div id="comment-form-base-root2" class="comment-form">
-  {% render_comment_form for event %}
-  </div>
-</div>
+{% render_comment_list for event %}
 {% endblock %}
 
 {% block bottom %}
@@ -147,21 +151,28 @@
   <a class="close-reveal-modal">&#215;</a>
 </div>
 
-<div id="auth-plus" class="reveal-modal">
-  <h1>{% trans "Please login with:" %}</h1>{% url event_plus event.slug as curr_plus%}
+<div id="auth-plus" class="reveal-modal modal">
+  <div class="modal-header">
+    <h3>{% trans "Please login with:" %}</h3>
+    <a class="close-reveal-modal close" href="#">×</a>
+  </div>
+  <div class="modal-body">
+  {% url event_plus event.slug as curr_plus%}
   <ul class="soc-auth-buttons">
-    <li class="soc-auth-button"><a rel="nofollow" href="{% url plus_socialauth_begin "vkontakte-oauth2" %}?next={{ curr_plus }}"><img src="{{ STATIC_URL }}img/vkontakte_100.png" width="100px" /><span>Vkontakte</span></a></li>
-    <li class="soc-auth-button"><a rel="nofollow" href="{% url plus_socialauth_begin "twitter" %}?next={{ curr_plus }}"><img src="{{ STATIC_URL }}img/twitter_100.png" width="100px" /><span>Twitter</span></a></li>
-    <li class="soc-auth-button"><a rel="nofollow" href="{% url plus_socialauth_begin "facebook" %}?next={{ curr_plus }}"><img src="{{ STATIC_URL }}img/facebook_100.png" width="100px" /><span>Facebook</span></a></li>
+    <li><a rel="nofollow" href="{% url plus_socialauth_begin "vkontakte-oauth2" %}?next={{ curr_plus }}"><img src="{{ STATIC_URL }}img/vkontakte_100.png" width="100px" /><span>Vkontakte</span></a></li>
+    <li><a rel="nofollow" href="{% url plus_socialauth_begin "twitter" %}?next={{ curr_plus }}"><img src="{{ STATIC_URL }}img/twitter_100.png" width="100px" /><span>Twitter</span></a></li>
+    <li><a rel="nofollow" href="{% url plus_socialauth_begin "facebook" %}?next={{ curr_plus }}"><img src="{{ STATIC_URL }}img/facebook_100.png" width="100px" /><span>Facebook</span></a></li>
   </ul>
-  <br />
-  <h1>{% trans "...or use OpenID" %}</h1>
+  <div style="clear: both"></div>
+  </div>
+  <div class="modal-footer">
+  <h3>{% trans "...or use OpenID" %}</h1>
   <form action="{% url plus_socialauth_begin "openid" %}" method="post">{% csrf_token %}
     <div class="soc-auth-buttons">
-      <div class="openid_identifier"><input type="text" value="" name="openid_identifier" /><input type="submit" value="{% trans "Login" %}" /></div>
+      <div class="openid_identifier"><input type="text" value="" name="openid_identifier" /><input type="submit" class="btn primary" value="{% trans "Login" %}" /></div>
       <input type="hidden" name="next" value="{{ curr_plus }}" />
     </div>
   </form>
-  <a class="close-reveal-modal">&#215;</a>
+  </div>
 </div>
 {% endblock %}

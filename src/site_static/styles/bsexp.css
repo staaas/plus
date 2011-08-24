@@ -71,7 +71,7 @@ body {
     padding: 10px;
     margin: 0;
     font-size: 15px;
-    border-bottom: 1px solid #ebebeb;
+    border-bottom: 1px solid #e0e0e0;
     clear: both;
     display: block;
     color: #222222;
@@ -92,9 +92,6 @@ body {
     color: #777777;
     font-size: 12px;
 }
-.comment-text {
-    margin-bottom: 18px;
-}
 .comment-text p {
     color: #444444;
     font-size: 14px;
@@ -111,4 +108,48 @@ body {
 }
 .comment-text small:before {
     content: "— ";
+}
+
+.center540 {
+    display: block;
+    width: 540px;
+    margin: auto;
+    padding: 0;
+}
+.textright {
+    text-align: right;
+    margin: 5px 0;
+    padding: 10px 19px;
+}
+
+#comment-form {
+    margin-top: 10px;
+}
+
+/* modal forms */
+.modal {
+    visibility: hidden;
+}
+.soc-auth-buttons li {
+    display: inline;
+    float: left;
+    width: 100px;
+    padding-right: 80px;
+}
+.soc-auth-buttons li:last-child {
+    padding-right: 0;
+}
+.soc-auth-buttons li a {
+    text-decoratoion: none;
+}
+/* topbar */
+.topbar ul li span {
+    display: block;
+    float: none;
+    line-height: 19px;
+    padding: 10px 10px 11px;
+    text-decoration: none;
+}
+.topbar ul li span strong{
+    color: #dedede;
 }

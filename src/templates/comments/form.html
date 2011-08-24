@@ -1,11 +1,14 @@
 {% load comments i18n %}
-<h3 id="comment">{% trans "Leave comment" %}:</h3>
 {% if request.user.is_authenticated %}
-  <div class="comment-form-form">
+  <div id="comment-form" class="clearfix">
+    
     <form method="post" action="/comments/post/">
+      <fieldset>
+      <legend>{% trans "Leave comment" %}</legend>
       {% csrf_token %}
-      <div class="comment-form-textarea">
-	{% if form.comment.errors %}{{ form.comment.errors }}{% endif %}
+      {% if form.comment.errors %}{{ form.comment.errors }}{% endif %}
+      <label for="id_comment">{% trans "Text" %}:</label>
+      <div class="input">
 	{{ form.comment }}
       </div>
       {{ form.content_type }}
@@ -15,7 +18,10 @@
       {{ form.parent }}
       <div style="display: none">{{ form.honeypot }}</div>
       <input type="hidden" name="next" value="{{ request.path }}" />
-      <input class="comment-submit-button" type="submit" value="{% trans 'Submit' %}" name="post">
+      <div class="actions">
+	<input class="btn primary" type="submit" value="{% trans 'Submit' %}" name="post">
+      </div>
+      </fieldset>
     </form>
   </div>
   <div style="clear:both"></div>

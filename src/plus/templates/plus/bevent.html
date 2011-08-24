@@ -108,87 +108,27 @@
   </div>
 </div>
 
-<div id="description">
-  {% if event.logo %}<div id="posterdisplay"><img src="{{ event.posterdisplay.url }}" alt="Poster" /></div>{% endif %}
-  {{ event.description|linebreaksbr }}
-</div>
-
-{% if future_event %}
-  <div id="attendance-button-container">
-    {% if future_event %}
-      {% if curr_attendance %}
-        <a href="{% url event_minus event.slug %}" class="minus" rel="nofollow">{% trans "Press if you've changed your mind to go" %}</a>
-      {% else %}
-        {% if user.is_authenticated %}
-          <a href="{% url event_plus event.slug %}" class="plus" rel="nofollow">{% trans "Press if you are going to go" %}</a>
-        {% else %}
-          <a href="#" class="plus" data-reveal-id="auth-plus" rel="nofollow">{% trans "Press if you are going to go" %}</a>
-        {% endif %}
-      {% endif %}
+<div id="comments">
+  <div class="container">
+    {% get_comment_list for event as comment_list %}
+    {% if comment_list %}
+      <h2>{% trans "Comments" %}:</h2>
+      {% for comment in comment_list|annotate_users %}
+        <div class="comment">
+	  <div class="comment-avatar">
+	    <img class="goer-avatar" src="{{ comment.user.soc_avatar }}" alt="{{ comment.user.soc_username }}" width="50px" height="50px" />
+	  </div>
+	  <div class="comment-content">
+            <a class="comment-user">{{ comment.user.soc_username }}</a> <span class="attendance-status">(идет)</a>
+	    <div class="comment-text">
+	      <p>{{ comment.comment|linebreaksbr }}</p>
+	      <small>{{ comment.submit_date|date:"j E Y г. G:i" }}</small>
+	    </div>
+	  </div>
+	</div>
+     {% endfor %}
     {% endif %}
   </div>
-{% endif %}
-{% if user.is_authenticated %}
-  <div id="loggedin-as">{% trans "You are logged in as" %}
-    {% if user.soc_link %}<a href="{{ user.soc_link }}">{{ user.soc_username }}</a>{% else %}{{ user.soc_username }}{% endif %}.
-    <a href="{% url event_logout event.slug %}" rel="nofollow">{% trans "Logout" %}</a></div>
-{% endif %}
-{% endblock %}
-
-{% block attendance %}
-{% if goers or curr_attendance %}
-  <h3>{% if future_event %}
-    {% blocktrans count counter=goers|length|add:curr_attendance %}
-    {{ counter }} person is going to the event:
-    {% plural %}
-    {{ counter }} persons are going to the event:
-    {% endblocktrans %}
-  {% else %}
-    {% blocktrans count counter=goers|length|add:curr_attendance %}
-    {{ counter }} person attended the event:
-    {% plural %}
-    {{ counter }} persons attended the event:
-    {% endblocktrans %}
-  {% endif %}</h3>
-  <ul id="goers">
-    {% if curr_attendance %}
-      <li>
-	<{% if user.soc_link %}a{% else %}span{% endif %} href="{{ user.soc_link }}" class="goer">
-            <img class="goer-img" src="{{ user.soc_avatar }}" alt="{{ user.soc_username }}" width="50px" height="50px" />
-	  <div class="goer-text"><b>{% trans "you" %}</b></div>
-	</{% if user.soc_link %}a{% else %}span{% endif %}>
-      </li>
-    {% endif %}
-    {% for usr in goers %}
-      <li {% if forloop.counter > 10 %}class="goer-hidden"{% endif %}>
-	<{% if usr.soc_link %}a{% else %}span{% endif %} href="{{ usr.soc_link }}" class="goer">
-          <img class="goer-img" src="{{ usr.soc_avatar }}" alt="{{ usr.soc_username }}"  width="50px" height="50px" />
-	  <div class="goer-text">{{ usr.soc_username }}</div>
-	</{% if usr.soc_link %}a{% else %}span{% endif %}>
-      </li>
-    {% endfor %}
-    {% if goers|length > 10 %}
-	<li><a href="#" id="goers-more">{% trans 'Show everyone' %}</a></li>
-    {% endif %}
-  </ul>
-  <div style="clear:both"></div>
-{% else %}
-  <h3>{% trans "Nobody has registered for the event yet :(" %}</h3>
-{% endif %}
-{% endblock %}
-
-{% block comments %}
-<div id="comments">
-  {% get_comment_list for event as comment_list %}
-  {% if comment_list %}
-    <h3>{% trans "Comments" %}:</h3>
-    {% for comment in comment_list|annotate_users %}
-      <span class="comment-user">{% display_user comment.user %}</span>
-      <span class="comment-date">{{ comment.submit_date|date:"j E Y г. G:i" }}</span>
-      <div class="comment-text">{{ comment.comment|linebreaksbr }}</div>
-    {% endfor %}
-  {% endif %}
-
   <div id="comment-form-base-root2" class="comment-form">
   {% render_comment_form for event %}
   </div>

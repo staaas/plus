@@ -47,14 +47,68 @@ body {
     -webkit-box-shadow: 0 0 6px #888888;
     box-shadow: 0 0 6px #888888;
 }
-
 #goers .inner {
     padding: 0 0 8px 0;
 }
-
 #goers h2 {
     color: #ffffff;
     margin-bottom: 0px;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
+#goerslist {
+    padding: 0 0 0 10px;
+}
 
+#comments {
+    padding-top: 10px;
+}
+#comments h2 {
+    color: #222222;
+    margin-bottom: 0px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+.comment {
+    padding: 10px;
+    margin: 0;
+    font-size: 15px;
+    border-bottom: 1px solid #ebebeb;
+    clear: both;
+    display: block;
+    color: #222222;
+}
+.comment-avatar {
+    float:left;
+    height: 50px;
+    margin-top: 3px;
+    overflow: hidden;
+    width: 50px;
+}
+.comment-content {
+    margin-left: 60px;
+    min-height: 50px;
+    line-height: 15px;
+}
+.comment-content span.attendance-status {
+    color: #777777;
+    font-size: 12px;
+}
+.comment-text {
+    margin-bottom: 18px;
+}
+.comment-text p {
+    color: #444444;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
+}
+.comment-text small {
+    color: #AAAAAA;
+    display: block;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 18px;
+}
+.comment-text small:before {
+    content: "— ";
+}

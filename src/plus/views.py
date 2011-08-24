@@ -21,7 +21,7 @@ def plus_socialauth_begin(request, backend):
     auth_logout(request)
     return social_auth_begin(request, backend)
 
-@render_to('plus/event.html')
+@render_to('plus/bevent.html')
 def show_event(request, slug):
     event = get_object_or_404(Event, slug=slug)
     translation.activate(LANG_CODES[event.language])

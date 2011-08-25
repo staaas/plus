@@ -156,3 +156,12 @@ body {
 .topbar ul li span strong{
     color: #dedede;
 }
+#session img {
+    border: medium none;
+    cursor: pointer;
+    display: inline-block;
+    height: 20px;
+    margin-right: 6px;
+    vertical-align: top;
+    width: 20px;
+}

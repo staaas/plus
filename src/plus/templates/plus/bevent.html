@@ -35,26 +35,29 @@
       </ul>
       <ul class="nav secondary-nav">
         <li class="menu">
-          <a class="menu" href="#">
+          <a id="session" class="menu" href="#">
 	    {% if user.is_authenticated %}
-	      <img src="{{ user.soc_link }}" />{{ user.soc_username }}
+	      <img src="{{ user.soc_avatar }}" width="20px" height="20px" />{{ user.soc_username }}
 	    {% else %}
-	      Login
+	      Social login
 	    {% endif %}
 	  </a>
           <ul class="menu-dropdown">
-            <li><a href="#">Secondary link</a></li>
-            <li><a href="#">Something else here</a></li>
-            <li class="divider"></li>
-            <li><a href="#">Another link</a></li>
+	    {% if user.is_authenticated %}
+   	      <li><a href="{% url event_logout event.slug %}">{% trans "Logout" %}</a></li>
+	    {% else %}
+	      <li><a href="#">Вконтакте</a></li>
+	      <li><a href="#">Twitter</a></li>
+	      <li><a href="#">Facebook</a></li>
+              <li class="divider"></li>
+              <li><a href="#" data-reveal-id="auth-openid">Open ID</a></li>
+	    {% endif %}
           </ul>
         </li>
       </ul>
     </div>
   </div>
 </div>
-
-
 
 <div id="masterhead">
   <div class="inner">
@@ -140,15 +143,19 @@
 {% endblock %}
 
 {% block bottom %}
-<div id="auth-openid" class="reveal-modal">
-  <h1>{% trans "Login via OpenID" %}:</h1>
-  <form action="{% url plus_socialauth_begin "openid" %}" method="post">{% csrf_token %}
-    <div class="soc-auth-buttons">
-      <div class="openid_identifier"><input type="text" value="" name="openid_identifier" /><input type="submit" value="{% trans "Login" %}" /></div>
-      <input type="hidden" name="next" value="{% url show_event event.slug %}#comment" />
-    </div>
-  </form>
-  <a class="close-reveal-modal">&#215;</a>
+<div id="auth-openid" class="reveal-modal modal">
+  <div class="modal-header">
+    <h3>{% trans "Login via OpenID" %}:</h3>
+    <a class="close-reveal-modal close" href="#">×</a>
+  </div>
+  <div class="modal-footer">
+    <form action="{% url plus_socialauth_begin "openid" %}" method="post">{% csrf_token %}
+      <div class="soc-auth-buttons">
+	<div class="openid_identifier"><input type="text" value="" name="openid_identifier" /><input type="submit" class="btn primary" value="{% trans "Login" %}" /></div>
+	<input type="hidden" name="next" value="{% url show_event event.slug %}#comment" />
+      </div>
+    </form>
+  </div>
 </div>
 
 <div id="auth-plus" class="reveal-modal modal">

@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>{% block title %}+{% endblock %}</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Плюс">
+    <link rel="stylesheet" href="{{ STATIC_URL }}styles/plus.css" media="all">
+    <link rel="shortcut icon" href="{{ STATIC_URL }}img/favicon.ico" />
+    <link href='http://fonts.googleapis.com/css?family=Ubuntu&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Lobster&subset=latin,cyrillic' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="{{ STATIC_URL }}styles/reveal.css" media="all">
+    <script src="{{ STATIC_URL }}js/jquery-1.6.2.min.js" type="text/javascript"></script>
+    <script src="{{ STATIC_URL }}js/jquery.reveal.js" type="text/javascript"></script>
+    <script src="{{ STATIC_URL }}js/jquery.text-overflow.min.js" type="text/javascript"></script>
+    {% block extrahead %}{% endblock %}
+  </head>
+    <div id="header-out">
+      <div id="header-in">
+	{% block header %}{% endblock %}
+      </div>
+    <div>
+    <div id="page-out">
+      <div id="page-in">
+	{% block content %}{% endblock %}
+      </div>
+    </div>
+    <div id="attendance-out">
+      <div id="attendance-in">
+	{% block attendance %}{% endblock %}
+      </div>
+    </div>
+    <div id="comments-out">
+      <div id="comments-in">
+	{% block comments %}{% endblock %}
+      </div>
+    </div>
+    {% block bottom %}{% endblock %}
+  </body>
+</html>

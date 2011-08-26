@@ -26,7 +26,7 @@ def show_event(request, slug):
     event = get_object_or_404(Event, slug=slug)
     translation.activate(LANG_CODES[event.language])
 
-    user = socialize_user(request.user)
+    user = request.user
     
     attendances = list(EventAttendance.objects.filter(
             event=event).select_related('user'))
@@ -69,10 +69,10 @@ def event_minus(request, slug):
                 event=event, user=user).delete()
     return redirect(reverse('show_event', args=[slug]))
 
-def event_logout(request, slug):
+def anything_logout(request, url):
     """Logs user out"""
     auth_logout(request)
-    return redirect(reverse('show_event', args=[slug]))
+    return redirect('/' + url)
 
 @render_to('autherror.html')
 def auth_error(request):

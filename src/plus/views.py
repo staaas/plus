@@ -35,12 +35,14 @@ def show_event(request, slug):
                         user.id != a.user.id]
     random.shuffle(goers)
     goers = socialize_users(goers)
+    goer_id_set = set(a.user.id for a in attendances)
 
     return {'Content-Language': translation.get_language(),
             'event': event,
-            'curr_attendance': any(user.id == a.user.id for a in attendances),
+            'curr_attendance': user.id in goer_id_set,
             'future_event': event.starts_at > datetime.datetime.now(),
-            'goers': goers}
+            'goers': goers,
+            'goer_id_set': goer_id_set}
 
 
 def event_plus(request, slug):

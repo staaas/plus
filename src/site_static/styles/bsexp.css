@@ -130,9 +130,6 @@ body {
 }
 
 /* modal forms */
-.modal {
-    visibility: hidden;
-}
 .soc-auth-buttons li {
     display: inline;
     float: left;

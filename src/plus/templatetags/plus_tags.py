@@ -24,9 +24,13 @@ def annotate_users(comments):
 
     return comments
 
-@register.inclusion_tag('plus/tags/display_user.html')
-def display_user(user):
-    if not hasattr(user, 'soc_provider'):
-        # the user hasn't been socialized yet
-        user = socialize_user(user)
-    return {'user': user}
+@register.inclusion_tag('plus/tags/comment_list.html',
+                        takes_context=True)
+def render_ncomment_list(context, event, comment_list, goer_id_set):
+    for comment in comment_list:
+        if comment.user_id in goer_id_set:
+            comment.user_is_goer = True
+    return {'comment_list': comment_list,
+            'event': event,
+            'request': context['request']}
+

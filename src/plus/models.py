@@ -1,4 +1,5 @@
 import random
+from datetime import datetime
 
 from django.db import models
 from django.contrib.auth.models import User
@@ -10,15 +11,14 @@ UPLOAD_DIR = 'posters'
 
 SUPPORTED_LANGUAGES = [(0, 'be', 'Belarussian'),
                        (1, 'ru', 'Russian'),]
-
 LANG_CHOICES = [(c, l) for c, s, l in SUPPORTED_LANGUAGES]
-
 LANG_CODES = {c: s for c, s, l in SUPPORTED_LANGUAGES}
 
 SLUG_ALPHABET = 'abcdefghijklmnopqrstuvwxyz'\
     '0123456789'
 SLUG_LENGTH = 6
 SLUG_TRY_TIMES = 15
+
 def random_slug():
     for i in xrange(SLUG_TRY_TIMES):
         candidate = ''.join(
@@ -34,7 +34,7 @@ class Event(ImageModel):
     language = models.IntegerField(max_length=2, choices=LANG_CHOICES)
     creator = models.ForeignKey(User)
 
-    created_at = models.DateTimeField(auto_now=True)
+    created_at = models.DateTimeField(auto_now_add=True)
     starts_at = models.DateTimeField()
 
     title = models.CharField(max_length=150, default='')
@@ -56,6 +56,18 @@ class Event(ImageModel):
         cache_dir = 'display'
         image_field = 'logo'
 
+STATUS_SIGN_UP = 0
+STATUS_REFUSE = 1
+STATUS_SIGN_UP_AND_COME = 2
+STATUS_SIGN_UP_BUT_DO_NOT_COME = 3
+
+STATUS_CHOICES = [(STATUS_SIGN_UP,  _(u'Signed up')),
+                  (STATUS_REFUSE, _(u'Refused')),
+                  (STATUS_SIGN_UP_AND_COME, _(u'Signed up and came')),
+                  (STATUS_SIGN_UP_BUT_DO_NOT_COME, _(u'Signed up but didn\'t come'))]
+
 class EventAttendance(models.Model):
     event = models.ForeignKey(Event)
     user = models.ForeignKey(User)
+    modified_at = models.DateTimeField(auto_now=True)
+    status = models.IntegerField(max_length=2, choices=STATUS_CHOICES, default=STATUS_SIGN_UP)

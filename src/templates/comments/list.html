@@ -1,8 +1,26 @@
 {% load i18n comments plus_tags %}
+<script type="text/javascript">
+ $(document).ready(function() {
+  $(".goto-addcomment").click(function (e) {
+    e.preventDefault();
+
+    {% if request.user.is_authenticated %}
+    var scroll_to_id = '#id_comment';
+    {% else %}
+    var scroll_to_id = '#login-to-comment';
+    {% endif %}
+
+    goToByScroll(scroll_to_id);
+    window.location.hash = scroll_to_id;
+    processHash();
+  });
+ });
+</script>
+
 <div id="comments">
   <div class="container">
     {% if comment_list %}
-      <h2>{% trans "Comments" %} <small><a href="#addcomment">{% trans "add" %}</small></h2>
+      <h2>{% trans "Comments" %} <small><a class="goto-addcomment" href="#addcomment">{% trans "add" %}</small></h2>
       {% for comment in comment_list|annotate_users %}
         <div class="comment">
 	  <div class="comment-avatar">
@@ -18,7 +36,7 @@
 	</div>
      {% endfor %}
     {% endif %}
-    <div id="addcommnet">
+    <div id="addcomment">
       {% render_comment_form for event %}
     </div>
   </div>

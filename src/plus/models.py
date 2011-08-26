@@ -41,6 +41,7 @@ class Event(ImageModel):
     description = models.TextField(default='')
     url = models.CharField(max_length=256, null=True, blank=True)
     logo = models.ImageField(null=True, blank=True, upload_to=UPLOAD_DIR)
+    seats_number = models.IntegerField(max_length=5, null=True, blank=True, default=None)
 
     def __unicode__(self):
         return self.title

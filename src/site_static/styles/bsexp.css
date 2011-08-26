@@ -3,7 +3,8 @@ body {
 }
 
 #masterhead {
-    background-image: -moz-linear-gradient(#004D9F, #049CD9);
+    background-color: #049cd9;
+    background-image: -moz-linear-gradient(#004d9f, #049cd9);
     color: #ffffff;
     -moz-box-shadow: 0 0 6px #888888;
     -webkit-box-shadow: 0 0 6px #888888;
@@ -164,4 +165,9 @@ body {
     margin-right: 6px;
     vertical-align: top;
     width: 20px;
+}
+.topbar ul li span input[type=checkbox] {
+    display: inline-block;
+    margin: 3px 0 3px 2px;
+    vertical-align: top;
 }

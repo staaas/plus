@@ -1,13 +1,32 @@
 {% extends "bootstrap.html" %}
-{% load comments i18n %}
+{% load comments i18n basic_math %}
 
 {% block title %}{{ event.title }}{% endblock %}
 
 {% block extrahead %}
 <script type="text/javascript">
  $(document).ready(function() {
-    $('.goer-avatar').tipsy({gravity: 's', opacity: 0.9});
 
+    {% if curr_attendance %}
+    $("#topbar-go").attr("checked", "checked");
+    {% else %}
+    $("#topbar-go").removeAttr("checked");
+    {% endif %}
+    $('#topbar-go').click(function (e) {
+      {% if user.is_authenticated %}
+        if ($(this).is(':checked')) {
+          window.location = 'plus/';
+        } else {
+          window.location = 'minus/';
+        }
+      {% else %}
+        $('#auth-plus').reveal();
+        $("#topbar-go").removeAttr("checked");
+      {% endif %}
+    });
+
+    processHash();
+    $('.goer-avatar').tipsy({gravity: 's', opacity: 0.9});
   // Dropdown example for topbar nav
   // ===============================
 
@@ -20,6 +39,17 @@
     return false;
   });
  });
+ 
+ function goToByScroll(id){
+     	$('html,body').animate({scrollTop: $(id).offset().top},'slow');
+ }
+ function processHash(hash) {
+   hash = typeof hash != 'undefined' ? hash : window.location.hash;
+   if (hash === '#addcomment') {
+     $('#id_comment').focus();
+   }
+ }
+
 </script>
 {% endblock %}
 
@@ -30,8 +60,11 @@
     <div class="container fixed">
       <h3><a href="#">+</a></h3>
       <ul>
-        <li><span>Чалавек ідуць: <strong>{{ goers|length|add:curr_attendance }}</strong></span></li>
-        <li><span>Засталося месцаў: <strong>15</strong></span></li>
+	<li><span>Я іду: <input id="topbar-go" type="checkbox" checked="{% if curr_attendance %}yes{% else %}no{% endif %}"></span></li>
+        <li><span>Усяго чалавек ідуць: <strong>{{ goers|length|add:curr_attendance }}</strong></span></li>
+	{% if event.seats_number|default_if_none:"none" != "none" %}
+          <li><span>Засталося месцаў: <strong>{{ event.seats_number|sub:curr_attendance|sub:goers }}</strong></span></li>
+	{% endif %}
       </ul>
       <ul class="nav secondary-nav">
         <li class="menu">
@@ -88,7 +121,7 @@
         {% url event_plus event.slug as gobutton_url %}
       {% endif %}
     {% endif %}
-    <a id="gobutton" href="{{ gobutton_url|default:'#' }}" class="btn large {% if curr_attendance %}danger{% else %}primary{% endif %}" {% if not curr_attendance %}data-reveal-id="auth-plus"{% endif %} rel="nofollow">
+    <a id="gobutton" href="{{ gobutton_url|default:'#' }}" class="btn large {% if curr_attendance %}danger{% else %}primary{% endif %}" {% if not user.is_authenticated %}data-reveal-id="auth-plus"{% endif %} rel="nofollow">
       {% if curr_attendance %}
           {% trans "Press if you've changed your mind to go" %}
       {% else %}

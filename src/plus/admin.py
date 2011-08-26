@@ -21,7 +21,7 @@ class EventChangeList(ChangeList):
 class EventAdmin(admin.ModelAdmin):
     list_display = ['title', 'slug_display', 'creator', 'starts_at']
     fields = ['title', 'slug', 'language', 'description', 'creator',
-              'starts_at', 'created_at', 'url', 'logo']
+              'starts_at', 'seats_number', 'created_at', 'url', 'logo']
     readonly_fields = ['slug', 'created_at']
     ordering = ['starts_at']
 

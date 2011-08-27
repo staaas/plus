@@ -6,6 +6,7 @@
 
 {% block content %}
   {% load comments %}
+<div class="container">
   <div class="comment-form-form">
     <form method="post" action="/comments/post/">
       <div class="comment-form-textarea">
@@ -35,5 +36,5 @@ Please login via <a href="{{ vk_url }}?next={{ full_path }}" rel="nofollow">Vkon
 
     </form>
   </div>
-  <div style="clear:both"></div>
+</div>
 {% endblock %}

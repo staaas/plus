@@ -42,7 +42,7 @@
 {% endblock %}
 
 {% block extratopbar %}
-<li><span>Я іду: <input id="topbar-go" type="checkbox" checked="{% if curr_attendance %}yes{% else %}no{% endif %}"></span></li>
+<li><span>Я іду: <input id="topbar-go" type="checkbox" checked="{% if curr_attendance %}yes{% else %}no{% endif %}" {% if not curr_attendance and event.seats_number and event.seats_number|sub:goer_id_set <= 0 %}disabled="disabled"{% endif %}></span></li>
 <li><span>Усяго чалавек ідуць: <strong>{{ goers|length|add:curr_attendance }}</strong></span></li>
 {% if event.seats_number|default_if_none:"none" != "none" %}
   <li><span>Засталося месцаў: <strong>{{ event.seats_number|sub:goer_id_set }}</strong></span></li>
@@ -70,20 +70,24 @@
   {# GO BUTTON #}
   {% if future_event %}
     <p id="gobuttonarea" >
-    {% if curr_attendance %}
-      {% url event_minus event.slug as gobutton_url %}
-    {% else %}
-      {% if user.is_authenticated %}
-        {% url event_plus event.slug as gobutton_url %}
-      {% endif %}
-    {% endif %}
-    <a id="gobutton" href="{{ gobutton_url|default:'#' }}" class="btn large {% if curr_attendance %}danger{% else %}primary{% endif %}" {% if not user.is_authenticated %}data-reveal-id="auth-plus"{% endif %} rel="nofollow">
+    {% if not event.seats_number or event.seats_number|sub:goer_id_set > 0 %}
       {% if curr_attendance %}
-          {% trans "Press if you've changed your mind to go" %}
+        {% url event_minus event.slug as gobutton_url %}
       {% else %}
-          {% trans "Press if you are going to go" %}
+        {% if user.is_authenticated %}
+          {% url event_plus event.slug as gobutton_url %}
+        {% endif %}
       {% endif %}
-    </a>
+      <a id="gobutton" href="{{ gobutton_url|default:'#' }}" class="btn large {% if curr_attendance %}danger{% else %}primary{% endif %}" {% if not user.is_authenticated %}data-reveal-id="auth-plus"{% endif %} rel="nofollow">
+        {% if curr_attendance %}
+            {% trans "Press if you've changed your mind to go" %}
+        {% else %}
+            {% trans "Press if you are going to go" %}
+        {% endif %}
+      </a>
+    {% else %}
+      <span class="btn large disabled">{% trans "Registration is closed as there are no more seats left" %}</span>
+    {% endif %}
     </p>
   {% endif %}
 
@@ -95,17 +99,17 @@
     {% if goers or curr_attendance %}
     <h2>
       {% if future_event %}
-        {% blocktrans count counter=goer_id_set|length %}
-        {{ counter }} person is going to the event:
-        {% plural %}
-        {{ counter }} persons are going to the event:
-        {% endblocktrans %}
+{% blocktrans count counter=goer_id_set|length %}
+{{ counter }} person is going to the event:
+{% plural %}
+{{ counter }} persons are going to the event:
+{% endblocktrans %}
       {% else %}
-        {% blocktrans count counter=goers|length|add:curr_attendance %}
-        {{ counter }} person attended the event:
-        {% plural %}
-        {{ counter }} persons attended the event:
-        {% endblocktrans %}
+{% blocktrans count counter=goers|length|add:curr_attendance %}
+{{ counter }} person attended the event:
+{% plural %}
+{{ counter }} persons attended the event:
+{% endblocktrans %}
       {% endif %}
     </h2>
 
@@ -121,9 +125,13 @@
 	</a>
       {% endfor %}
     </div>
-
+    {% else %}
+      {% if future_event %}
+        <h2>{% trans "Nobody has registered for the event yet :(" %}</h2>
+      {% else %}
+        <h2>{% trans "Nobody registered for the event :(" %}</h2>
+      {% endif %}
     {% endif %}
-
     </div>
   </div>
 </div>
@@ -157,4 +165,19 @@
   </form>
   </div>
 </div>
+<div id="auth-openid-addcomment" class="reveal-modal modal-plus">
+  <div class="modal-header">
+    <h3>{% trans "Login via OpenID" %}:</h3>
+    <a class="close-reveal-modal close" href="#">×</a>
+  </div>
+  <div class="modal-footer">
+    <form action="{% url plus_socialauth_begin "openid" %}" method="post">{% csrf_token %}
+      <div class="soc-auth-buttons">
+	<div class="openid_identifier"><input type="text" value="" name="openid_identifier" /><input type="submit" class="btn primary" value="{% trans "Login" %}" /></div>
+	<input type="hidden" name="next" value="{% url event_plus event.slug%}#addcomment" />
+      </div>
+    </form>
+  </div>
+</div>
+
 {% endblock %}

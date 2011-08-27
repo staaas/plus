@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-21 13:32+0300\n"
+"POT-Creation-Date: 2011-08-27 01:49+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,31 +19,109 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
 
-#: admin.py:18
+#: admin.py:50
 msgid "Link"
 msgstr "Спасылка"
 
-#: templates/plus/event.html:21
+#: models.py:50
+msgid "Can add, edit or delete any event"
+msgstr ""
+
+#: models.py:64
+msgid "Signed up"
+msgstr "Запісаўся"
+
+#: models.py:65
+msgid "Refused"
+msgstr "Адмовіўся"
+
+#: models.py:66
+msgid "Signed up and came"
+msgstr "Запісаўся і прыйшоў"
+
+#: models.py:67
+msgid "Signed up but didn't come"
+msgstr "Запісайся і не прыйшоў"
+
+#: templates/plus/bevent.html:55 templates/plus/event_old.html:21
 msgid "Starts:"
 msgstr "Пачатак:"
 
-#: templates/plus/event.html:35
+#: templates/plus/bevent.html:82 templates/plus/event_old.html:35
 msgid "Press if you've changed your mind to go"
 msgstr "Націснеце, калі вы перадумалі ісці"
 
-#: templates/plus/event.html:38 templates/plus/event.html.py:40
+#: templates/plus/bevent.html:84 templates/plus/event_old.html:38
+#: templates/plus/event_old.html.py:40
 msgid "Press if you are going to go"
 msgstr "Націснеце, калі вы збіраецесь пайсці"
 
-#: templates/plus/event.html:47
+#: templates/plus/bevent.html:98
+#, fuzzy, python-format
+msgid ""
+"\n"
+"        %(counter)s person is going to the event:\n"
+"        "
+msgid_plural ""
+"\n"
+"        %(counter)s persons are going to the event:\n"
+"        "
+msgstr[0] ""
+"\n"
+"    %(counter)s чалавек пойдзе на падзею:    "
+msgstr[1] ""
+"\n"
+"    %(counter)s чалавека пойдуць на падзею:    "
+msgstr[2] ""
+"\n"
+"    %(counter)s чалавек пойдуць на падзею:    "
+
+#: templates/plus/bevent.html:104
+#, fuzzy, python-format
+msgid ""
+"\n"
+"        %(counter)s person attended the event:\n"
+"        "
+msgid_plural ""
+"\n"
+"        %(counter)s persons attended the event:\n"
+"        "
+msgstr[0] ""
+"\n"
+"    %(counter)s чалавек хадзіў падзею:    "
+msgstr[1] ""
+"\n"
+"    %(counter)s чалавека хадзіла на падзею:    "
+msgstr[2] ""
+"\n"
+"    %(counter)s чалавек хадзіў на падзею:    "
+
+#: templates/plus/bevent.html:138 templates/plus/event_old.html:126
+msgid "Please login with:"
+msgstr "Калі ласка, увайдзіце праз"
+
+#: templates/plus/bevent.html:151 templates/plus/event_old.html:133
+msgid "...or use OpenID"
+msgstr "...ці выкарыстоўвайце OpenID"
+
+#: templates/plus/bevent.html:154 templates/plus/bevent.html.py:168
+#: templates/plus/event_old.html:118 templates/plus/event_old.html.py:136
+msgid "Login"
+msgstr "Увайсці"
+
+#: templates/plus/bevent.html:162 templates/plus/event_old.html:115
+msgid "Login via OpenID"
+msgstr "Уваход праз OpenID"
+
+#: templates/plus/event_old.html:47
 msgid "You are logged in as"
 msgstr "Вы ўвайшлі як"
 
-#: templates/plus/event.html:49
+#: templates/plus/event_old.html:49
 msgid "Logout"
 msgstr "Выйсце"
 
-#: templates/plus/event.html:56
+#: templates/plus/event_old.html:56
 #, python-format
 msgid ""
 "\n"
@@ -63,7 +141,7 @@ msgstr[2] ""
 "\n"
 "    %(counter)s чалавек пойдуць на падзею:    "
 
-#: templates/plus/event.html:62
+#: templates/plus/event_old.html:62
 #, python-format
 msgid ""
 "\n"
@@ -83,34 +161,22 @@ msgstr[2] ""
 "\n"
 "    %(counter)s чалавек хадзіў на падзею:    "
 
-#: templates/plus/event.html:73
+#: templates/plus/event_old.html:73
 msgid "you"
 msgstr "вы"
 
-#: templates/plus/event.html:86
+#: templates/plus/event_old.html:86
 msgid "Show everyone"
 msgstr "Паказаць усіх"
 
-#: templates/plus/event.html:91
+#: templates/plus/event_old.html:91
 msgid "Nobody has registered for the event yet :("
 msgstr "Пакуль ніхто не зарэгістраваўся на падзею :("
 
-#: templates/plus/event.html:99
+#: templates/plus/event_old.html:99 templates/plus/tags/comment_list.html:23
 msgid "Comments"
 msgstr "Каментары"
 
-#: templates/plus/event.html:115
-msgid "Login via OpenID"
-msgstr "Уваход праз OpenID"
-
-#: templates/plus/event.html:121
-msgid "Login"
-msgstr "Увайсці"
-
-#: templates/plus/event.html:128 templates/plus/event.html.py:148
-msgid "Please login with:"
-msgstr "Калі ласка, увайдзіце праз"
-
-#: templates/plus/event.html:135 templates/plus/event.html.py:155
-msgid "...or use OpenID"
-msgstr "...ці выкарыстоўвайце OpenID"
+#: templates/plus/tags/comment_list.html:23
+msgid "add"
+msgstr "дадаць"

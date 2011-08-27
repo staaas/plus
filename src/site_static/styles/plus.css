@@ -1,278 +1,171 @@
-html, body, div, span,
-h1, h2, h3, h4, h5, h6, p, blockquote, pre,
-a, abbr, acronym, address, cite, code,
-del, em, img, ins, kbd,
-strong, sub, sup,
-dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
-table, caption, tbody, tfoot, thead, tr, th, td {
-    margin: 0;  
-    padding: 0;  
-    border: 0;
-    outline: 0;
-    font-size: 100%;
-    vertical-align: baseline;
-}
-html {
+html, body {
+    background-color: #f5f5f5;
     height: 100%;
 }
-body {
-    line-height: 1.3;
-    height: 100%;
-    font-family: 'Ubuntu', sans-serif;
-    background: #FEFEFF;
-}
-ol, ul {
-    list-style: none;
-}
-blockquote, q {
-    quotes: none;
-}
-blockquote:before, blockquote:after,
-q:before, q:after {
-	content: '';
-	content: none;
+
+#masterhead {
+    background-color: #049cd9;
+    background-image: -moz-linear-gradient(#004d9f, #049cd9);
+    color: #ffffff;
+    -moz-box-shadow: 0 0 6px #888888;
+    -webkit-box-shadow: 0 0 6px #888888;
+    box-shadow: 0 0 6px #888888;
 }
 
-a, a:visited {
-    color: #3D5EBD;
+#masterhead .inner {
+    padding: 55px 0 10px 0;
 }
 
-a:hover {
-    color: #EF5050;
+#masterhead h1 {
+    color: #ffffff;
+    margin-bottom: 8px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+}
+
+#masterhead a {
+    color: #ffffff;
     text-decoration: underline;
-}
-
-/* header */
-#header-out {
-    width: 100%;
-    color: #ffffff;
-    background-color: #004c5b;
-}
-#header-in {
-    padding: 10px 40px 5px 40px;
-    width: 960px;
-    margin: auto;
-}
-#header-in h1 {
-    font-size: 1.9em;
-    font-family: 'Lobster', cursive;
-}
-#header-in a, #header-in a:visited {
-    color: #ffffff;
     font-weight: bold;
-    text-decoration: underline;
 }
 
-#header-in a:hover {
+#masterhead a:hover {
     color: #ffff00;
-    font-weight: bold;
-    text-decoration: underline;
-}
-/* page */
-#page-out {
-    height: 100%;
-    color: #222223;
-    background-color: #ffffff;
-}
-#page-in {
-    padding: 10px 40px 10px 40px;
-    margin: auto;
-    width: 960px;
 }
 
-h3 {
-    font-size: 1.3em;
+.event-description {
+    margin-top: 10px;
+    font-size: 18px;
+    font-weight: 200;
+    line-height: 27px;
 }
 
-#posterdisplay {
-    margin-top: 5px;
-    padding: 0 0 10px 10px;
-    display: inline;
-    float: right;
-}
-
-a.a-right, a.a-right:visited {
-    float: right;
-    text-decoration: none;
-}
-a.a-right:hover {
-    text-decoration: underline;
-}
-
-.goer-hidden {
-    display:none;
-}
-
-a#goers-more {
-    display: inline-block;
-    height: 51px;
-    width: 95px;
-    padding: 31px 0 0 1px;
-    margin: 0 6px 6px 0;
-    float: left;
-    font-size: large;
-    text-align: left;
- }
-
-.goer {
-    display: inline-block;
-    width: 70px;
-    height: 65px;
-    padding: 11px 1px 6px 1px;
-    margin: 0 6px 6px 0;
-    float: left;
-    background: #e4d742;
-}
-
-.goer-img {
-    display: block;
-    margin: auto;
-    border: 0;
-    width: 50px;
-    height: 50px;
-}
-
-.goer-text {
-    width: 100%;
-    font-size: small;
+#gobuttonarea {
     text-align: center;
-    white-space:nowrap;
-    text-overflow: ellipsis;
-    overflow: hidden;
+    margin: 10px;
 }
 
-/* PLUS MINUS */
-#attendance-out {
-    color: #222223;
-    background-color: #37a55f;
+#goers {
+    background-color: #049CD9;
+    -moz-box-shadow: 0 0 6px #888888;
+    -webkit-box-shadow: 0 0 6px #888888;
+    box-shadow: 0 0 6px #888888;
+    margin-top: 10px;
 }
-#attendance-in {
-    padding: 10px 40px 10px 40px;
-    margin: auto;
-    width: 960px;
+#goers .inner {
+    padding: 0 0 8px 0;
 }
-#attendance-in a {
-    color: #222223;
-    text-decoration: none;
+#goers h2 {
+    color: #ffffff;
+    margin-bottom: 0px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
 }
-#attendance-in a:hover {
-    color: #cf2300;
-}
-#loggedin-as {
-    text-align: center;
+#goerslist {
+    padding: 0 0 0 10px;
 }
 
-#attendance-button-container {
-    padding: 5px;
-    text-align: center;
+#comments {
+    padding-top: 10px;
 }
-
-a.plus, a.minus {
-    display: inline-block;
+#comments h2 {
+    color: #222222;
+    margin-bottom: 0px;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+}
+.comment {
     padding: 10px;
-    margin: auto;
-    font-size: 1.9em;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 3px;
-    text-decoration: none;
-}
-
-a.plus, a.plus:visited {
-    color: #005700;
-    background-color: #7fbe33;
-    border-color: #005700;
-}
-a.plus:hover {
-    color: #005000;
-    background-color: #58be33;
-    border-color: #005000;
-    text-decoration: none;
-}
-
-a.minus, a.minus:visited {
-    color: #a70900;
-    background-color: #fd8600;
-    border-color: #a70900;
-}
-a.minus:hover {
-    color: #6e0600;
-    background-color: #fd6500;
-    border-color: #6e0600;
-    text-decoration: none;
-}
-
-/*********** COMMENTS **********/
-#comments-out {
-    color: #222223;
-    background-color: #e4d742;
-}
-#comments-in {
-    padding: 10px 40px 10px 40px;
-    margin: auto;
-    width: 960px;
-}
-
-.comment-user {
-    font-weight: bold;
-}
-.comment-date {
-    color: #666666;
-    font-size: small;
-}
-.comment-date:hover {
-    color: #111111;
-    font-size: small;
-}
-.comment-text {
-    margin-bottom: 15px;
-    padding: 5px;
-    border-radius: 3px;
-    background-color: #E6E6E6;
-}
-.please-login {
-    width: 100%;
-    padding: 5px;
-    background-color: #ffaaaa;
-}
-
-/* comment form */
-.comment-form-textarea textarea {
-    width: 100%;
-    height: 135px;
-}
-
-/* reveal forms */
-.reveal-modal {
-    color: #222223;
-}
-.soc-auth-buttons {
-    width: 370px;
-    display: block;
-    margin: auto;
-    padding: 10px 0 0 0;
-}
-.soc-auth-button {
-    display: inline-block;
-    width: 100px;
-    padding: 0 10px 0 10px;
     margin: 0;
-    text-align: center;
+    font-size: 15px;
+    border-bottom: 1px solid #e0e0e0;
+    clear: both;
+    display: block;
+    color: #222222;
 }
-.soc-auth-button a {
-    text-decoration: none;;
+.comment-avatar {
+    float:left;
+    height: 50px;
+    margin-top: 3px;
+    overflow: hidden;
+    width: 50px;
 }
-.soc-auth-button span {
-    margin-top: -25px;
+.comment-content {
+    margin-left: 60px;
+    min-height: 50px;
+    line-height: 15px;
 }
-.soc-auth-button a img {
-    border: 0;
+.comment-content span.attendance-status {
+    color: #777777;
+    font-size: 12px;
 }
-.openid_identifier {
-    background: url('../img/openid_20.png') no-repeat;
-    padding: 0 0 0 23px;
+.comment-text p {
+    color: #444444;
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 18px;
+    margin-bottom: 0;
 }
-.openid_identifier input[type=text] {
-    width: 260px;
+.comment-text small {
+    color: #AAAAAA;
+    display: block;
+    font-size: 12px;
+    font-weight: 300;
+    line-height: 18px;
+}
+.comment-text small:before {
+    content: "— ";
+}
+
+.center540 {
+    display: block;
+    width: 540px;
+    margin: auto;
+    padding: 0;
+}
+.textright {
+    text-align: right;
+    margin: 5px 0;
+    padding: 10px 19px;
+}
+
+#comment-form {
+    margin-top: 10px;
+}
+
+/* modal forms */
+.soc-auth-buttons li {
+    display: inline;
+    float: left;
+    width: 100px;
+    padding-right: 80px;
+}
+.soc-auth-buttons li:last-child {
+    padding-right: 0;
+}
+.soc-auth-buttons li a {
+    text-decoratoion: none;
+}
+
+/* topbar */
+.topbar ul li span {
+    display: block;
+    float: none;
+    line-height: 19px;
+    padding: 10px 10px 11px;
+    text-decoration: none;
+}
+.topbar ul li span strong{
+    color: #dedede;
+}
+#session img {
+    border: medium none;
+    cursor: pointer;
+    display: inline-block;
+    height: 20px;
+    margin-right: 6px;
+    vertical-align: top;
+    width: 20px;
+}
+.topbar ul li span input[type=checkbox] {
+    display: inline-block;
+    margin: 3px 0 3px 2px;
+    vertical-align: top;
 }

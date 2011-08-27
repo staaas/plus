@@ -1,4 +1,4 @@
-<!DOCTYPE html>{% load i18n basic_math %}
+<!DOCTYPE html>{% load i18n %}
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -12,8 +12,8 @@
 <![endif]-->
 
     <!-- Le styles -->
-    <link rel="stylesheet" href="http://twitter.github.com/bootstrap/assets/css/bootstrap-1.1.0.css">
-    <link rel="stylesheet" href="{{ STATIC_URL }}styles/bsexp.css" media="all">
+    <link rel="stylesheet" href="{{ STATIC_URL }}styles/bootstrap-1.1.0.min.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}styles/plus.css" media="all">
     <link rel="stylesheet" href="{{ STATIC_URL }}styles/tipsy.css" media="all">
     <link rel="stylesheet" href="{{ STATIC_URL }}styles/plusmodal.css" media="all">
     <script src="{{ STATIC_URL }}js/jquery-1.6.2.min.js" type="text/javascript"></script>
@@ -40,7 +40,7 @@
     <div class="topbar">
       <div class="fill">
 	<div class="container fixed">
-	  <h3><a href="#">+</a></h3>
+	  <h3><a href="#" data-reveal-id="what-is-plus">+</a></h3>
 	  <ul>
 	    {% block extratopbar %}{% endblock %}
 	  </ul>
@@ -55,6 +55,9 @@
 	      </a>
               <ul class="menu-dropdown">
 		{% if user.is_authenticated %}
+		  {% if user.is_staff %}
+     		    <li><a href="admin/">{% trans "Admin" %}</a></li>
+		  {% endif %}
    		  <li><a href="logout/">{% trans "Logout" %}</a></li>
 		{% else %}
 		  <li><a href="#">Вконтакте</a></li>
@@ -95,6 +98,17 @@
 	</form>
       </div>
     </div>
+
+    <div id="what-is-plus" class="reveal-modal modal-plus">
+      <div class="modal-header">
+	<h3>{% trans "What is plus" %}</h3>
+	<a class="close-reveal-modal close" href="#">×</a>
+      </div>
+      <div class="modal-body">
+	Plus is...
+      </div>
+    </div>
+
     {% block bottom %}{% endblock %}
   </body>
 </html>

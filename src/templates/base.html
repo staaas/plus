@@ -50,7 +50,7 @@
 		{% if user.is_authenticated %}
 		  <img src="{{ user.soc_avatar }}" width="20px" height="20px" />{{ user.soc_username }}
 		{% else %}
-		  Social login
+		  {% trans "Social login" %}
 		{% endif %}
 	      </a>
               <ul class="menu-dropdown">

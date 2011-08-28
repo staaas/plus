@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-27 01:51+0300\n"
+"POT-Creation-Date: 2011-08-28 15:55+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -24,193 +24,50 @@ msgid "Email address"
 msgstr ""
 
 #: commonutils/ncomments/__init__.py:7
-#, fuzzy
 msgid "Comment"
 msgstr "Пакінуць каментар"
 
-#: plus/admin.py:50
-msgid "Link"
-msgstr ""
-
-#: plus/models.py:50
-msgid "Can add, edit or delete any event"
-msgstr ""
-
-#: plus/models.py:64
-msgid "Signed up"
-msgstr ""
-
-#: plus/models.py:65
-msgid "Refused"
-msgstr ""
-
-#: plus/models.py:66
-msgid "Signed up and came"
-msgstr ""
-
-#: plus/models.py:67
-msgid "Signed up but didn't come"
-msgstr ""
-
-#: plus/templates/plus/bevent.html:55 plus/templates/plus/event_old.html:21
-msgid "Starts:"
-msgstr ""
-
-#: plus/templates/plus/bevent.html:82 plus/templates/plus/event_old.html:35
-msgid "Press if you've changed your mind to go"
-msgstr ""
-
-#: plus/templates/plus/bevent.html:84 plus/templates/plus/event_old.html:38
-#: plus/templates/plus/event_old.html:40
-msgid "Press if you are going to go"
-msgstr ""
-
-#: plus/templates/plus/bevent.html:98
-#, python-format
-msgid ""
-"\n"
-"        %(counter)s person is going to the event:\n"
-"        "
-msgid_plural ""
-"\n"
-"        %(counter)s persons are going to the event:\n"
-"        "
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-
-#: plus/templates/plus/bevent.html:104
-#, python-format
-msgid ""
-"\n"
-"        %(counter)s person attended the event:\n"
-"        "
-msgid_plural ""
-"\n"
-"        %(counter)s persons attended the event:\n"
-"        "
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-
-#: plus/templates/plus/bevent.html:138 plus/templates/plus/event_old.html:126
-msgid "Please login with:"
-msgstr ""
-
-#: plus/templates/plus/bevent.html:151 plus/templates/plus/event_old.html:133
-msgid "...or use OpenID"
-msgstr ""
-
-#: plus/templates/plus/bevent.html:154 plus/templates/plus/bevent.html:168
-#: plus/templates/plus/event_old.html:118
-#: plus/templates/plus/event_old.html:136 templates/base.html:95
-msgid "Login"
-msgstr ""
-
-#: plus/templates/plus/bevent.html:162 plus/templates/plus/event_old.html:115
-#: templates/base.html:89
-msgid "Login via OpenID"
-msgstr ""
-
-#: plus/templates/plus/event_old.html:47
-msgid "You are logged in as"
-msgstr ""
-
-#: plus/templates/plus/event_old.html:49 templates/base.html:61
-msgid "Logout"
-msgstr ""
-
-#: plus/templates/plus/event_old.html:56
-#, python-format
-msgid ""
-"\n"
-"    %(counter)s person is going to the event:\n"
-"    "
-msgid_plural ""
-"\n"
-"    %(counter)s persons are going to the event:\n"
-"    "
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-
-#: plus/templates/plus/event_old.html:62
-#, python-format
-msgid ""
-"\n"
-"    %(counter)s person attended the event:\n"
-"    "
-msgid_plural ""
-"\n"
-"    %(counter)s persons attended the event:\n"
-"    "
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-
-#: plus/templates/plus/event_old.html:73
-msgid "you"
-msgstr ""
-
-#: plus/templates/plus/event_old.html:86
-msgid "Show everyone"
-msgstr ""
-
-#: plus/templates/plus/event_old.html:91
-msgid "Nobody has registered for the event yet :("
-msgstr ""
-
-#: plus/templates/plus/event_old.html:99
-#: plus/templates/plus/tags/comment_list.html:23
-msgid "Comments"
-msgstr ""
-
-#: plus/templates/plus/tags/comment_list.html:23
-msgid "add"
-msgstr ""
+#: templates/base.html:53
+msgid "Social login"
+msgstr "Уваход праз..."
 
 #: templates/base.html:59
 msgid "Admin"
+msgstr "Адміністраванне"
+
+#: templates/base.html:63
+msgid "Vkontakte"
+msgstr ""
+
+#: templates/base.html:64
+msgid "Twitter"
+msgstr ""
+
+#: templates/base.html:65
+msgid "Facebook"
+msgstr ""
+
+#: templates/base.html:67
+msgid "Open ID"
 msgstr ""
 
 #: templates/base.html:104
 msgid "What is plus"
-msgstr ""
+msgstr "Што такое \"плюс\""
 
-#: templates/comments/form.html:7
+#: templates/comments/form.html:7 templates/comments/form.html.py:30
 msgid "Leave comment"
 msgstr "Пакінуць каментар"
 
 #: templates/comments/form.html:10
 msgid "Text"
-msgstr ""
+msgstr "Тэкст"
 
 #: templates/comments/form.html:22 templates/comments/preview.html:25
 msgid "Submit"
 msgstr "Адправіць"
 
-#: templates/comments/form.html:34
-#, fuzzy, python-format
-msgid ""
-"\n"
-"Please login via <a href=\"%(vk_url)s?next=%(full_path)s\" rel=\"nofollow"
-"\">Vkontakte</a>, <a href=\"%(fb_url)s?next=%(full_path)s\" rel=\"nofollow"
-"\">Facebook</a>, <a href=\"%(twit_url)s?next=%(full_path)s\" rel=\"nofollow"
-"\">Twitter</a> or <a href=\"#\" data-reveal-id=\"auth-openid-addcomment"
-"\">Open ID</a> in order to leave comments\n"
-msgstr ""
-"\n"
-"Калі ласка, увайдзіце праз <a href=\"%(vk_url)s?next=%(full_path)s\" rel="
-"\"nofollow\">Vkontakte</a>, <a href=\"%(fb_url)s?next=%(full_path)s\" rel="
-"\"nofollow\">Facebook</a>, <a href=\"%(twit_url)s?next=%(full_path)s\" rel="
-"\"nofollow\">Twitter</a> ці <a href=\"#\" data-reveal-id=\"auth-openid"
-"\">Open ID</a>, каб мець магчымасць пакідаць каменты\n"
-
-#: templates/comments/preview.html:4 templates/comments/preview.html.py:5
-msgid "PREVIEW"
-msgstr "ПЕРАДПРАГЛЯД"
-
-#: templates/comments/preview.html:31
+#: templates/comments/form.html:33 templates/comments/preview.html:31
 #, python-format
 msgid ""
 "\n"
@@ -226,3 +83,7 @@ msgstr ""
 "\"nofollow\">Facebook</a>, <a href=\"%(twit_url)s?next=%(full_path)s\" rel="
 "\"nofollow\">Twitter</a> ці <a href=\"#\" data-reveal-id=\"auth-openid"
 "\">Open ID</a>, каб мець магчымасць пакідаць каменты\n"
+
+#: templates/comments/preview.html:4 templates/comments/preview.html.py:5
+msgid "PREVIEW"
+msgstr "ПЕРАДПРАГЛЯД"

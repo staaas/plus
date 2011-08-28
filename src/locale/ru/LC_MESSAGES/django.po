@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-23 00:17+0300\n"
+"POT-Creation-Date: 2011-08-28 15:54+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -19,15 +19,54 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2)\n"
 
-#: templates/comments/form.html:2
+#: commonutils/ncomments/__init__.py:6
+msgid "Email address"
+msgstr ""
+
+#: commonutils/ncomments/__init__.py:7
+msgid "Comment"
+msgstr "Оставить комментарий"
+#: templates/base.html:53
+msgid "Social login"
+msgstr "Вход через..."
+
+#: templates/base.html:59
+msgid "Admin"
+msgstr "Администрирование"
+
+#: templates/base.html:63
+msgid "Vkontakte"
+msgstr "Вконтакте"
+
+#: templates/base.html:64
+msgid "Twitter"
+msgstr ""
+
+#: templates/base.html:65
+msgid "Facebook"
+msgstr ""
+
+#: templates/base.html:67
+msgid "Open ID"
+msgstr ""
+
+#: templates/base.html:104
+msgid "What is plus"
+msgstr "Что такое \"плюс\""
+
+#: templates/comments/form.html:7 templates/comments/form.html.py:30
 msgid "Leave comment"
 msgstr "Оставить комментарий"
 
-#: templates/comments/form.html:18 templates/comments/preview.html:24
+#: templates/comments/form.html:10
+msgid "Text"
+msgstr "Текст"
+
+#: templates/comments/form.html:22 templates/comments/preview.html:25
 msgid "Submit"
 msgstr "Отправить"
 
-#: templates/comments/form.html:27 templates/comments/preview.html:30
+#: templates/comments/form.html:33 templates/comments/preview.html:31
 #, python-format
 msgid ""
 "\n"
@@ -39,11 +78,11 @@ msgid ""
 msgstr ""
 "\n"
 "Пожалуйста, войдите через <a href=\"%(vk_url)s?next=%(full_path)s\" rel="
-"\"nofollow\">Vkontakte</a>, <a href=\"%(fb_url)s?next=%(full_path)s\" rel="
+"\"nofollow\">Вконтакте</a>, <a href=\"%(fb_url)s?next=%(full_path)s\" rel="
 "\"nofollow\">Facebook</a>, <a href=\"%(twit_url)s?next=%(full_path)s\" rel="
 "\"nofollow\">Twitter</a> или <a href=\"#\" data-reveal-id=\"auth-openid"
 "\">Open ID</a>, чтобы иметь возможность оставлять комментарии\n"
 
 #: templates/comments/preview.html:4 templates/comments/preview.html.py:5
 msgid "PREVIEW"
-msgstr "ПЕРЕДПРОСМОТР"
+msgstr "ПРЕДПРОСМОТР"

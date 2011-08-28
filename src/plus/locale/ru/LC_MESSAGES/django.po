@@ -73,10 +73,10 @@ msgstr[0] ""
 "%(counter)s человек пойдет на событие:\n"
 msgstr[1] ""
 "\n"
-"%(counter)s человек пойдут на событие:\n"
+"%(counter)s человека пойдут на событие:\n"
 msgstr[2] ""
 "\n"
-"%(counter)s человека пойдут на событие:\n"
+"%(counter)s человек пойдут на событие:\n"
 
 #: templates/plus/bevent.html:110
 #, python-format
@@ -91,10 +91,10 @@ msgstr[0] ""
 "%(counter)s человек посетил событие:\n"
 msgstr[1] ""
 "\n"
-"%(counter)s человек посетил событие:\n"
+"%(counter)s человека посетили событие:\n"
 msgstr[2] ""
 "\n"
-"%(counter)s человека посетили событие:\n"
+"%(counter)s человек посетили событие:\n"
 
 #: templates/plus/bevent.html:132 templates/plus/event_old.html:91
 msgid "Nobody has registered for the event yet :("

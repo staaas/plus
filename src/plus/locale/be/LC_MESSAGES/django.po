@@ -94,7 +94,7 @@ msgstr[1] ""
 "%(counter)s чалавека хадзіла на падзею:\n"
 msgstr[2] ""
 "\n"
-"%(counter)s чалавек хадзіў на падзею:\n"
+"%(counter)s чалавек хадзілі на падзею:\n"
 
 #: templates/plus/bevent.html:132 templates/plus/event_old.html:91
 msgid "Nobody has registered for the event yet :("

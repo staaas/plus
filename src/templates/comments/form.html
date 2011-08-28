@@ -1,6 +1,6 @@
 {% load comments i18n %}
+<div id="comment-form" class="clearfix">
 {% if request.user.is_authenticated %}
-  <div id="comment-form" class="clearfix">
     
     <form method="post" action="/comments/post/">
       <fieldset>
@@ -23,13 +23,12 @@
       </div>
       </fieldset>
     </form>
-  </div>
-  <div style="clear:both"></div>
 {% else %}
 {% url plus_socialauth_begin "twitter" as twit_url %}
 {% url plus_socialauth_begin "facebook" as fb_url %}
 {% url plus_socialauth_begin "vkontakte-oauth2" as vk_url %}
-<div class="alert-message block-message error">
+<h3>{% trans "Leave comment" %}</h3>
+<div class="alert-message block-message error" id="login-to-comment-box">
   <p id="login-to-comment">
 {% blocktrans with full_path=request.get_full_path%}
 Please login via <a href="{{ vk_url }}?next={{ full_path }}" rel="nofollow">Vkontakte</a>, <a href="{{ fb_url }}?next={{ full_path }}" rel="nofollow">Facebook</a>, <a href="{{ twit_url }}?next={{ full_path }}" rel="nofollow">Twitter</a> or <a href="#" data-reveal-id="auth-openid-addcomment">Open ID</a> in order to leave comments
@@ -37,3 +36,5 @@ Please login via <a href="{{ vk_url }}?next={{ full_path }}" rel="nofollow">Vkon
   </p>
 </div>
 {% endif %}
+</div>
+<div style="clear:both"></div>

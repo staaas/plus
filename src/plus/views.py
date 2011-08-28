@@ -49,8 +49,10 @@ def event_plus(request, slug):
     event = get_object_or_404(Event, slug=slug,
                               starts_at__gt=datetime.datetime.now())
     user = request.user
+    goers_count = EventAttendance.objects.filter(event=event).count()
 
-    if user.is_authenticated():
+    if user.is_authenticated() and (not event.seats_number or \
+                                        event.seats_number > goers_count):
         att_count = EventAttendance.objects.filter(
             event=event, user=user).count()
         if att_count == 0:

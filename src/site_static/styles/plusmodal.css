@@ -1,7 +1,7 @@
 .modal-plus {
   visibility: hidden;
   position: absolute;
-  top: 50%;
+  top: 400px;
   left: 50%;
   z-index: 2000;
   width: 560px;

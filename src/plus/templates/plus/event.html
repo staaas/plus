@@ -161,7 +161,7 @@
   <h3>{% trans "...or use OpenID" %}</h1>
   <form action="{% url plus_socialauth_begin "openid" %}" method="post">{% csrf_token %}
     <div class="soc-auth-buttons">
-      <div class="openid_identifier"><input type="text" value="" name="openid_identifier" /><input type="submit" class="btn primary" value="{% trans "Login" %}" /></div>
+      <div class="openid-identifier"><input type="text" value="" name="openid_identifier" /><input type="submit" class="btn primary" value="{% trans "Login" %}" /></div>
       <input type="hidden" name="next" value="{{ curr_plus }}" />
     </div>
   </form>
@@ -175,7 +175,7 @@
   <div class="modal-footer">
     <form action="{% url plus_socialauth_begin "openid" %}" method="post">{% csrf_token %}
       <div class="soc-auth-buttons">
-	<div class="openid_identifier"><input type="text" value="" name="openid_identifier" /><input type="submit" class="btn primary" value="{% trans "Login" %}" /></div>
+	<div class="openid-identifier"><input type="text" value="" name="openid_identifier" /><input type="submit" class="btn primary" value="{% trans "Login" %}" /></div>
 	<input type="hidden" name="next" value="{% url show_event event.slug%}#addcomment" />
       </div>
     </form>

@@ -31,7 +31,7 @@ class Event(ImageModel):
     id = models.AutoField(primary_key = True)
 
     slug = models.SlugField(unique=True, max_length=40,
-                            default=random_slug, verbose_name=_(u'Internal ink'))
+                            default=random_slug, verbose_name=_(u'Internal link'))
     language = models.IntegerField(max_length=2, choices=LANG_CHOICES,
                                    verbose_name=_(u'Language'))
     creator = models.ForeignKey(User, verbose_name=_(u'Creator'))

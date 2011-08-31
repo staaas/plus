@@ -6,10 +6,18 @@ from models import Event
 
 class EventAdmin(admin.ModelAdmin):
     list_display = ['title', 'slug_display', 'creator', 'starts_at']
-    fields = ['title', 'slug', 'language', 'description', 'creator',
-              'starts_at', 'seats_number', 'created_at', 'url', 'logo']
-    readonly_fields = ['slug', 'created_at']
     ordering = ['-starts_at']
+    readonly_fields = ['slug_display', 'created_at']
+
+    fieldsets = (
+        (None, {'fields': ('title', 'slug_display', 'description', 'language')}),
+        (_('Details'), {'fields': ('starts_at', 'seats_number', 'url', 'logo')}),
+        (_('Extra'), {'fields': ('creator', 'created_at')}),
+    )
+    add_fieldsets = (
+        (None, {'fields': ('title', 'description', 'language')}),
+        (_('Details'), {'fields': ('starts_at', 'seats_number', 'url', 'logo')}),
+    )
 
     def has_change_permission(self, request, obj=None):
         change_perm = super(EventAdmin, self).has_change_permission(
@@ -40,6 +48,24 @@ class EventAdmin(admin.ModelAdmin):
             qs = qs.filter(creator=request.user)
 
         return qs
+
+    def get_fieldsets(self, request, obj=None):
+        if not obj:
+            return self.add_fieldsets
+        return super(EventAdmin, self).get_fieldsets(request, obj)
+
+    def get_form(self, request, obj=None, **kwargs):
+        """
+        Use special form during event creation
+        """
+        defaults = {}
+        if obj is None:
+            defaults.update({
+                'fields': admin.util.flatten_fieldsets(self.add_fieldsets),
+            })
+        defaults.update(kwargs)
+        return super(EventAdmin, self).get_form(request, obj, **defaults)
+
 
 
 admin.site.register(Event, EventAdmin)

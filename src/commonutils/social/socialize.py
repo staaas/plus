@@ -7,7 +7,7 @@ from social_auth.models import UserSocialAuth
 DEFAULT_AVATAR = getattr(settings, 'DEFAULT_SOCIAL_AVATAR', '')
 
 def get_avatarizator_key():
-    key_src = settings.AVATARIZATOR_KEY + datetime.now().strftime('%Y%m%d%H')
+    key_src = settings.AVATARIZATOR_KEY + datetime.utcnow().strftime('%Y%m%d%H')
     return sha1(key_src).hexdigest()
 
 def get_avatarizator_link(provider, uid, key=None):

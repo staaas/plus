@@ -34,7 +34,7 @@ class Event(ImageModel):
                             default=random_slug, verbose_name=_(u'Internal link'))
     language = models.IntegerField(max_length=2, choices=LANG_CHOICES,
                                    verbose_name=_(u'Language'))
-    creator = models.ForeignKey(User, verbose_name=_(u'Creator'))
+    creator = models.ForeignKey(User, verbose_name=_(u'Creator'), null=True, default=None)
 
     created_at = models.DateTimeField(auto_now_add=True,
                                       verbose_name=_(u'Created at'))

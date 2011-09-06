@@ -67,11 +67,11 @@ class EventAdmin(admin.ModelAdmin):
         return super(EventAdmin, self).get_form(request, obj, **defaults)
 
     def save_model(self, request, obj, form, change): 
-        ''' Adding current user on save if user is not defined '''
+        ''' Adding current user on save if created_by is not defined '''
         instance = form.save(commit=False)
 
-        if not instance.created_by:
-            instance.created_by = request.user
+        if not instance.creator:
+            instance.creator = request.user
 
         instance.save()
         form.save_m2m()

@@ -4,4 +4,5 @@
 src/settings_local.py
 src/static/*
 src/.ropeproject*
+src/templates/piwik.html
 media/

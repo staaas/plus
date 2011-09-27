@@ -3,5 +3,6 @@
 *~
 src/settings_local.py
 src/static/*
+src/templates/piwik.html
 src/.ropeproject*
 media/

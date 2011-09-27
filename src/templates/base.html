@@ -12,15 +12,15 @@
 <![endif]-->
 
     <!-- Le styles -->
-    <link rel="stylesheet" href="{{ STATIC_URL }}styles/bootstrap.min.css">
+    <link rel="stylesheet" href="{{ STATIC_URL }}styles/bootstrap-1.1.0.min.css">
     <link rel="stylesheet" href="{{ STATIC_URL }}styles/plus.css" media="all">
+    <link rel="stylesheet" href="{{ STATIC_URL }}styles/tipsy.css" media="all">
+    <link rel="stylesheet" href="{{ STATIC_URL }}styles/plusmodal.css" media="all">
     <script src="{{ STATIC_URL }}js/jquery-1.6.2.min.js" type="text/javascript"></script>
-    <script src="{{ STATIC_URL }}js/bootstrap-twipsy.js" type="text/javascript"></script>
-    <script src="{{ STATIC_URL }}js/bootstrap-modal.js" type="text/javascript"></script>
+    <script src="{{ STATIC_URL }}js/jquery.tipsy.js" type="text/javascript"></script>
+    <script src="{{ STATIC_URL }}js/jquery.reveal.js" type="text/javascript"></script>
     {% block extrahead %}{% endblock %}
     <script type="text/javascript">
-      $('#what-is-plus').modal({closeOnEscape: true });
-      $('#auth-openid').modal({closeOnEscape: true });
       $(document).ready(function() {
         // Dropdown for topbar nav
         // ===============================
@@ -40,7 +40,7 @@
     <div class="topbar">
       <div class="fill">
 	<div class="container fixed">
-	  <h3><a href="#" data-controls-modal="what-is-plus" data-backdrop="static">+</a></h3>
+	  <h3><a href="#" data-reveal-id="what-is-plus">+</a></h3>
 	  <ul>
 	    {% block extratopbar %}{% endblock %}
 	  </ul>
@@ -64,7 +64,7 @@
 		  <li><a class="menulogin" href="{% url plus_socialauth_begin "twitter" %}?next={{ request.get_full_path }}"><img src="{{ STATIC_URL }}img/twitter_100.png" />{% trans "Twitter" %}</a></li>
 		  <li><a class="menulogin" href="{% url plus_socialauth_begin "facebook" %}?next={{ request.get_full_path }}"><img src="{{ STATIC_URL }}img/facebook_100.png" />{% trans "Facebook" %}</a></li>
                   <li class="divider"></li>
-		  <li><a class="menulogin" href="#" data-controls-modal="auth-openid"><img src="{{ STATIC_URL }}img/openid_20.png" />{% trans "Open ID" %}</a></li>
+		  <li><a class="menulogin" href="#" data-reveal-id="auth-openid"><img src="{{ STATIC_URL }}img/openid_20.png" />{% trans "Open ID" %}</a></li>
 		{% endif %}
               </ul>
             </li>
@@ -83,12 +83,11 @@
 
 
     {% block content %}{% endblock %}
-    <div class="modal-backdrop fade in"></div>
 
-    <div id="auth-openid" class="modal hide fade in" style="display: block;">
+    <div id="auth-openid" class="reveal-modal modal-plus">
       <div class="modal-header">
-	<a class="close" href="#">×</a>
 	<h3>{% trans "Login via OpenID" %}:</h3>
+	<a class="close-reveal-modal close" href="#">×</a>
       </div>
       <div class="modal-footer">
 	<form action="{% url plus_socialauth_begin "openid" %}" method="post">{% csrf_token %}
@@ -100,10 +99,10 @@
       </div>
     </div>
 
-    <div id="what-is-plus" class="modal hide fade in" style="display: block;">
+    <div id="what-is-plus" class="reveal-modal modal-plus">
       <div class="modal-header">
-	<a class="close" href="#">×</a>
 	<h3>{% trans "What is plus" %}</h3>
+	<a class="close-reveal-modal close" href="#">×</a>
       </div>
       <div class="modal-body">
 	Plus is...
@@ -111,6 +110,5 @@
     </div>
 
     {% block bottom %}{% endblock %}
-    {% include "piwik.html" %}
   </body>
 </html>

@@ -23,7 +23,7 @@ def plus_socialauth_begin(request, backend):
 
 @render_to('plus/event.html')
 def show_event(request, slug):
-    event = get_object_or_404(Event, slug=slug, published=True)
+    event = get_object_or_404(Event, slug=slug)
     translation.activate(LANG_CODES[event.language])
 
     user = request.user

@@ -185,8 +185,10 @@ SOCIAL_AUTH_IMPORT_BACKENDS = (
     'social_auth_extra_services',
 )
 SOCIAL_AUTH_ERROR_KEY = 'SOCIAL_AUTH_ERROR_KEY'
-DEFAULT_SOCIAL_AVATAR =  STATIC_URL + 'img/default_avatar.png'
 SOCIAL_AUTH_SESSION_EXPIRATION = False
+DEFAULT_SOCIAL_AVATAR =  STATIC_URL + 'img/default_avatar.png'
+AVATARIZATOR_URL = 'http://plus.klu.by:8000/%(provider)s/%(uid)s?key=%(key)s'
+AVATARIZATOR_KEY = 'will be used like salt'
 
 TWITTER_CONSUMER_KEY = ''  # please define in settings_local
 TWITTER_CONSUMER_SECRET= ''  # please define in settings_local

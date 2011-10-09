@@ -5,6 +5,8 @@ from django.contrib import admin
 
 admin.autodiscover()
 
+handler500 = 'plus.views.error500'
+
 if settings.DEBUG:
     urlpatterns = patterns('', (r'^site_media/media/(?P<path>.*)$',
                                 'django.views.static.serve',

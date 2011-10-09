@@ -23,7 +23,7 @@ def plus_socialauth_begin(request, backend):
 
 @render_to('plus/event.html')
 def show_event(request, slug):
-    event = get_object_or_404(Event, slug=slug)
+    event = get_object_or_404(Event, slug=slug, published=True)
     translation.activate(LANG_CODES[event.language])
 
     user = request.user
@@ -83,3 +83,8 @@ def auth_error(request):
     error_msg = request.session.pop(settings.SOCIAL_AUTH_ERROR_KEY, None)
     return {'version': version,
             'error_msg': error_msg}
+
+@render_to('500.html')
+def error500(request):
+    """ Error 500 view """
+    return {}

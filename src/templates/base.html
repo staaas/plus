@@ -1,4 +1,4 @@
-<!DOCTYPE html>{% load i18n %}
+<!DOCTYPE html>{% load i18n feedback_tags %}
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -105,7 +105,13 @@
 	<a class="close-reveal-modal close" href="#">×</a>
       </div>
       <div class="modal-body">
-	Plus is...
+	<p>
+	{% trans "Праект “+” створаны адмыслова для арганізацыі кватэрнікаў, зачыненных мерапрыестваў ды іншых андэграундных актыўнасцяў." %}
+	</p>
+	<p>
+	  {% trans "Праект “+” дае магчымасць збіраць людзей з Facebook, Vkontakte, Twitter ды з дапамогай OpenID у адным месцы, даючы ім магчымасць запісвацца на падзею." %}
+	</p>
+	{% feedback_form %}
       </div>
     </div>
 

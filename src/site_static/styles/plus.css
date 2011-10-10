@@ -196,3 +196,12 @@ form div.openid-identifier input[type=text] {
     margin: 3px 0 3px 2px;
     vertical-align: top;
 }
+
+/* feedback form */
+#feedback-form-inner input, #feedback-form-inner textarea {
+    width: 90%;
+}
+
+#feedback-form, #feedback-form fieldset, #feedback-form .actions {
+    margin-bottom: 0;
+}

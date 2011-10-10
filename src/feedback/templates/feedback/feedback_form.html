@@ -1,0 +1,33 @@
+<script type="text/javascript">
+  $(document).ready(function() {
+    $("#feedback-form").submit(function(event){
+      event.preventDefault();
+      $.ajax({
+        type: "POST",
+        url: $(this).attr("action"),
+        data: $(this).serialize(),
+        success: function(html) {
+          alert('5');
+        },
+        error: function(xhr, error) {
+          if (xhr.status == 409) {
+            $("#feedback-form-inner").html(xhr.responseText);
+          }
+        }
+      });
+
+    });
+  });
+</script>
+<form id="feedback-form" class="form-stacked" method="POST" action="{% url submit_feedback %}">
+  <fieldset>
+    <legend>Leave feedback</legend>
+    {% csrf_token %}
+    <div id="feedback-form-inner">
+      {{ feedback_form }}
+    </div>
+    <div class="actions">
+      <input type="submit" value="Send" class="btn primary">
+    </div>
+  </fiedlset>
+</form>

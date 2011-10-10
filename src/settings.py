@@ -114,6 +114,7 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
     "django.contrib.messages.context_processors.messages",
     "django.core.context_processors.static",
+    "feedback.context_processors.feedback_form"
 )
 
 ROOT_URLCONF = 'urls'
@@ -138,6 +139,7 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'imagekit',
     'plus',
+    'feedback',
 )
 
 COMMENTS_APP = 'commonutils.ncomments'

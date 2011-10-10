@@ -29,6 +29,7 @@ urlpatterns += patterns('',
         'plus.views.plus_socialauth_begin',
         name='plus_socialauth_begin'),
     url(r'^soc/', include('social_auth.urls')),
+    url(r'^feedback/', include('feedback.urls')),
     url(r'^auth-error/$', 'plus.views.auth_error', name='error'),
     url(r'^$', 'plus.views.home', name='home'),
 

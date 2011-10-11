@@ -1,15 +1,20 @@
 from django.template import loader
 from django.http import HttpResponse, Http404
+from pyres import ResQ
 
 from feedback.forms import FeedbackForm
+from feedback.tasks import FeedbackTask
 
 def submit_feedback(request):
-#    if request.method != 'POST':
-#        raise Http404
+    if request.method != 'POST':
+        raise Http404
 
     form = FeedbackForm(request.POST or None)
     if form.is_valid():
-        HttpResponse(status=200)
+        r = ResQ()
+        r.enqueue(FeedbackTask, form.cleaned_data['name'],
+                  form.cleaned_data['email'], form.cleaned_data['text'])
+        return HttpResponse(status=200)
     
     # form is invalid
     return HttpResponse(

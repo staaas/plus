@@ -1,5 +1,12 @@
+{% load i18n %}
 <script type="text/javascript">
   $(document).ready(function() {
+    $('#feedback-try-again').click(function(){
+      $('#feedback-form').show('fast');
+      $('#feedback-try-again').hide('fast');
+      $('#feedback-success').hide('fast');
+    });
+
     $("#feedback-form").submit(function(event){
       event.preventDefault();
       $.ajax({
@@ -7,11 +14,19 @@
         url: $(this).attr("action"),
         data: $(this).serialize(),
         success: function(html) {
-          alert('5');
+            $('#feedback-success').show('fast');
+            $('#feedback-form').hide('fast');
+            $('#feedback-try-again').hide('fast');
+            document.getElementById('feedback-form').reset();
         },
         error: function(xhr, error) {
           if (xhr.status == 409) {
             $("#feedback-form-inner").html(xhr.responseText);
+          }
+          else {
+            $('#feedback-try-again').show('fast');
+            $('#feedback-form').hide('fast');
+            $('#feedback-success').hide('fast');
           }
         }
       });
@@ -19,6 +34,19 @@
     });
   });
 </script>
+
+
+<div id="feedback-try-again" class="alert-message block-message error" style="display:none">
+  <p>{% trans "An error occured while sending your feedback" %}</p>
+  <div class="alert-actions">
+    <a href="#" class="btn small">{% trans "Try again" %}</a>
+  </div>
+</div>
+<div id="feedback-success" class="alert-message block-message info" style="display:none">
+  <p><strong>{% trans "Thank you for your feedback!" %}</strong></p>
+  <p>{% trans "We will answer soon." %}</p>
+</div>
+
 <form id="feedback-form" class="form-stacked" method="POST" action="{% url submit_feedback %}">
   <fieldset>
     <legend>Leave feedback</legend>

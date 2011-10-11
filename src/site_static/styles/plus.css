@@ -201,7 +201,6 @@ form div.openid-identifier input[type=text] {
 #feedback-form-inner input, #feedback-form-inner textarea {
     width: 90%;
 }
-
 #feedback-form, #feedback-form fieldset, #feedback-form .actions {
     margin-bottom: 0;
 }

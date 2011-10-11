@@ -212,6 +212,13 @@ LOGIN_ERROR_URL	   = '/auth-error/'
 # for django debug toolbar
 INTERNAL_IPS = ('127.0.0.1',)
 
+# Feedback
+FEEDBACK_SENDER_JID = 'example@jabber.org'
+FEEDBACK_SENDER_PWD = ''
+FEEDBACK_RECIPIENT_JIDS = []
+FEEDBACK_RECIPIENT_EMAILS = []
+
+
 try:
     from settings_local import *
 except ImportError:

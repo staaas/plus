@@ -52,7 +52,7 @@
     <legend>Leave feedback</legend>
     {% csrf_token %}
     <div id="feedback-form-inner">
-      {{ feedback_form }}
+      {% include "feedback/feedback_form_partial.html" %}
     </div>
     <div class="actions">
       <input type="submit" value="Send" class="btn primary">

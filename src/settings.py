@@ -5,7 +5,7 @@ import os.path
 PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 DEBUG = True
-TEMPLATE_DEBUG = DEBUG
+TEMPLATE_DEBUG = True
 
 ADMINS = (
     # ('Your Name', 'your_email@example.com'),
@@ -94,7 +94,7 @@ SECRET_KEY = '15_suqhikmkf^ij&k7#$5*-x11@1f5xl8=e_=__o5!fa%flv%a'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#     'django.template.loaders.eggs.Loader',
+#    'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -133,13 +133,16 @@ INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.markup',
     'django.contrib.comments',
-    'commonutils.ncomments',
-    'social_auth',
+
     'south',
     'debug_toolbar',
+
+    'social_auth',
     'imagekit',
-    'plus',
+
     'feedback',
+    'commonutils.ncomments',
+    'plus',
 )
 
 COMMENTS_APP = 'commonutils.ncomments'

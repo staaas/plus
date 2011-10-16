@@ -1,19 +1,23 @@
-{% extends "base.html" %}
+{% extends "base.html" %}{% load i18n feedback_tags %}
 
 {% block title %}+ / я пайду{% endblock %}
 
 {% block header %}
-<div style="width: 400px; margin: auto">
+<div id="header-on-main-page">
   <h1>+ / я пайду</h1>
   Сацыяльны сэрвіс ананімных падзей
 </div>
 {% endblock %}
 
 {% block content %}
-<div class="container">
-<h3 style="width: 400px; margin: auto">
-Па ўсіх пытаннях звяртайцесь на скрыню
-<center><span style="text-decoration: underline">web<nobr /><img style="padding: 0 2px 0 2px; width: 12px;" src="/site_media/static/img/dog.png" alt="@" /><nobr />nott.cc</span></center>
+<div id="main-on-main-page" class="container">
+  <p>
+    {% trans "Праект “+” створаны адмыслова для арганізацыі кватэрнікаў, зачыненных мерапрыестваў ды іншых андэграундных актыўнасцяў." %}
+  </p>
+  <p>
+    {% trans "Праект “+” дае магчымасць збіраць людзей з Facebook, Vkontakte, Twitter ды з дапамогай OpenID у адным месцы, даючы ім магчымасць запісвацца на падзею." %}
+  </p>
+  {% feedback_form %}
 </h3>
 </div>
 {% endblock %}

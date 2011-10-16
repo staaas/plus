@@ -1,4 +1,4 @@
-<!DOCTYPE html>{% load i18n feedback_tags %}
+<!DOCTYPE html>{% load i18n %}
 <html lang="en">
   <head>
     <meta charset="utf-8">
@@ -40,10 +40,7 @@
     <div class="topbar">
       <div class="fill">
 	<div class="container fixed">
-	  <h3><a href="#" data-reveal-id="what-is-plus">+</a></h3>
-	  <ul>
-	    {% block extratopbar %}{% endblock %}
-	  </ul>
+	  {% block extratopbar %}<h3><span>+</span></h3>{% endblock %}
 	  <ul class="nav secondary-nav">
             <li class="menu">
               <a id="session" class="menu" href="#">
@@ -96,22 +93,6 @@
 	    <input type="hidden" name="next" value="{{ request.get_full_path }}" />
 	  </div>
 	</form>
-      </div>
-    </div>
-
-    <div id="what-is-plus" class="reveal-modal modal-plus">
-      <div class="modal-header">
-	<h3>{% trans "What is plus" %}</h3>
-	<a class="close-reveal-modal close" href="#">×</a>
-      </div>
-      <div class="modal-body">
-	<p>
-	{% trans "Праект “+” створаны адмыслова для арганізацыі кватэрнікаў, зачыненных мерапрыестваў ды іншых андэграундных актыўнасцяў." %}
-	</p>
-	<p>
-	  {% trans "Праект “+” дае магчымасць збіраць людзей з Facebook, Vkontakte, Twitter ды з дапамогай OpenID у адным месцы, даючы ім магчымасць запісвацца на падзею." %}
-	</p>
-	{% feedback_form %}
       </div>
     </div>
 

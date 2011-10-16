@@ -27,6 +27,17 @@ html, body {
 #masterhead a:hover {
     color: #ffff00;
 }
+#header-on-main-page {
+    width: 400px;
+    margin: auto;
+}
+#main-on-main-page {
+    width: 400px;
+    margin-top: 10px;
+}
+#main-on-main-page p {
+    padding-left: 20px;
+}
 /* description and poster */
 .event-description {
     margin-top: 10px;
@@ -163,6 +174,16 @@ form div.openid-identifier input[type=text] {
     margin-top: -1px;
 }
 /* topbar */
+.topbar h3 span {
+    color: #656565;
+    display: block;
+    float: left;
+    font-size: 20px;
+    font-weight: 200;
+    line-height: 1;
+    margin-left: -20px;
+    padding: 8px 20px 12px;
+}
 .topbar ul li span {
     display: block;
     float: none;

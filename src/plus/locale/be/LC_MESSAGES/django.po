@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-08-31 09:48+0300\n"
+"POT-Creation-Date: 2011-10-17 00:39+0300\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -87,24 +87,24 @@ msgstr "Запісаўся і прыйшоў"
 msgid "Signed up but didn't come"
 msgstr "Запісайся і не прыйшоў"
 
-#: templates/plus/event.html:57 templates/plus/event_old.html:21
+#: templates/plus/event.html:58 templates/plus/event_old.html:21
 msgid "Starts:"
 msgstr "Пачатак:"
 
-#: templates/plus/event.html:85 templates/plus/event_old.html:35
+#: templates/plus/event.html:86 templates/plus/event_old.html:35
 msgid "Press if you've changed your mind to go"
 msgstr "Націснеце, калі вы перадумалі ісці"
 
-#: templates/plus/event.html:87 templates/plus/event_old.html:38
+#: templates/plus/event.html:88 templates/plus/event_old.html:38
 #: templates/plus/event_old.html.py:40
 msgid "Press if you are going to go"
 msgstr "Націснеце, калі вы збіраецесь пайсці"
 
-#: templates/plus/event.html:91
+#: templates/plus/event.html:92
 msgid "Registration is closed as there are no more seats left"
 msgstr "Рэгістрацыя скончана, бо не засталося вольных месцаў"
 
-#: templates/plus/event.html:104
+#: templates/plus/event.html:105
 #, python-format
 msgid ""
 "\n"
@@ -122,7 +122,7 @@ msgstr[2] ""
 "\n"
 "%(counter)s чалавек пойдуць на падзею:\n"
 
-#: templates/plus/event.html:110
+#: templates/plus/event.html:111
 #, python-format
 msgid ""
 "\n"
@@ -140,34 +140,50 @@ msgstr[2] ""
 "\n"
 "%(counter)s чалавек хадзілі на падзею:\n"
 
-#: templates/plus/event.html:121 templates/plus/event_old.html:73
+#: templates/plus/event.html:122 templates/plus/event_old.html:73
 msgid "you"
 msgstr "вы"
 
-#: templates/plus/event.html:132 templates/plus/event_old.html:91
+#: templates/plus/event.html:133 templates/plus/event_old.html:91
 msgid "Nobody has registered for the event yet :("
 msgstr "Пакуль ніхто не зарэгістраваўся на падзею :("
 
-#: templates/plus/event.html:134
+#: templates/plus/event.html:135
 msgid "Nobody registered for the event :("
 msgstr "Ніхто не зарэгістраваўся на падзею :("
 
-#: templates/plus/event.html:148 templates/plus/event_old.html:126
+#: templates/plus/event.html:149 templates/plus/event_old.html:126
 msgid "Please login with:"
 msgstr "Калі ласка, увайдзіце праз:"
 
-#: templates/plus/event.html:161 templates/plus/event_old.html:133
+#: templates/plus/event.html:162 templates/plus/event_old.html:133
 msgid "...or use OpenID"
 msgstr "...ці выкарыстоўвайце OpenID"
 
-#: templates/plus/event.html:164 templates/plus/event.html.py:178
+#: templates/plus/event.html:165 templates/plus/event.html.py:179
 #: templates/plus/event_old.html:118 templates/plus/event_old.html.py:136
 msgid "Login"
 msgstr "Увайсці"
 
-#: templates/plus/event.html:172 templates/plus/event_old.html:115
+#: templates/plus/event.html:173 templates/plus/event_old.html:115
 msgid "Login via OpenID"
 msgstr "Уваход праз OpenID"
+
+#: templates/plus/event.html:187
+msgid "What is plus"
+msgstr ""
+
+#: templates/plus/event.html:192 templates/plus/home.html:15
+msgid ""
+"Праект “+” створаны адмыслова для арганізацыі кватэрнікаў, зачыненных "
+"мерапрыестваў ды іншых андэграундных актыўнасцяў."
+msgstr ""
+
+#: templates/plus/event.html:195
+msgid ""
+"Праект “+” дазваляе збіраць людзей з Facebook, Vkontakte, Twitter ды з "
+"дапамогай OpenID у адным месцы, даючы ім магчымасць запісвацца на падзею."
+msgstr ""
 
 #: templates/plus/event_old.html:47
 msgid "You are logged in as"
@@ -224,6 +240,21 @@ msgstr "Паказаць усіх"
 #: templates/plus/event_old.html:99 templates/plus/tags/comment_list.html:23
 msgid "Comments"
 msgstr "Каментары"
+
+#: templates/plus/home.html:7
+msgid "я пайду"
+msgstr ""
+
+#: templates/plus/home.html:8
+msgid "Сацыяльны сэрвіс ананімных падзей"
+msgstr ""
+
+#: templates/plus/home.html:18
+msgid ""
+"Праект “+” дазваляе збіраць людзей з Facebook, Vkontakte і Twitter'а (а "
+"таксама з дапамогай OpenID) у адным месцы, даючы ім магчымасць запісвацца на "
+"падзею."
+msgstr ""
 
 #: templates/plus/tags/comment_list.html:23
 msgid "add"

@@ -35,7 +35,7 @@ TIME_ZONE = 'Europe/Minsk'
 
 # Language code for this installation. All choices can be found here:
 # http://www.i18nguy.com/unicode/language-identifiers.html
-LANGUAGE_CODE = 'be'
+LANGUAGE_CODE = 'ru'
 
 SITE_ID = 1
 
@@ -94,7 +94,7 @@ SECRET_KEY = '15_suqhikmkf^ij&k7#$5*-x11@1f5xl8=e_=__o5!fa%flv%a'
 TEMPLATE_LOADERS = (
     'django.template.loaders.filesystem.Loader',
     'django.template.loaders.app_directories.Loader',
-#    'django.template.loaders.eggs.Loader',
+#     'django.template.loaders.eggs.Loader',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -114,7 +114,6 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     "django.core.context_processors.request",
     "django.contrib.messages.context_processors.messages",
     "django.core.context_processors.static",
-    "feedback.context_processors.feedback_form"
 )
 
 ROOT_URLCONF = 'urls'
@@ -214,13 +213,6 @@ LOGIN_ERROR_URL	   = '/auth-error/'
 
 # for django debug toolbar
 INTERNAL_IPS = ('127.0.0.1',)
-
-# Feedback
-FEEDBACK_SENDER_JID = 'example@jabber.org'
-FEEDBACK_SENDER_PWD = ''
-FEEDBACK_RECIPIENT_JIDS = []
-FEEDBACK_RECIPIENT_EMAILS = []
-
 
 try:
     from settings_local import *

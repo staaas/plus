@@ -9,11 +9,7 @@ class EventAdmin(admin.ModelAdmin):
     ordering = ['-starts_at']
     readonly_fields = ['slug_display', 'created_at']
 
-    fieldsets = (
-        (None, {'fields': ('title', 'slug_display', 'description', 'language')}),
-        (_('Details'), {'fields': ('starts_at', 'seats_number', 'url', 'logo')}),
-        (_('Extra'), {'fields': ('creator', 'created_at')}),
-    )
+    # fieldsets will be defined in get_fieldsets
     add_fieldsets = (
         (None, {'fields': ('title', 'description', 'language')}),
         (_('Details'), {'fields': ('starts_at', 'seats_number', 'url', 'logo')}),
@@ -52,6 +48,16 @@ class EventAdmin(admin.ModelAdmin):
     def get_fieldsets(self, request, obj=None):
         if not obj:
             return self.add_fieldsets
+
+        extra_fields = ['created_at']
+        if request.user.is_superuser:
+            extra_fields = ['creator'] + extra_fields
+        self.fieldsets = (
+            (None, {'fields': ('title', 'slug_display', 'description', 'language')}),
+            (_('Details'), {'fields': ('starts_at', 'seats_number', 'url', 'logo')}),
+            (_('Extra'), {'fields': extra_fields}),
+            )
+
         return super(EventAdmin, self).get_fieldsets(request, obj)
 
     def get_form(self, request, obj=None, **kwargs):
@@ -70,7 +76,7 @@ class EventAdmin(admin.ModelAdmin):
         ''' Adding current user on save if created_by is not defined '''
         instance = form.save(commit=False)
 
-        if not instance.creator:
+        if getattr(instance, 'creator', None) is None:
             instance.creator = request.user
 
         instance.save()

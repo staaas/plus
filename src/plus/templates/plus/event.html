@@ -89,7 +89,14 @@
         {% endif %}
       </a>
     {% else %}
-      <span class="btn large disabled">{% trans "Registration is closed as there are no more seats left" %}</span>
+      {% if curr_attendance %}
+        {% url event_minus event.slug as gobutton_url %}
+        <a id="gobutton" href="{{ gobutton_url }}" class="btn large danger" rel="nofollow">
+	  {% trans "Press if you've changed your mind to go" %}
+	</a>
+      {% else %}
+        <span class="btn large disabled">{% trans "Registration is closed as there are no more seats left" %}</span>
+      {% endif %}
     {% endif %}
     </p>
   {% endif %}

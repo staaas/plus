@@ -57,7 +57,7 @@
 		  {% endif %}
    		  <li><a href="logout/">{% trans "Logout" %}</a></li>
 		{% else %}
-		  <li><a class="menulogin" href="{% url plus_socialauth_begin "vkontakte-oauth2" %}?next={{ request.get_full_path }}"><img src="{{ STATIC_URL }}img/vkontakte_100.png" /> {% trans "Vkontakte" %}</a></li>
+		  <li><a class="menulogin" href="{% url plus_socialauth_begin "vk" %}?next={{ request.get_full_path }}"><img src="{{ STATIC_URL }}img/vkontakte_100.png" /> {% trans "Vkontakte" %}</a></li>
 		  <li><a class="menulogin" href="{% url plus_socialauth_begin "twitter" %}?next={{ request.get_full_path }}"><img src="{{ STATIC_URL }}img/twitter_100.png" />{% trans "Twitter" %}</a></li>
 		  <li><a class="menulogin" href="{% url plus_socialauth_begin "facebook" %}?next={{ request.get_full_path }}"><img src="{{ STATIC_URL }}img/facebook_100.png" />{% trans "Facebook" %}</a></li>
                   <li class="divider"></li>

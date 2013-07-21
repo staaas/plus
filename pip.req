@@ -4,6 +4,6 @@ PIL==1.1.7
 South==0.7.3
 django-debug-toolbar==0.8.5
 django-imagekit==0.3.6
-django-social-auth==0.5.13
+django-social-auth==0.7.24
 wsgiref==0.1.2
 git+git://github.com/nott/django-pyres-feedback.git@0.0.1
